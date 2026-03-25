@@ -1,0 +1,3 @@
+# isabellewastaken.github.io
+My website used for hosting stuff like Educraft!
+...Nothing else here for now...
