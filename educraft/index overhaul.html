@@ -4,7 +4,7 @@
     <title>Educraft Alpha</title>
     <style>
         body {
-            background-color: #222; /* Solid dark charcoal */
+            background-color: #222; 
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
             color: #ddd;
             margin: 0;
@@ -14,7 +14,7 @@
 
         .main-wrapper {
             width: 1000px;
-            background-color: #000; /* Solid black container */
+            background-color: #000;
             padding: 40px 60px;
             min-height: 100vh;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
@@ -28,10 +28,16 @@
             padding-bottom: 15px;
             display: flex;
             justify-content: space-between;
+            align-items: center;
         }
 
-        .nav-links a { color: #aaa; text-decoration: none; margin-left: 20px; font-weight: bold; }
-        .nav-links a:hover { color: #fff; }
+        .nav-links a { 
+            color: #555; /* Dimmed to show they are non-functional */
+            text-decoration: none; 
+            margin-left: 20px; 
+            font-weight: bold;
+            cursor: not-allowed; 
+        }
 
         .content-flex {
             display: flex;
@@ -44,7 +50,7 @@
         .play-side {
             flex: 1;
             text-align: center;
-            background: #111; /* Slightly lighter black for the sidebar */
+            background: #111;
             padding: 30px 20px;
             border-radius: 4px;
         }
@@ -61,7 +67,6 @@
             font-weight: bold;
             font-size: 22pt;
             text-shadow: 2px 2px #884400;
-            text-transform: capitalize;
         }
 
         .btn-play:hover {
@@ -85,6 +90,17 @@
 
         .footer-cols h3 { color: #fff; font-size: 13pt; margin-bottom: 15px; }
         .footer-cols p { font-size: 10pt; line-height: 1.6; color: #999; }
+        
+        .coming-soon-box {
+            background:#111; 
+            height: 350px; 
+            border: 1px solid #333; 
+            display: flex; 
+            flex-direction: column;
+            align-items: center; 
+            justify-content: center;
+            color: #444;
+        }
     </style>
 </head>
 <body>
@@ -99,9 +115,10 @@
 
     <div class="content-flex">
         <div class="video-side">
-            <!-- Video Placeholder -->
-            <div style="background:#111; height: 350px; border: 1px solid #333; display: flex; align-items: center; justify-content: center;">
-                <span style="color: #444; font-size: 40pt;">▶</span>
+            <!-- Video Placeholder with Coming Soon Text -->
+            <div class="coming-soon-box">
+                <span style="font-size: 40pt; margin-bottom: 10px;">▶</span>
+                <span style="font-weight: bold; letter-spacing: 2px;">TRAILER COMING SOON</span>
             </div>
             <p style="margin-top: 25px; line-height: 1.8;">
                 Educraft is a game about breaking and placing blocks. At first, people built structures to protect against nocturnal monsters, but as the game grew players worked together to create wonderful, imaginative things.
@@ -109,8 +126,7 @@
         </div>
 
         <div class="play-side">
-            <!-- Character/Mascot Placeholder -->
-            <div style="width: 100px; height: 100px; background: #333; margin: 0 auto 25px auto;"></div>
+            <div style="width: 100px; height: 100px; background: #333; margin: 0 auto 25px auto; display: flex; align-items: center; justify-content: center; color: #555;">Mascot</div>
             
             <a href="game.html" class="btn-play">Play Now!</a>
             
@@ -123,15 +139,19 @@
     <div class="footer-cols">
         <div>
             <h3>Join the Community</h3>
-            <p>Connect with other players on our forums or join the official Discord server to share your creations!</p>
+            <p>The community hub is currently under construction. Soon you'll be able to join our Discord to share your creations!</p>
         </div>
         <div>
             <h3>Update News</h3>
-            <p><strong>Alpha 0.2.0: The Preparation Update</strong><br>We've added basic inventory systems and fixed world-saving bugs. Survival mode is coming soon!</p>
+            <p><strong>Alpha 0.2.0: The Farming and Lights Update</strong><br>
+            This update brings a complete overhaul to the lighting engine and introduces basic farming mechanics to the world! 
+            <br><br>
+            <i>Next up: a0.3.0 may include LAN Multiplayer testing.</i></p>
         </div>
         <div>
-            <h3>Twitter Updates</h3>
-            <p>Follow the lead developer for "snappier insight" and sneak peeks at the upcoming Biomes Update.</p>
+            <h3>Development Tracker</h3>
+            <p><strong>Update Page Coming Soon</strong><br>
+            We are currently in the middle of an Index Overhaul. Detailed changelogs and roadmap updates will return shortly.</p>
         </div>
     </div>
 </div>
