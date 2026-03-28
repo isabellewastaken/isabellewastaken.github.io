@@ -51,10 +51,10 @@
             text-align: center;
             background: #0a0a0a;
             padding: 30px 20px;
-            border: 2px solid #1a1025; /* Obsidian Border */
+            border: 2px solid #1a1025;
         }
 
-        /* The Test Green Mob - Now with "Emerald" Obsidian Border */
+        /* The Plain Green Rectangle Mob */
         .test-mob {
             width: 50px;
             height: 90px;
@@ -80,28 +80,35 @@
 
         .btn-play:hover { background: linear-gradient(to bottom, #ffbb11 0%, #ff9911 100%); }
 
-        /* The Obsidian Block Texture Style */
-        .obsidian-box {
+        /* Progress Bar Styling */
+        .progress-container {
             background-color: #1a1025;
             border: 2px solid #2d1b3d;
-            box-shadow: inset 4px 4px 0 rgba(100,50,150,0.1);
             padding: 15px;
             margin-top: 25px;
+            text-align: left;
         }
 
-        .port-tag {
+        .progress-label {
             font-size: 8pt;
-            color: #555;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+            color: #554466;
+            font-weight: bold;
             display: block;
-            margin: 5px 0;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .bar-bg { background: #000; height: 10px; border: 1px solid #222; }
+        .bar-fill {
+            background: #4caf50;
+            height: 15%; 
+            box-shadow: inset 0 2px 0 rgba(255,255,255,0.3);
         }
 
         /* Footer Sections */
         .footer-cols {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 40px;
             margin-top: 60px;
             border-top: 1px solid #222;
@@ -110,19 +117,24 @@
 
         .footer-cols h3 { color: #eee; font-size: 13pt; margin-bottom: 15px; }
         .footer-cols p { font-size: 10pt; line-height: 1.6; color: #777; }
-        
-        .coming-soon-box {
-            background:#0a0a0a; 
-            height: 350px; 
-            border: 2px solid #1a1025; 
-            display: flex; 
-            align-items: center; 
-            justify-content: center;
-            color: #222;
-            font-weight: bold;
-        }
 
         .highlight { color: #bbb; font-weight: bold; }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border: 2px solid #1a1025;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
@@ -137,9 +149,11 @@
 
     <div class="content-flex">
         <div class="video-side">
-            <div class="coming-soon-box">
-                TRAILER COMING SOON
+            <!-- Embedded Video for Test -->
+            <div class="video-container">
+                <iframe src="https://www.youtube.com" frameborder="0" allowfullscreen></iframe>
             </div>
+            <p style="font-size: 8pt; color: #444; margin-top: 10px; text-transform: uppercase;">[ TEST VIDEO ]</p>
             
             <div style="margin-top: 25px; line-height: 1.8;">
                 <p>Educraft is a game about breaking and placing blocks. <span class="highlight">It is currently under development and is not ready yet.</span></p>
@@ -151,7 +165,6 @@
         </div>
 
         <div class="play-side">
-            <!-- Test Mob with new Inset Texture Style -->
             <div class="test-mob"></div>
             
             <a href="game.html" class="btn-play">Play Now!</a>
@@ -160,10 +173,12 @@
                 Alpha a0.2.0
             </p>
 
-            <div class="obsidian-box">
-                <span style="font-size: 9pt; color: #554466; font-weight: bold;">UPCOMING PORTS</span>
-                <span class="port-tag">Windows Build</span>
-                <span class="port-tag">macOS / Linux Build</span>
+            <div class="progress-container">
+                <span class="progress-label">Goal: a0.3.0 Alpha</span>
+                <div class="bar-bg">
+                    <div class="bar-fill"></div>
+                </div>
+                <span style="font-size: 7pt; color: #444; margin-top: 5px; display: block;">Adding: LAN, OST, & Username Selection</span>
             </div>
         </div>
     </div>
@@ -171,19 +186,12 @@
     <div class="footer-cols">
         <div>
             <h3>Community Hub</h3>
-            <p>Under construction during the Index Overhaul. Discord and forum links will return shortly.</p>
+            <p>Under construction during the Index Overhaul. Discord and forum links will return once the site and game systems reach a stable state.</p>
         </div>
         <div>
             <h3>Update News</h3>
-            <p><span class="highlight">a0.2.0: Farming & Lights</span><br>
-            Overhauled the lighting engine and added basic farming mechanics to the world.
-            <br><br>
-            <i>Up Next: a0.3.0 LAN Multiplayer testing.</i></p>
-        </div>
-        <div>
-            <h3>Site Status</h3>
-            <p><span class="highlight">Index Overhaul</span><br>
-            Migrating roadmaps and changelogs to this new layout. Check back soon for the full Update Page.</p>
+            <p><span class="highlight">a0.2.0: Farming & Lights Update</span><br>
+            Current build focus: Lighting engine overhaul and basic farming mechanics. This serves as the foundation for the a0.3.0 multiplayer test.</p>
         </div>
     </div>
 </div>
