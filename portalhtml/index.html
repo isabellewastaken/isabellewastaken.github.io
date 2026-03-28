@@ -4,86 +4,113 @@
     <title>PortalHTML Alpha</title>
     <style>
         body {
-            font-family: Verdana, sans-serif;
-            font-size: 18pt;
-            color: gray;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            min-height: 100vh;
+            background-color: #d0d0d0; /* Portal 1 Concrete Grey */
+            font-family: "Lucida Console", Monaco, monospace; /* Retro Lab vibe */
             margin: 0;
+            display: flex;
+            justify-content: center;
+            color: #333;
         }
 
-        .container {
-            border: 1px solid gray;
-            padding: 25px;
-            text-align: center;
-            width: 50%;
+        .main-container {
+            width: 900px;
+            background-color: #fff;
+            min-height: 100vh;
+            border-left: 10px solid #333;
+            border-right: 10px solid #333;
+            box-shadow: 0 0 50px rgba(0,0,0,0.2);
         }
 
-        .link-item {
-            margin-top: 20px;
+        /* The Iconic Header */
+        header {
+            background: #333;
+            color: #fff;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        a {
-            display: inline-block;
-            background: #f0f0f0;
-            color: gray;
-            padding: 10px 20px;
-            margin: 10px 0;
+        .aperture-logo { font-size: 20pt; font-weight: bold; letter-spacing: 2px; }
+
+        /* Navigation - Portal 2 Style, Portal 1 Colors */
+        nav {
+            background: #eee;
+            padding: 10px 40px;
+            border-bottom: 2px solid #ccc;
+        }
+        nav a { color: #555; text-decoration: none; margin-right: 20px; font-weight: bold; font-size: 10pt; }
+
+        .content { padding: 50px 80px; }
+
+        h1 { font-size: 28pt; margin-bottom: 10px; color: #000; text-transform: uppercase; }
+        
+        /* The Portal 1 "Warning" Banner */
+        .hazard-bar {
+            background: repeating-linear-gradient(45deg, #f1c40f, #f1c40f 10px, #000 10px, #000 20px);
+            height: 15px;
+            margin: 20px 0;
+        }
+
+        .play-section {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        /* The Action Button - Desaturated Teal/Blue */
+        .btn-test {
+            background: #00788a; /* Portal 1 Blue-Teal */
+            color: white;
+            padding: 20px 40px;
             text-decoration: none;
-            border: 1px solid #ccc;
-            border-radius: 4px;
             font-weight: bold;
-            transition: 0.3s;
-            width: 80%; /* Consistent width for all buttons */
+            font-size: 18pt;
+            display: inline-block;
+            border-bottom: 4px solid #005663;
         }
 
-        a:hover {
-            background: #e0e0e0;
-            border-color: #999;
-        }
+        .btn-test:hover { background: #009cb3; }
 
-        /* Warning Style for the Broken Update */
-        .btn-danger {
-            color: #721c24 !important;
-            background-color: #f8d7da !important;
-            border-color: #f5c6cb !important;
-        }
-
-        .btn-danger:hover {
-            background-color: #f1b0b7 !important;
-        }
-
-        /* Disabled Style for Survival Test */
-        .btn-disabled {
-            background-color: #eee !important;
-            color: #bbb !important;
-            border-color: #ddd !important;
-            cursor: not-allowed;
-            pointer-events: none; /* Prevents clicking */
-        }
-
-        a:active:not(.btn-disabled) {
-            transform: translateY(2px);
-        }
-
-        b { font-weight: bold; }
+        .version-tag { color: #888; font-size: 9pt; margin-top: 15px; display: block; }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <p>Welcome to the home of <b>PortalHTML!</b></p>
-        <p>Current Update: a0.0.2</p>
-        <p>WARNING: This is built off an old index. Stuff may be incomplete until new index</p>
-        <p>Click the link below to test PortalHTML!</p>
+<div class="main-container">
+    <header>
+        <div class="aperture-logo">APERTURE SCIENCE</div>
+        <div style="font-size: 10pt;">[ 1998 ENRICHMENT CENTER ]</div>
+    </header>
+
+    <nav>
+        <a href="#">TEST SUBJECTS</a>
+        <a href="#">EQUIPMENT</a>
+        <a href="#">PROTOCOLS</a>
+    </nav>
+
+    <div class="content">
+        <h1>PortalHTML Alpha</h1>
+        <div class="hazard-bar"></div>
         
-        <div class="link-item">
-            <a href="game.html">Play PortalHTML!</a>
+        <p style="font-size: 14pt; line-height: 1.6;">
+            Welcome to the automated testing hub. PortalHTML is a high-performance rendering environment based on legacy codebase. 
+            Please remain calm during the loading process.
+        </p>
+
+        <div class="play-section">
+            <div>
+                <a href="game.html" class="btn-test">BEGIN TESTING</a>
+                <span class="version-tag">STABLE BUILD: a.0.0.2 // CODEBASE: PORTAL_LEGACY</span>
+            </div>
+        </div>
+
+        <div style="margin-top: 60px; color: #888; font-size: 10pt; border-top: 1px solid #ddd; padding-top: 20px;">
+            <b>NOTICE:</b> Participation in testing may result in unauthorized redirection. 
+            If the testing environment appears incomplete, please refer to the upcoming Index Overhaul.
         </div>
     </div>
+</div>
 
 </body>
 </html>
