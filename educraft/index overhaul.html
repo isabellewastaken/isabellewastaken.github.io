@@ -20,7 +20,7 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
-        /* Top Navigation - Index Overhaul Style */
+        /* Top Navigation */
         .header-nav {
             margin-bottom: 40px;
             font-size: 11pt;
@@ -32,7 +32,7 @@
         }
 
         .nav-links a { 
-            color: #444; /* Dimmed during development */
+            color: #444; 
             text-decoration: none; 
             margin-left: 20px; 
             font-weight: bold;
@@ -52,7 +52,26 @@
             text-align: center;
             background: #111;
             padding: 30px 20px;
-            border-radius: 4px;
+            border: 1px solid #222;
+        }
+
+        /* The Plain Green Rectangle Mob */
+        .test-mob {
+            width: 50px;
+            height: 90px;
+            background-color: #4caf50; 
+            margin: 0 auto 20px auto;
+            border: 2px solid #3d8b40;
+        }
+
+        /* CSS Obsidian Block Mockup */
+        .obsidian-block {
+            width: 40px;
+            height: 40px;
+            background-color: #1a1025; /* Dark Purple/Black base */
+            margin: 10px auto;
+            border: 1px solid #2d1b3d;
+            box-shadow: inset 2px 2px 0 rgba(100,50,150,0.2);
         }
 
         /* The "Play Now!" Button */
@@ -69,14 +88,8 @@
             text-shadow: 2px 2px #884400;
         }
 
-        .btn-play:hover {
-            background: linear-gradient(to bottom, #ffbb11 0%, #ff9911 100%);
-        }
-
-        .btn-play:active {
-            border-bottom-width: 1px;
-            transform: translateY(4px);
-        }
+        .btn-play:hover { background: linear-gradient(to bottom, #ffbb11 0%, #ff9911 100%); }
+        .btn-play:active { border-bottom-width: 1px; transform: translateY(4px); }
 
         /* Footer Sections */
         .footer-cols {
@@ -117,7 +130,6 @@
 
     <div class="content-flex">
         <div class="video-side">
-            <!-- Video Placeholder -->
             <div class="coming-soon-box">
                 <span style="font-size: 40pt; margin-bottom: 10px;">▶</span>
                 <span style="font-weight: bold; letter-spacing: 2px;">TRAILER COMING SOON</span>
@@ -128,37 +140,44 @@
                 
                 <p>It can also be about adventuring with friends or watching the sun rise over a blocky ocean. It’s pretty. Brave players battle terrible things in <span style="color: #ff4444;">The Nether</span>, which is more scary than pretty.</p>
                 
-                <p>The game is currently free to play on all browsers, with a Windows, maybe even macOS or Linux ports also on the way!</p>
+                <p>The game is currently free to play on all browsers, with Windows, macOS, and Linux ports on the way!</p>
             </div>
         </div>
 
         <div class="play-side">
-            <div style="width: 100px; height: 100px; background: #333; margin: 0 auto 25px auto; display: flex; align-items: center; justify-content: center; color: #555; border-radius: 4px;">Mascot</div>
+            <!-- Plain Green Rectangle Mob -->
+            <div class="test-mob"></div>
             
             <a href="game.html" class="btn-play">Play Now!</a>
             
             <p style="font-size: 10pt; color: #666; margin-top: 20px;">
                 Browser-based Alpha<br>Version a0.2.0
             </p>
+
+            <div style="border-top: 1px solid #222; margin-top: 20px; padding-top: 15px;">
+                <span style="font-size: 8pt; color: #444; text-transform: uppercase;">Current Texture Sample:</span>
+                <div class="obsidian-block"></div>
+                <span style="font-size: 8pt; color: #555;">Obsidian (Test)</span>
+            </div>
         </div>
     </div>
 
     <div class="footer-cols">
         <div>
             <h3>Join the Community</h3>
-            <p>The community hub is currently under construction during the Index Overhaul. Check back soon for Discord links!</p>
+            <p>The community hub is under construction during the Index Overhaul. Check back soon for updates!</p>
         </div>
         <div>
             <h3>Update News</h3>
             <p><span class="highlight">Alpha 0.2.0: The Farming and Lights Update</span><br>
-            This update brings a complete overhaul to the lighting engine and introduces basic farming mechanics. 
+            Focusing on the lighting engine overhaul and introduction of basic farming. 
             <br><br>
-            <i>a0.3.0 Goal: LAN Multiplayer testing and username selection.</i></p>
+            <i>Note: a0.3.0 is planned to introduce username selection for future LAN testing.</i></p>
         </div>
         <div>
-            <h3>Update Page</h3>
-            <p><span class="highlight">Coming Soon</span><br>
-            We are hard at work on the site overhaul. Detailed changelogs and roadmaps will be available shortly.</p>
+            <h3>Development Tracker</h3>
+            <p><span class="highlight">Update Page Coming Soon</span><br>
+            Roadmaps and changelogs are currently being migrated to the new site layout.</p>
         </div>
     </div>
 </div>
