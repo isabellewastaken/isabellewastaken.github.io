@@ -20,7 +20,7 @@
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
-        /* Top Navigation */
+        /* Top Navigation - Index Overhaul Style */
         .header-nav {
             margin-bottom: 40px;
             font-size: 11pt;
@@ -32,7 +32,7 @@
         }
 
         .nav-links a { 
-            color: #555; /* Dimmed to show they are non-functional */
+            color: #444; /* Dimmed during development */
             text-decoration: none; 
             margin-left: 20px; 
             font-weight: bold;
@@ -99,8 +99,10 @@
             flex-direction: column;
             align-items: center; 
             justify-content: center;
-            color: #444;
+            color: #333;
         }
+
+        .highlight { color: #fff; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -115,23 +117,28 @@
 
     <div class="content-flex">
         <div class="video-side">
-            <!-- Video Placeholder with Coming Soon Text -->
+            <!-- Video Placeholder -->
             <div class="coming-soon-box">
                 <span style="font-size: 40pt; margin-bottom: 10px;">▶</span>
                 <span style="font-weight: bold; letter-spacing: 2px;">TRAILER COMING SOON</span>
             </div>
-            <p style="margin-top: 25px; line-height: 1.8;">
-                Educraft is a game about breaking and placing blocks. At first, people built structures to protect against nocturnal monsters, but as the game grew players worked together to create wonderful, imaginative things.
-            </p>
+            
+            <div style="margin-top: 25px; line-height: 1.8;">
+                <p>Educraft is a game about breaking and placing blocks. <span class="highlight">It is currently under development and is not ready yet.</span></p>
+                
+                <p>It can also be about adventuring with friends or watching the sun rise over a blocky ocean. It’s pretty. Brave players battle terrible things in <span style="color: #ff4444;">The Nether</span>, which is more scary than pretty.</p>
+                
+                <p>The game is currently free to play on all browsers, with a Windows, maybe even macOS or Linux ports also on the way!</p>
+            </div>
         </div>
 
         <div class="play-side">
-            <div style="width: 100px; height: 100px; background: #333; margin: 0 auto 25px auto; display: flex; align-items: center; justify-content: center; color: #555;">Mascot</div>
+            <div style="width: 100px; height: 100px; background: #333; margin: 0 auto 25px auto; display: flex; align-items: center; justify-content: center; color: #555; border-radius: 4px;">Mascot</div>
             
             <a href="game.html" class="btn-play">Play Now!</a>
             
             <p style="font-size: 10pt; color: #666; margin-top: 20px;">
-                Free to play in-browser.<br>Version a0.2.0
+                Browser-based Alpha<br>Version a0.2.0
             </p>
         </div>
     </div>
@@ -139,19 +146,19 @@
     <div class="footer-cols">
         <div>
             <h3>Join the Community</h3>
-            <p>The community hub is currently under construction. Soon you'll be able to join our Discord to share your creations!</p>
+            <p>The community hub is currently under construction during the Index Overhaul. Check back soon for Discord links!</p>
         </div>
         <div>
             <h3>Update News</h3>
-            <p><strong>Alpha 0.2.0: The Farming and Lights Update</strong><br>
-            This update brings a complete overhaul to the lighting engine and introduces basic farming mechanics to the world! 
+            <p><span class="highlight">Alpha 0.2.0: The Farming and Lights Update</span><br>
+            This update brings a complete overhaul to the lighting engine and introduces basic farming mechanics. 
             <br><br>
-            <i>Next up: a0.3.0 may include LAN Multiplayer testing.</i></p>
+            <i>a0.3.0 Goal: LAN Multiplayer testing and username selection.</i></p>
         </div>
         <div>
-            <h3>Development Tracker</h3>
-            <p><strong>Update Page Coming Soon</strong><br>
-            We are currently in the middle of an Index Overhaul. Detailed changelogs and roadmap updates will return shortly.</p>
+            <h3>Update Page</h3>
+            <p><span class="highlight">Coming Soon</span><br>
+            We are hard at work on the site overhaul. Detailed changelogs and roadmaps will be available shortly.</p>
         </div>
     </div>
 </div>
