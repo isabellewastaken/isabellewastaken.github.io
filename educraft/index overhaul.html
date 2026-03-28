@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Educraft Alpha</title>
+    <style>
+        body {
+            background-color: #222; /* Solid dark charcoal */
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            color: #ddd;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-wrapper {
+            width: 1000px;
+            background-color: #000; /* Solid black container */
+            padding: 40px 60px;
+            min-height: 100vh;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        /* Top Navigation */
+        .header-nav {
+            margin-bottom: 40px;
+            font-size: 11pt;
+            border-bottom: 1px solid #333;
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .nav-links a { color: #aaa; text-decoration: none; margin-left: 20px; font-weight: bold; }
+        .nav-links a:hover { color: #fff; }
+
+        .content-flex {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        .video-side { flex: 1.5; }
+        
+        .play-side {
+            flex: 1;
+            text-align: center;
+            background: #111; /* Slightly lighter black for the sidebar */
+            padding: 30px 20px;
+            border-radius: 4px;
+        }
+
+        /* The "Play Now!" Button */
+        .btn-play {
+            display: block;
+            background: linear-gradient(to bottom, #ffaa00 0%, #ff8800 100%);
+            border: 1px solid #000;
+            border-bottom: 5px solid #b35900;
+            color: white;
+            padding: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 22pt;
+            text-shadow: 2px 2px #884400;
+            text-transform: capitalize;
+        }
+
+        .btn-play:hover {
+            background: linear-gradient(to bottom, #ffbb11 0%, #ff9911 100%);
+        }
+
+        .btn-play:active {
+            border-bottom-width: 1px;
+            transform: translateY(4px);
+        }
+
+        /* Footer Sections */
+        .footer-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 40px;
+            margin-top: 60px;
+            border-top: 1px solid #333;
+            padding-top: 30px;
+        }
+
+        .footer-cols h3 { color: #fff; font-size: 13pt; margin-bottom: 15px; }
+        .footer-cols p { font-size: 10pt; line-height: 1.6; color: #999; }
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <div class="header-nav">
+        <span style="font-weight: bold; font-size: 16pt; color: #fff;">EDUCRAFT</span>
+        <div class="nav-links">
+            <a href="#">Home</a> <a href="#">Game</a> <a href="#">Community</a> <a href="#">Profile</a>
+        </div>
+    </div>
+
+    <div class="content-flex">
+        <div class="video-side">
+            <!-- Video Placeholder -->
+            <div style="background:#111; height: 350px; border: 1px solid #333; display: flex; align-items: center; justify-content: center;">
+                <span style="color: #444; font-size: 40pt;">▶</span>
+            </div>
+            <p style="margin-top: 25px; line-height: 1.8;">
+                Educraft is a game about breaking and placing blocks. At first, people built structures to protect against nocturnal monsters, but as the game grew players worked together to create wonderful, imaginative things.
+            </p>
+        </div>
+
+        <div class="play-side">
+            <!-- Character/Mascot Placeholder -->
+            <div style="width: 100px; height: 100px; background: #333; margin: 0 auto 25px auto;"></div>
+            
+            <a href="game.html" class="btn-play">Play Now!</a>
+            
+            <p style="font-size: 10pt; color: #666; margin-top: 20px;">
+                Free to play in-browser.<br>Version a0.2.0
+            </p>
+        </div>
+    </div>
+
+    <div class="footer-cols">
+        <div>
+            <h3>Join the Community</h3>
+            <p>Connect with other players on our forums or join the official Discord server to share your creations!</p>
+        </div>
+        <div>
+            <h3>Update News</h3>
+            <p><strong>Alpha 0.2.0: The Preparation Update</strong><br>We've added basic inventory systems and fixed world-saving bugs. Survival mode is coming soon!</p>
+        </div>
+        <div>
+            <h3>Twitter Updates</h3>
+            <p>Follow the lead developer for "snappier insight" and sneak peeks at the upcoming Biomes Update.</p>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
