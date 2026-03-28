@@ -900,8 +900,8 @@ function updateCamera(dt) {
   var camH = CAM_HEIGHT + speedRatio * 0.8;
 
   // Camera target: behind kart in camera yaw direction
-  var camOffX = Math.sin(camYaw) * camDist;
-  var camOffZ = Math.cos(camYaw) * camDist;
+  var camOffX = -Math.sin(camYaw) * camDist;
+  var camOffZ = -Math.cos(camYaw) * camDist;
 
   var targetX = k.mesh.position.x + camOffX;
   var targetY = k.mesh.position.y + camH;
