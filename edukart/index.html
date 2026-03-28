@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>EduKart Alpha</title>
+    <style>
+        body {
+            background-color: #001f3f; /* Deep racing blue */
+            font-family: "Arial Black", Gadget, sans-serif; /* Bolder, arcade feel */
+            color: #fff;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .main-wrapper {
+            width: 1000px;
+            background-color: #000;
+            padding: 40px 60px;
+            min-height: 100vh;
+            border-left: 4px solid #e60012; /* Nintendo Red */
+            border-right: 4px solid #e60012;
+            position: relative;
+            background-image: radial-gradient(#111 10%, transparent 10%); /* Subtle dot pattern */
+            background-size: 20px 20px;
+        }
+
+        /* Top Navigation */
+        .header-nav {
+            margin-bottom: 40px;
+            border-bottom: 4px repeating-linear-gradient(45deg, #fff, #fff 10px, #000 10px, #000 20px); /* Checkered Line */
+            padding-bottom: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links a { 
+            color: #ffcc00; 
+            text-decoration: none; 
+            margin-left: 20px; 
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content-flex {
+            display: flex;
+            gap: 60px;
+        }
+
+        .video-side { flex: 1.5; }
+        
+        .play-side {
+            flex: 1;
+            text-align: center;
+            background: #111;
+            padding: 30px 20px;
+            border: 4px solid #ffcc00; /* Trophy Gold */
+            border-radius: 15px;
+        }
+
+        /* The Kart Sprite Placeholder */
+        .test-mob {
+            width: 80px;
+            height: 60px;
+            background-color: #e60012; 
+            margin: 0 auto 20px auto;
+            border: 4px solid #fff;
+            border-radius: 10px;
+            position: relative;
+        }
+        /* Tiny wheels */
+        .test-mob::before, .test-mob::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            width: 20px;
+            height: 20px;
+            background: #333;
+            border-radius: 50%;
+        }
+        .test-mob::before { left: 5px; }
+        .test-mob::after { right: 5px; }
+
+        /* The "Race Now!" Button */
+        .btn-play {
+            display: block;
+            background: linear-gradient(to bottom, #e60012 0%, #a00000 100%);
+            border: 2px solid #fff;
+            border-bottom: 6px solid #600000;
+            border-radius: 50px;
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 24pt;
+            text-shadow: 3px 3px #000;
+            transition: transform 0.1s;
+        }
+
+        .btn-play:hover { 
+            background: linear-gradient(to bottom, #ff1a1a 0%, #e60012 100%);
+            transform: scale(1.05);
+        }
+
+        /* Progress Bar */
+        .progress-container {
+            background-color: #222;
+            border: 2px solid #444;
+            padding: 15px;
+            margin-top: 25px;
+            text-align: left;
+            border-radius: 8px;
+        }
+
+        .progress-label {
+            font-size: 9pt;
+            color: #ffcc00;
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .bar-bg { background: #000; height: 12px; border-radius: 6px; overflow: hidden; }
+        .bar-fill {
+            background: linear-gradient(90deg, #ffcc00, #ffee00);
+            height: 100%;
+            width: 35%; 
+        }
+
+        /* Footer */
+        .footer-cols {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 60px;
+            border-top: 4px repeating-linear-gradient(45deg, #444, #444 10px, #222 10px, #222 20px);
+            padding-top: 30px;
+        }
+
+        .footer-cols h3 { color: #ffcc00; font-size: 14pt; margin-bottom: 15px; text-transform: uppercase; }
+        .footer-cols p { font-size: 11pt; line-height: 1.6; color: #bbb; }
+
+        .highlight { color: #e60012; font-weight: bold; }
+        
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border: 4px solid #fff;
+            border-radius: 10px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+        }
+
+        .dev-footer {
+            margin-top: 100px;
+            text-align: center;
+            font-size: 9pt;
+            color: #444;
+            border-top: 1px solid #222;
+            padding: 20px 0;
+        }
+    </style>
+</head>
+<body>
+
+<div class="main-wrapper">
+    <div class="header-nav">
+        <span style="font-weight: bold; font-size: 20pt; color: #fff; letter-spacing: -1px; font-style: italic;">titleName<span style="color: #e60012;">64</span></span>
+        <div class="nav-links">
+            <a href="#">button1</a> <a href="#">button2</a> <a href="#">button3</a> <a href="#">Stats</a>
+        </div>
+    </div>
+
+    <div class="content-flex">
+        <div class="video-side">
+            <div class="video-container">
+                <iframe src="https://www.youtube.com" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <p style="font-size: 8pt; color: #555; margin-top: 10px; text-transform: uppercase;">[ VIDEO SOON ]</p>
+            
+            <div style="margin-top: 25px; line-height: 1.8;">
+                <p>Welcome to the ultimate browser karting experience. <span class="highlight">The racing engine is currently in tuning mode.</span></p>
+            </div>
+        </div>
+
+        <div class="play-side">
+            <div class="test-mob"></div>
+            
+            <a href="game.html" class="btn-play">START RACE</a>
+            
+            <p style="font-size: 10pt; color: #666; margin-top: 15px;">
+                EduKart Alpha
+            </p>
+
+            <div class="progress-container">
+                <span class="progress-label">a0.1.0</span>
+                <div class="bar-bg">
+                    <div class="bar-fill"></div>
+                </div>
+                <span style="font-size: 7pt; color: #666; margin-top: 5px; display: block;">Next: THE GAME</span>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-cols">
+        <div>
+            <h3>Community</h3>
+            <p>Coming soon...</p>
+        </div>
+        <div>
+            <h3>Race Logs</h3>
+            <p><span class="highlight">Coming Soon!</span><br>
+            The game currently hasn't been created yet.</p>
+        </div>
+    </div>
+
+    <div class="dev-footer">
+        <b>isabellewastaken:</b> Switching from blocks to karts. Start your engines!
+    </div>
+</div>
+
+</body>
+</html>
