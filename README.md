@@ -1,3 +1,2 @@
 # isabellewastaken.github.io
-My website used for hosting stuff like Educraft!
-...Nothing else here for now...
+Hiya! This is my page where I host my games! There isn't must here for the time being, so stay tuned for stuff like Educraft Beta!
