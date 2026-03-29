@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Educraft a0.3.0</title>
+<title>Educraft a0.3.1</title>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -137,7 +137,7 @@ select:focus,input:focus{border-color:#7ab4f5}
 </head>
 <body>
 <canvas id="c"></canvas>
-<div id="ver">Educraft a0.3.0</div>
+<div id="ver">Educraft a0.3.1</div>
 <div id="xhair"></div>
 <div id="dbg"></div>
 <div id="healthbar"></div>
@@ -149,7 +149,7 @@ select:focus,input:focus{border-color:#7ab4f5}
 <!-- MAIN MENU -->
 <div id="mainmenu">
   <h1>EDUCRAFT</h1>
-  <div class="tagline">Alpha a0.3.0</div>
+  <div class="tagline">Alpha a0.3.1</div>
   <div id="mm-worldtype">
     <button class="menu-btn on" id="mbFlat" onclick="menuSetMode('flat')">Flat</button>
     <button class="menu-btn"    id="mbOver" onclick="menuSetMode('overworld')">Overworld</button>
@@ -300,6 +300,10 @@ select:focus,input:focus{border-color:#7ab4f5}
 
 <div id="changelog" class="modal"><div class="modal-box">
   <h2>Educraft Changelog</h2>
+  <h3>a0.3.1</h3>
+  <ul>
+    <li>Removed flying leftovers due to it not being needed.</li>
+  </ul>
   <h3>a0.3.0</h3>
   <ul>
     <li>LAN Multiplayer via WebSocket: host or join, username + player colour required</li>
@@ -1329,9 +1333,6 @@ document.addEventListener('keydown',function(e){
   keys[e.code]=true;
   var n=parseInt(e.key);if(n>=1&&n<=9)setSelSlot(n-1);
   if(e.code==='Space'&&gameStarted&&locked){
-    var now2=performance.now();
-    if(now2-lastSpaceTap<300)sysMsg('Flying removed in Survival. Use Sprint (Shift) to move faster.');
-    lastSpaceTap=now2;
     if(onGround){velY=JUMP_VEL;onGround=false;}
   }
   if(e.code==='KeyE'&&gameStarted&&locked){openInv();return;}
