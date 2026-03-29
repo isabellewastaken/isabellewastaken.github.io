@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Educraft a0.4.0</title>
+<title>Educraft a0.4.0 tb2</title>
 <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/build/three.min.js"></script>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -137,7 +137,7 @@ select:focus,input:focus{border-color:#7ab4f5}
 </head>
 <body>
 <canvas id="c"></canvas>
-<div id="ver">Educraft a0.4.0</div>
+<div id="ver">Educraft a0.4.0 tb2</div>
 <div id="xhair"></div>
 <div id="dbg"></div>
 <div id="healthbar"></div>
@@ -149,12 +149,12 @@ select:focus,input:focus{border-color:#7ab4f5}
 <!-- MAIN MENU -->
 <div id="mainmenu">
   <h1>EDUCRAFT</h1>
-  <div class="tagline">a0.4.0</div>
+  <div class="tagline">a0.4.0 tb2</div>
   <div id="mm-worldtype">
-    <button class="menu-btn on" id="mbFlat" onclick="menuSetMode('flat')">Flat</button>
-    <button class="menu-btn"    id="mbOver" onclick="menuSetMode('overworld')">Overworld</button>
-    <button class="menu-btn disabled" id="mbNether" title="Nether being reworked">Nether</button>
-    <button class="menu-btn disabled" id="mbEnd"    title="End being reworked">The End</button>
+    <button class="menu-btn on" id="mbOver" onclick="menuSetMode('overworld')">Overworld</button>
+    <button class="menu-btn"    id="mbFlat" onclick="menuSetMode('flast')">Flat</button>
+    <button class="menu-btn" id="mbNether" title="Nether being reworked">Nether</button>
+    <button class="menu-btn" id="mbEnd"    title="End being reworked">The End</button>
   </div>
   <button class="menu-btn" onclick="startGame()">Play</button>
   <button class="menu-btn" onclick="openLAN()">LAN Multiplayer</button>
@@ -201,7 +201,7 @@ select:focus,input:focus{border-color:#7ab4f5}
 <!-- GEN SCREEN -->
 <div id="genscreen">
   <div class="spinner"></div>
-  <p id="gen-label">Generating world, please wait&hellip;</p>
+  <p id="gen-label">Generating world, please wait...&hellip;</p>
   <div class="seed-disp" id="gen-seed-disp"></div>
 </div>
 
@@ -369,6 +369,8 @@ var WOOL_COLOURS=[
   {name:'Chartreuse',    rgb:[120,180,30]},
   {name:'Green',         rgb:[55,110,35]},
   {name:'Spring Green',  rgb:[30,160,80]},
+  {name:'Blue',          rgb:[40,65,160]},
+  {name:'Light Blue',    rgb:[90,165,205]},
   {name:'Cyan',          rgb:[40,145,155]},
   {name:'Capri',         rgb:[40,105,175]},
   {name:'Ultramarine',   rgb:[50,55,155]},
@@ -377,9 +379,7 @@ var WOOL_COLOURS=[
   {name:'Magenta',       rgb:[175,60,145]},
   {name:'Rose',          rgb:[210,100,150]},
   {name:'Brown',         rgb:[100,65,35]},
-  {name:'Pink',          rgb:[225,155,175]},
-  {name:'Blue',          rgb:[40,65,160]},
-  {name:'Light Blue',    rgb:[90,165,205]}
+  {name:'Pink',          rgb:[225,155,175]}
 ];
 
 // ══════════════════════════════════════════════════════════════════════════════
@@ -451,7 +451,7 @@ for(var wi2=0;wi2<WOOL_COLOURS.length;wi2++){
   var wc=WOOL_COLOURS[wi2];
   BDEFS[WOOL_START+wi2]={name:wc.name+' Wool',opaque:true,solid:true,top:wc.rgb,side:wc.rgb,bot:wc.rgb,wool:true};
 }
-var NUM_BLOCKS=56; // non-wool max; wool handled separately
+var NUM_BLOCKS=57; // non-wool max; wool handled separately
 
 function isOpaque(id){return id>0&&BDEFS[id]&&BDEFS[id].opaque;}
 function isSolid(id) {return id>0&&BDEFS[id]&&BDEFS[id].solid;}
