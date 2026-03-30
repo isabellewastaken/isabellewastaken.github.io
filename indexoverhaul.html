@@ -1,0 +1,158 @@
+<style>
+    :root {
+        --steam-dark: #1b2838;
+        --steam-sidebar: #2a475e;
+        --steam-blue: #66c0f4;
+        --steam-green: #5c7e10;
+        --steam-green-hover: #a1cf1e;
+        --text-light: #c6d4df;
+    }
+
+    body {
+        margin: 0;
+        font-family: 'Segoe UI', Arial, sans-serif;
+        background-color: var(--steam-dark);
+        color: var(--text-light);
+        display: flex;
+        height: 100vh;
+        overflow: hidden;
+    }
+
+    /* Left Sidebar */
+    .sidebar {
+        width: 260px;
+        background-color: rgba(0, 0, 0, 0.3);
+        border-right: 1px solid #333;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sidebar-header {
+        padding: 20px;
+        font-size: 0.9em;
+        font-weight: bold;
+        color: var(--steam-blue);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .game-list {
+        flex: 1;
+        overflow-y: auto;
+    }
+
+    .sidebar-item {
+        padding: 8px 20px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: #8f98a0;
+        font-size: 0.9em;
+        transition: background 0.2s;
+    }
+
+    .sidebar-item:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: #fff;
+    }
+
+    .sidebar-item.active {
+        background-color: var(--steam-sidebar);
+        color: #fff;
+    }
+
+    /* Main Content Area */
+    .main-view {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: linear-gradient(to bottom, #2d4458 0%, #1b2838 100%);
+    }
+
+    /* Hero Banner Area */
+    .hero {
+        height: 350px;
+        padding: 40px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        background: linear-gradient(rgba(0,0,0,0), rgba(27, 40, 56, 1)), 
+                    url('https://images.unsplash.com'); /* Placeholder BG */
+        background-size: cover;
+        background-position: center;
+    }
+
+    .hero h1 {
+        font-size: 3.5em;
+        margin: 0;
+        color: #fff;
+        text-shadow: 2px 2px 10px rgba(0,0,0,0.5);
+    }
+
+    /* Action Bar */
+    .action-bar {
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 20px 40px;
+        display: flex;
+        align-items: center;
+        gap: 30px;
+    }
+
+    .play-btn {
+        background-color: var(--steam-green);
+        color: #fff;
+        text-decoration: none;
+        padding: 12px 60px;
+        border-radius: 2px;
+        font-weight: bold;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        transition: 0.2s;
+    }
+
+    .play-btn:hover {
+        background-color: var(--steam-green-hover);
+        transform: translateY(-1px);
+    }
+
+    .stats {
+        display: flex;
+        gap: 20px;
+        font-size: 0.85em;
+        color: #8f98a0;
+    }
+
+    .stats b { color: #fff; }
+
+</style>
+
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">Library</div>
+        <div class="game-list">
+            <a href="#" class="sidebar-item active">Educraft Alpha</a>
+            <a href="#" class="sidebar-item">PortalHTML Alpha</a>
+            <a href="#" class="sidebar-item">EduKart Tech Demo</a>
+            <a href="#" class="sidebar-item">EaglercraftX 1.8</a>
+            <a href="#" class="sidebar-item">World Map Quiz</a>
+        </div>
+    </div>
+
+    <div class="main-view">
+        <div class="hero">
+            <h1>Educraft Alpha</h1>
+        </div>
+
+        <div class="action-bar">
+            <a href="educraft/index.html" class="play-btn">Play</a>
+            <div class="stats">
+                <div>LAST PLAYED<br><b>Today</b></div>
+                <div>PLAY TIME<br><b>12.4 hours</b></div>
+                <div>STATUS<br><b style="color: #5c7e10;">Ready to Play</b></div>
+            </div>
+        </div>
+    </div>
+
+</body>
