@@ -136,6 +136,7 @@
             <div class="sidebar-item" onclick="switchGame('portal')">PortalHTML Alpha</div>
             <div class="sidebar-item" onclick="switchGame('edukart')">EduKart Tech Demo</div>
             <div class="sidebar-item" onclick="switchGame('eagler')">EaglercraftX 1.8</div>
+            <div class="sidebar-item" onclick="switchGame('eagler12')">Eaglercraft 1.12 (WIP)</div>
         </div>
     </div>
 
@@ -163,30 +164,27 @@
             'educraft': {
                 title: 'EDUCRAFT',
                 url: 'educraft/index.html',
-                last: 'Today',
-                time: '12.4 hours',
                 desc: 'Explore the alpha build of the EduEngine voxel world.'
             },
             'portal': {
                 title: 'PORTAL HTML',
                 url: 'portalhtml/index.html',
-                last: 'Mar 25',
-                time: '33 hours',
                 desc: 'A web-based physics testing chamber inspired by Portal.'
             },
             'edukart': {
                 title: 'EDUKART',
                 url: 'edukart/index.html',
-                last: 'Yesterday',
-                time: '2.1 hours',
                 desc: 'High-speed technical racing demo.'
             },
             'eagler': {
                 title: 'EAGLERCRAFT',
                 url: 'eaglercraft/game.html',
-                last: 'Jan 5',
-                time: '156 hours',
                 desc: 'Full 1.8 web-based multiplayer experience.'
+            },
+            'eagler12': {
+                title: 'EAGLERCRAFT 1.12',
+                url: 'eaglercraft12/game.html',
+                desc: 'Full 1.12 web-based multiplayer experience.'
             }
         };
 
@@ -196,8 +194,6 @@
             // Update Text
             document.getElementById('gameTitle').innerText = data.title;
             document.getElementById('playLink').href = data.url;
-            document.getElementById('lastPlayed').innerText = data.last;
-            document.getElementById('playTime').innerText = data.time;
             document.getElementById('gameDesc').innerText = data.desc;
 
             // Update Sidebar UI
