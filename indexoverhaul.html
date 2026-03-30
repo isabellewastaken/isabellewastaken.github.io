@@ -135,8 +135,13 @@
             <div class="sidebar-item active" onclick="switchGame('educraft')">Educraft Alpha</div>
             <div class="sidebar-item" onclick="switchGame('portal')">PortalHTML Alpha</div>
             <div class="sidebar-item" onclick="switchGame('edukart')">EduKart Tech Demo</div>
+            <div class="sidebar-item" onclick="switchGame('eaglerold')">old eagler that i need to add</div>
             <div class="sidebar-item" onclick="switchGame('eagler')">EaglercraftX 1.8</div>
             <div class="sidebar-item" onclick="switchGame('eagler12')">Eaglercraft 1.12 (WIP)</div>
+            <div class="sidebar-item" onclick="switchGame('pizza')">Pizza Tower (TBA)</div>
+            <div class="sidebar-item" onclick="switchGame('sus')">Among Us (TBA)</div>
+            <div class="sidebar-item" onclick="switchGame('gd')">Geometry Dash (TBA)</div>
+            <div class="sidebar-item" onclick="switchGame('terraria')">Terraria (TBA)</div>
         </div>
     </div>
 
@@ -147,8 +152,6 @@
 
         <div class="action-bar">
             <a href="#" id="playLink" class="play-btn">Play</a>
-            <div class="stat-box">LAST PLAYED<br><b id="lastPlayed">Today</b></div>
-            <div class="stat-box">PLAY TIME<br><b id="playTime">12.4 hours</b></div>
         </div>
 
         <div class="content">
@@ -176,6 +179,11 @@
                 url: 'edukart/index.html',
                 desc: 'High-speed technical racing demo.'
             },
+            'eaglerold': {
+                title: 'EAGLERCRAFT old',
+                url: 'eaglercraft/game.html',
+                desc: 'Full old old :3 web-based multiplayer experience.'
+            },
             'eagler': {
                 title: 'EAGLERCRAFT',
                 url: 'eaglercraft/game.html',
@@ -185,7 +193,12 @@
                 title: 'EAGLERCRAFT 1.12',
                 url: 'eaglercraft12/game.html',
                 desc: 'Full 1.12 web-based multiplayer experience.'
-            }
+            },
+            'pizza': {
+                title: 'EAGLERCRAFT 1.12',
+                url: 'placeholder.html',
+                desc: 'Full 1.12 web-based multiplayer experience.'
+            },
         };
 
         function switchGame(gameKey) {
