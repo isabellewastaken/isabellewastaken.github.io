@@ -1,3 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Steam Library Hub</title>
+    <style>
+        :root {
+            --steam-dark: #1b2838;
+            --steam-sidebar: #2a475e;
+            --steam-blue: #66c0f4;
+            --steam-green: #5c7e10;
+            --steam-green-hover: #a1cf1e;
+            --text-light: #c6d4df;
+            --text-muted: #8f98a0;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            background-color: var(--steam-dark);
+            color: var(--text-light);
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 260px;
+            background-color: rgba(0, 0, 0, 0.3);
+            border-right: 1px solid #333;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            font-size: 0.8em;
+            font-weight: bold;
+            color: var(--steam-blue);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .game-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .sidebar-item {
+            padding: 8px 20px;
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .sidebar-item:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
+        .sidebar-item.active { background: var(--steam-sidebar); color: #fff; }
+
+        /* Main View Container */
+        .main-view {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: linear-gradient(to bottom, #2d4458 0%, #1b2838 40%);
+        }
+
+        /* Hero Image/Logo Area */
+        .hero {
+            height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 4em;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin: 0;
+            text-shadow: 0 0 20px rgba(0,0,0,0.8);
+        }
+
+        /* Steam Action Bar */
+        .action-bar {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 20px 40px;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .play-btn {
+            background: linear-gradient(to right, #75b022, #588a1b);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 60px;
+            border-radius: 2px;
+            font-weight: bold;
+            font-size: 1.3em;
+            text-transform: uppercase;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .play-btn:hover { background: var(--steam-green-hover); }
+
+        .stat-box { font-size: 0.8em; color: var(--text-muted); line-height: 1.4; }
+        .stat-box b { color: #fff; display: block; font-size: 1.1em; }
+
+        /* Dashboard Content */
+        .content { padding: 40px; }
+        .activity-feed {
+            background: rgba(0,0,0,0.2);
+            padding: 20px;
+            border-radius: 4px;
+            max-width: 600px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">Games</div>
+        <div class="game-list" id="gameList">
+            <!-- Items must match the keys in the JS object below -->
+            <div class="sidebar-item active" onclick="switchGame('educraft')">Educraft Alpha</div>
+            <div class="sidebar-item" onclick="switchGame('portal')">PortalHTML Alpha</div>
+            <div class="sidebar-item" onclick="switchGame('edukart')">EduKart Tech Demo</div>
+            <div class="sidebar-item" onclick="switchGame('eagler')">EaglercraftX 1.8</div>
+        </div>
+    </div>
+
+    <div class="main-view">
+        <div class="hero" id="heroBg">
+            <h1 id="gameTitle">Educraft Alpha</h1>
+        </div>
+
+        <div class="action-bar">
+            <a href="#" id="playLink" class="play-btn">Play</a>
+            <div class="stat-box">LAST PLAYED<br><b id="lastPlayed">Today</b></div>
+            <div class="stat-box">PLAY TIME<br><b id="playTime">12.4 hours</b></div>
+        </div>
+
+        <div class="content">
+            <div class="activity-feed">
+                <h3 style="margin-top:0">Post-Game Summary</h3>
+                <p id="gameDesc">Explore the alpha build of the EduEngine voxel world.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const gameData = {
+            'educraft': {
+                title: 'EDUCRAFT',
+                url: 'educraft/index.html',
+                last: 'Today',
+                time: '12.4 hours',
+                desc: 'Explore the alpha build of the EduEngine voxel world.'
+            },
+            'portal': {
+                title: 'PORTAL HTML',
+                url: 'portalhtml/index.html',
+                last: 'Mar 25',
+                time: '33 hours',
+                desc: 'A web-based physics testing chamber inspired by Portal.'
+            },
+            'edukart': {
+                title: 'EDUKART',
+                url: 'edukart/index.html',
+                last: 'Yesterday',
+                time: '2.1 hours',
+                desc: 'High-speed technical racing demo.'
+            },
+            'eagler': {
+                title: 'EAGLERCRAFT',
+                url: 'eaglercraft/game.html',
+                last: 'Jan 5',
+                time: '156 hours',
+                desc: 'Full 1.8 web-based multiplayer experience.'
+            }
+        };
+
+        function switchGame(gameKey) {
+            const data = gameData[gameKey];
+            
+            // Update Text
+            document.getElementById('gameTitle').innerText = data.title;
+            document.getElementById('playLink').href = data.url;
+            document.getElementById('lastPlayed').innerText = data.last;
+            document.getElementById('playTime').innerText = data.time;
+            document.getElementById('gameDesc').innerText = data.desc;
+
+            // Update Sidebar UI
+            const items = document.querySelectorAll('.sidebar-item');
+            items.forEach(item => item.classList.remove('active'));
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
 <style>
     :root {
         --steam-dark: #1b2838;
