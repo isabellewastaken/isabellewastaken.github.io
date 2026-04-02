@@ -132,7 +132,7 @@
         <div class="sidebar-header">Games</div>
         <div class="game-list" id="gameList">
             <!-- Items must match the keys in the JS object below -->
-            <div class="sidebar-item active" onclick="switchGame('educraft')">Educraft Alpha</div>
+            <div class="sidebar-item active" onclick="switchGame('educraftold')">Educraft Legacy</div>
             <div class="sidebar-item" onclick="switchGame('portal')">PortalHTML Alpha</div>
             <div class="sidebar-item" onclick="switchGame('edukart')">EduKart Tech Demo</div>
             <div class="sidebar-item" onclick="switchGame('eagler152')">Eaglercraft 1.5.2</div>
@@ -142,6 +142,7 @@
             <div class="sidebar-item" onclick="switchGame('sus')">Among Us (TBA)</div>
             <div class="sidebar-item" onclick="switchGame('gd')">Geometry Dash (TBA)</div>
             <div class="sidebar-item" onclick="switchGame('terraria')">Terraria (TBA)</div>
+            <div class="sidebar-item" onclick="switchGame('baldiclassic')">Baldi's Basics Classic (WIP)</div>
         </div>
     </div>
 
@@ -164,10 +165,10 @@
 
     <script>
         const gameData = {
-            'educraft': {
-                title: 'EDUCRAFT',
+            'educraftold': {
+                title: 'EDUCRAFT LEGACY',
                 url: 'educraft/index.html',
-                desc: 'The foundation of the EduEngine. Experience a limitless voxel sandbox built for performance and modular creativity.'
+                desc: 'The EduEngine core. Is to be rewritten and made into a more accurate Minecraft game in the future. For now, play Eaglercraft!'
             },
             'portal': {
                 title: 'PORTAL HTML',
@@ -213,6 +214,11 @@
                 title: 'TERRARIA',
                 url: 'placeholder.html',
                 desc: 'Dig, fight, explore, and build. From simple wooden shacks to celestial battles, the world is your canvas.'
+            },
+            'baldiclassic': {
+                title: 'BALDIS BASICS CLASSIC',
+                url: 'placeholder.html',
+                desc: 'Popular indie game from 2018 inspired by games like Sonics Schoolhouse! This HTML build is still under development!'
             }
         };
 
