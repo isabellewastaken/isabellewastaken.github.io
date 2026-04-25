@@ -132,14 +132,12 @@
         <div class="sidebar-header">Games</div>
         <div class="game-list" id="gameList">
             <!-- Items must match the keys in the JS object below -->
-            <div class="sidebar-item active" onclick="switchGame('educraftold')">Educraft Legacy</div>
-            <div class="sidebar-item" onclick="switchGame('portal')">PortalHTML Alpha</div>
+            <div class="sidebar-item active" onclick="switchGame('baldiclassic')">Baldi's Basics</div>
+            <div class="sidebar-item" onclick="switchGame('baldiyuri')">BBCR</div>
+            <div class="sidebar-item" onclick="switchGame('sub')">Subterbaldi</div>
             <div class="sidebar-item" onclick="switchGame('eagler152')">Eaglercraft 1.5.2</div>
             <div class="sidebar-item" onclick="switchGame('eagler')">EaglercraftX 1.8</div>
             <div class="sidebar-item" onclick="switchGame('eagler12')">Eaglercraft 1.12</div>
-            <div class="sidebar-item" onclick="switchGame('baldiclassic')">Baldi's Basics</div>
-            <div class="sidebar-item" onclick="switchGame('baldiyuri')">BBCR</div>
-            <div class="sidebar-item" onclick="switchGame('sub')">Subterbaldi</div>
             <!-- This has been commented due to the games not actually being released. -->
 <!--            <div class="sidebar-item" onclick="switchGame('gd')">Geometry Dash</div>
             <div class="sidebar-item" onclick="switchGame('pizza')">Pizza Tower</div>
@@ -149,7 +147,7 @@
 
     <div class="main-view">
         <div class="hero" id="heroBg">
-            <h1 id="gameTitle">Educraft Legacy</h1>
+            <h1 id="gameTitle">Baldi's Basics</h1>
         </div>
 
         <div class="action-bar">
@@ -158,24 +156,14 @@
 
         <div class="content">
             <div class="activity-feed">
-                <h3 style="margin-top:0">Post-Game Summary</h3>
-                <p id="gameDesc">The EduEngine core. Is to be rewritten and made into a more accurate Minecraft game in the future. For now, play Eaglercraft!</p>
+                <h3 style="margin-top:0">Game Summary</h3>
+                <p id="gameDesc">[This port will no longer be updated due to BaldiYuri being better.] Popular indie game from 2018 inspired by games like Sonics Schoolhouse! This HTML build is still under development, and cool features could show up in the future!</p>
             </div>
         </div>
     </div>
 
     <script>
         const gameData = {
-            'educraftold': {
-                title: 'EDUCRAFT LEGACY',
-                url: 'educraft/index.html',
-                desc: '[This game is Deprecated.] The EduEngine core. Is to be rewritten and made into a more accurate Minecraft game in the future. For now, play Eaglercraft!'
-            },
-            'portal': {
-                title: 'PORTAL HTML',
-                url: 'portalhtml/index.html',
-                desc: '[This game is Deprecated.] A browser-based tribute to Aperture Science. Solve intricate puzzles using advanced physics and momentum-based traversal.'
-            },
             'eagler152': {
                 title: 'EAGLERCRAFT 1.5.2',
                 url: 'eaglercraft/eagler152.html',
@@ -201,6 +189,11 @@
                 url: 'baldiyuri/',
                 desc: 'A webport of the remastered game we all love! This is under early development!'
             },
+            'sub': {
+                title: 'SUBTERBALDI',
+                url: 'sub/',
+                desc: 'A Baldi mod inspired by a Sonic horror AU!'
+            },
             'gd': {
                 title: 'GEOMETRY DASH',
                 url: 'placeholder.html',
@@ -215,11 +208,6 @@
                 title: 'AMONG US',
                 url: 'placeholder.html',
                 desc: 'A game of teamwork and betrayal. Find the Impostors before the crew falls, or sabotage your way to victory.'
-            },
-            'sub': {
-                title: 'SUBTERBALDI',
-                url: 'placeholder.html',
-                desc: 'A Baldi mod inspired by a Sonic horror AU!'
             }
         };
 
