@@ -139,15 +139,13 @@
             <div class="sidebar-item" onclick="switchGame('eagler')">EaglercraftX 1.8</div>
             <div class="sidebar-item" onclick="switchGame('eagler12')">Eaglercraft 1.12</div>
             <!-- This has been commented due to the games not actually being released. -->
-<!--            <div class="sidebar-item" onclick="switchGame('gd')">Geometry Dash</div>
-            <div class="sidebar-item" onclick="switchGame('pizza')">Pizza Tower</div>
-            <div class="sidebar-item" onclick="switchGame('sus')">Among Us</div> -->
+            <!-- <div class="sidebar-item" onclick="switchGame('sus')">Among Us</div> -->
         </div>
     </div>
 
     <div class="main-view">
         <div class="hero" id="heroBg">
-            <h1 id="gameTitle">Baldi's Basics</h1>
+            <h1 id="gameTitle">Pick a game...</h1>
         </div>
 
         <div class="action-bar">
@@ -157,7 +155,7 @@
         <div class="content">
             <div class="activity-feed">
                 <h3 style="margin-top:0">Game Summary</h3>
-                <p id="gameDesc">[This port will no longer be updated due to BaldiYuri being better.] Popular indie game from 2018 inspired by games like Sonics Schoolhouse! This HTML build is still under development, and cool features could show up in the future!</p>
+                <p id="gameDesc">Choose a game to see its description!</p>
             </div>
         </div>
     </div>
@@ -166,17 +164,17 @@
         const gameData = {
             'eagler152': {
                 title: 'EAGLERCRAFT 1.5.2',
-                url: 'eaglercraft/eagler152.html',
+                url: 'eaglercraft/eaglerclassic.html',
                 desc: 'The classic "Redstone Update" experience. Simple, nostalgic, and fully compatible with vintage servers.'
             },
             'eagler': {
                 title: 'EAGLERCRAFTX 1.8',
-                url: 'eaglercraft/game.html',
+                url: 'eaglercraft/eaglerx.html',
                 desc: 'The definitive web-based Minecraft experience. Featuring the "Bountiful Update" with guardians, banners, and full cross-server support.'
             },
             'eagler12': {
                 title: 'EAGLERCRAFT 1.12',
-                url: 'eaglercraft/eagler12.html',
+                url: 'eaglercraft/eaglermodern.html',
                 desc: 'The "World of Colour" update. Featuring advanced technical blocks, concrete, and improved seafaring.'
             },
             'baldiclassic': {
@@ -193,16 +191,6 @@
                 title: 'SUBTERBALDI',
                 url: 'sub/',
                 desc: 'A Baldi mod inspired by a Sonic horror AU!'
-            },
-            'gd': {
-                title: 'GEOMETRY DASH',
-                url: 'placeholder.html',
-                desc: 'Jump and fly your way through danger in this rhythm-based action platformer. One-touch gameplay with infinite challenge.'
-            },
-            'pizza': {
-                title: 'PIZZA TOWER',
-                url: 'placeholder.html',
-                desc: 'A high-octane 2D platformer inspired by the Wario Land series. Emphasizing movement, exploration, and score attacks.'
             },
             'sus': {
                 title: 'AMONG US',
