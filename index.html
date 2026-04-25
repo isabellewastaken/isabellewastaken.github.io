@@ -13,6 +13,8 @@
             --steam-green-hover: #a1cf1e;
             --text-light: #c6d4df;
             --text-muted: #8f98a0;
+            --steam-black: #171d24;
+            --steam-card-bg: #202c39;
         }
 
         body {
@@ -28,14 +30,14 @@
         /* Sidebar Navigation */
         .sidebar {
             width: 260px;
-            background-color: rgba(0, 0, 0, 0.3);
-            border-right: 1px solid #333;
+            background-color: var(--steam-black);
+            border-right: 1px solid rgba(255, 255, 255, 0.05);
             display: flex;
             flex-direction: column;
         }
 
         .sidebar-header {
-            padding: 20px;
+            padding: 20px 20px 10px 20px;
             font-size: 0.8em;
             font-weight: bold;
             color: var(--steam-blue);
@@ -49,12 +51,12 @@
         }
 
         .sidebar-item {
-            padding: 8px 20px;
+            padding: 6px 20px;
             display: flex;
             align-items: center;
             text-decoration: none;
             color: var(--text-muted);
-            font-size: 0.9em;
+            font-size: 0.85em;
             cursor: pointer;
             transition: 0.2s;
         }
@@ -67,62 +69,62 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: linear-gradient(to bottom, #2d4458 0%, #1b2838 40%);
+            background: linear-gradient(to bottom, #2a4054 0%, #1b2838 100%);
         }
 
-        /* Hero Image/Logo Area */
-        .hero {
-            height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            background-size: cover;
-            background-position: center;
+        /* Dashboard Grid Content */
+        .grid-container {
+            flex: 1;
+            padding: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+            gap: 25px;
+            overflow-y: auto;
         }
 
-        .hero h1 {
-            font-size: 4em;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            margin: 0;
-            text-shadow: 0 0 20px rgba(0,0,0,0.8);
-        }
+        /* Custom Scrollbar for the Grid */
+        .grid-container::-webkit-scrollbar { width: 10px; }
+        .grid-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
+        .grid-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 5px; }
+        .grid-container::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
-        /* Steam Action Bar */
-        .action-bar {
-            background-color: rgba(0, 0, 0, 0.5);
-            padding: 20px 40px;
-            display: flex;
-            align-items: center;
-            gap: 40px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-
-        .play-btn {
-            background: linear-gradient(to right, #75b022, #588a1b);
-            color: #fff;
-            text-decoration: none;
-            padding: 10px 60px;
-            border-radius: 2px;
-            font-weight: bold;
-            font-size: 1.3em;
-            text-transform: uppercase;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .play-btn:hover { background: var(--steam-green-hover); }
-
-        .stat-box { font-size: 0.8em; color: var(--text-muted); line-height: 1.4; }
-        .stat-box b { color: #fff; display: block; font-size: 1.1em; }
-
-        /* Dashboard Content */
-        .content { padding: 40px; }
-        .activity-feed {
-            background: rgba(0,0,0,0.2);
-            padding: 20px;
+        /* Game Card (Grid Items) */
+        .game-card {
+            background-color: var(--steam-card-bg);
             border-radius: 4px;
-            max-width: 600px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 2 / 3;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .game-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.6), 0 0 1px 1px var(--steam-blue);
+        }
+
+        .game-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
+            padding: 30px 10px 10px 10px;
+            font-size: 0.85em;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
+            text-align: center;
         }
     </style>
 </head>
@@ -130,88 +132,83 @@
 
     <div class="sidebar">
         <div class="sidebar-header">Games</div>
-        <div class="game-list" id="gameList">
-            <!-- Items must match the keys in the JS object below -->
-            <div class="sidebar-item active" onclick="switchGame('baldiclassic')">Baldi's Basics</div>
-            <div class="sidebar-item" onclick="switchGame('baldiyuri')">BBCR</div>
-            <div class="sidebar-item" onclick="switchGame('sub')">Subterbaldi</div>
-            <div class="sidebar-item" onclick="switchGame('eagler152')">Eaglercraft 1.5.2</div>
-            <div class="sidebar-item" onclick="switchGame('eagler')">EaglercraftX 1.8</div>
-            <div class="sidebar-item" onclick="switchGame('eagler12')">Eaglercraft 1.12</div>
-            <!-- This has been commented due to the games not actually being released. -->
-            <!-- <div class="sidebar-item" onclick="switchGame('sus')">Among Us</div> -->
-        </div>
+        <div class="game-list" id="sidebarList">
+            </div>
     </div>
 
     <div class="main-view">
-        <div class="hero" id="heroBg">
-            <h1 id="gameTitle">Pick a game...</h1>
-        </div>
-
-        <div class="action-bar">
-            <a href="#" id="playLink" class="play-btn">Play</a>
-        </div>
-
-        <div class="content">
-            <div class="activity-feed">
-                <h3 style="margin-top:0">Game Summary</h3>
-                <p id="gameDesc">Choose a game to see its description!</p>
+        <div class="grid-container" id="gridContainer">
             </div>
-        </div>
     </div>
 
     <script>
-        const gameData = {
-            'eagler152': {
-                title: 'EAGLERCRAFT 1.5.2',
+const gameData = {
+            'eagler152': { 
+                title: 'Eaglercraft 1.5.2', 
                 url: 'eaglercraft/eaglerclassic.html',
-                desc: 'The classic "Redstone Update" experience. Simple, nostalgic, and fully compatible with vintage servers.'
+				banner: 'banners/placeholderbanner.jpg'
+                //banner: 'banners/eagler152.jpg' // <-- Put your custom image path here
             },
-            'eagler': {
-                title: 'EAGLERCRAFTX 1.8',
+            'eagler': { 
+                title: 'EaglercraftX 1.8', 
                 url: 'eaglercraft/eaglerx.html',
-                desc: 'The definitive web-based Minecraft experience. Featuring the "Bountiful Update" with guardians, banners, and full cross-server support.'
+				banner: 'banners/placeholderbanner.jpg'
+                //banner: 'banners/eagler18.jpg'
             },
-            'eagler12': {
-                title: 'EAGLERCRAFT 1.12',
+            'eagler12': { 
+                title: 'Eaglercraft 1.12', 
                 url: 'eaglercraft/eaglermodern.html',
-                desc: 'The "World of Colour" update. Featuring advanced technical blocks, concrete, and improved seafaring.'
+				banner: 'banners/placeholderbanner.jpg'
+                //banner: 'banners/eagler112.jpg'
             },
-            'baldiclassic': {
-                title: 'BALDIS BASICS',
+            'baldiclassic': { 
+                title: "Baldi's Basics", 
                 url: 'baldiclassic/',
-                desc: '[This port will no longer be updated due to BaldiYuri being better.] Popular indie game from 2018 inspired by games like Sonics Schoolhouse! This HTML build is still under development, and cool features could show up in the future!'
+                banner: 'banners/baldiclassic.jpg'
             },
-            'baldiyuri': {
-                title: 'BALDIS BASICS CLASSIC REMASTERED',
+            'baldiyuri': { 
+                title: 'BBCR', 
                 url: 'baldiyuri/',
-                desc: 'A webport of the remastered game we all love! This is under early development!'
+                banner: 'banners/baldiyuri.jpg'
             },
-            'sub': {
-                title: 'SUBTERBALDI',
+            'sub': { 
+                title: 'Subterbaldi', 
                 url: 'sub/',
-                desc: 'A Baldi mod inspired by a Sonic horror AU!'
+                banner: 'banners/subterbaldi.jpg'
             },
-            'sus': {
-                title: 'AMONG US',
+            'sus': { 
+                title: 'Among Us', 
                 url: 'placeholder.html',
-                desc: 'A game of teamwork and betrayal. Find the Impostors before the crew falls, or sabotage your way to victory.'
+				banner: 'banners/placeholderbanner.jpg'
+                //banner: 'banners/sus.jpg'
             }
         };
 
-        function switchGame(gameKey) {
-            const data = gameData[gameKey];
-            
-            // Update Text
-            document.getElementById('gameTitle').innerText = data.title;
-            document.getElementById('playLink').href = data.url;
-            document.getElementById('gameDesc').innerText = data.desc;
+        const gridContainer = document.getElementById('gridContainer');
+        const sidebarList = document.getElementById('sidebarList');
 
-            // Update Sidebar UI
-            const items = document.querySelectorAll('.sidebar-item');
-            items.forEach(item => item.classList.remove('active'));
-            event.currentTarget.classList.add('active');
-        }
+        Object.keys(gameData).forEach(key => {
+            const game = gameData[key];
+            
+            // Grid Card
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            card.onclick = () => window.location.href = game.url;
+            
+            // This reads game.banner. If a game is missing a banner, it uses the placeholder.
+            card.innerHTML = `
+                <img src="${game.banner || 'banners/placeholderbanner.png'}" alt="${game.title}">
+                <div class="card-info">${game.title}</div>
+            `;
+            gridContainer.appendChild(card);
+
+            // Sidebar Item
+            const sidebarItem = document.createElement('div');
+            sidebarItem.className = 'sidebar-item';
+            sidebarItem.innerText = game.title;
+            sidebarItem.onclick = () => window.location.href = game.url;
+            sidebarList.appendChild(sidebarItem);
+        });	
     </script>
 </body>
 </html>
