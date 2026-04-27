@@ -197,47 +197,6 @@ const gameData = {
         };
         const gridContainer = document.getElementById('gridContainer');
         const sidebarList = document.getElementById('sidebarList');
-		// Now right here is the test for userAgents!
-	const ua = navigator.userAgent;
-
-	// --- 1. Version Extraction ---
-	const iosMatch = ua.match(/OS (\d+)_/);
-	const iosVersion = iosMatch ? parseInt(iosMatch[10]) : null;
-
-	const macMatch = ua.match(/Mac OS X (10[._]\d+)/);
-	const macVersionStr = macMatch ? macMatch[1].replace('_', '.') : null;
-	const macVersion = macVersionStr ? parseFloat(macVersionStr) : null;
-
-	const winMatch = ua.match(/Windows NT (\d+\.\d+)/);
-	const winVersion = winMatch ? parseFloat(winMatch[1]) : null;
-
-	// --- 2. THE HARD BLOCKS (Ancient Systems) ---
-	const isLegacyWin = winVersion !== null && winVersion < 6.1; // Pre-Windows 7
-	const isLegacyMac = macVersion !== null && macVersion < 10.6; // Pre-Snow Leopard
-	const isLegacyIOS = iosVersion !== null && iosVersion < 15;
-
-	if (isLegacyWin || isLegacyMac || isLegacyIOS) {
-	    document.body.innerHTML = `
-	        <div style='padding:50px; text-align:center; background:#1b2838; color:#c6d4df; height:100vh;'>
-	            <h1 style='color:#ff4444;'>Unsupported System</h1>
-	            <p>Your operating system is too old to support this library. Please update to Windows 7+, OS X 10.6+, or iOS 15+.</p>
-	        </div>`;
-	    throw new Error("Legacy system blocked.");
-	}
-
-	// --- 3. THE "NICE TRY" GAP (iOS 19-25) ---
-	if (iosVersion >= 19 && iosVersion <= 25) {
-	    document.body.innerHTML = "<div style='padding:50px; text-align:center;'><h1>Nice Try!</h1><p>iOS " + iosVersion + " doesn't exist. Stop spoofing!</p></div>";
-	    throw new Error("Spoof detected.");
-	}
-
-	// --- 4. THE WARNINGS (Functional but old) ---
-	// Pre-Big Sur means any Mac OS X 10.x (since 11+ are modern integers)
-	if (macVersion !== null && macVersion >= 10.6) {
-	    console.warn("Legacy Mac warning: Pre-Big Sur systems may experience minor UI glitches.");
-	    // You could also inject a small banner at the top of the main-view here
-	}
-
 
         Object.keys(gameData).forEach(key => {
             const game = gameData[key];
