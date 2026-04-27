@@ -16,7 +16,6 @@
             --steam-black: #171d24;
             --steam-card-bg: #202c39;
         }
-
         body {
             margin: 0;
             font-family: 'Segoe UI', Tahoma, sans-serif;
@@ -26,7 +25,6 @@
             height: 100vh;
             overflow: hidden;
         }
-
         .sidebar {
             width: 260px;
             background-color: var(--steam-black);
@@ -34,7 +32,6 @@
             display: flex;
             flex-direction: column;
         }
-
         .sidebar-header {
             padding: 20px 20px 10px 20px;
             font-size: 0.8em;
@@ -43,12 +40,10 @@
             text-transform: uppercase;
             letter-spacing: 1px;
         }
-
         .game-list {
             flex: 1;
             overflow-y: auto;
         }
-
         .sidebar-item {
             padding: 6px 20px;
             display: flex;
@@ -59,17 +54,14 @@
             cursor: pointer;
             transition: 0.2s;
         }
-
         .sidebar-item:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
         .sidebar-item.active { background: var(--steam-sidebar); color: #fff; }
-		
         .main-view {
             flex: 1;
             display: flex;
             flex-direction: column;
             background: linear-gradient(to bottom, #2a4054 0%, #1b2838 100%);
         }
-
         .grid-container {
             flex: 1;
             padding: 25px;
@@ -78,12 +70,10 @@
             gap: 25px;
             overflow-y: auto;
         }
-
         .grid-container::-webkit-scrollbar { width: 10px; }
         .grid-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
         .grid-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 5px; }
         .grid-container::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-
         .game-card {
             background-color: var(--steam-card-bg);
             border-radius: 4px;
@@ -96,18 +86,15 @@
             display: flex;
             flex-direction: column;
         }
-
         .game-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.6), 0 0 1px 1px var(--steam-blue);
         }
-
         .game-card img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-
         .card-info {
             position: absolute;
             bottom: 0;
