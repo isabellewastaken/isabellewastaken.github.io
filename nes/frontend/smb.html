@@ -2,6 +2,32 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style>
+		body {
+			/* Set the general page background color */
+			background-color: #5c94fc;
+			color: #ffffff;           /* Pure White */
+			background-image: radial-gradient(#4b7ae2 3px, transparent 1px);
+			background-size: 10px 10px; /* Adjust size to change grid density */
+			    /* This stack picks the best clean font on any device */
+			font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+			    /* Creates a crisp 1px black outline */
+			text-shadow: 
+				-2px -2px 0 #333333,  
+				2px -2px 0 #333333,
+				-2px  2px 0 #333333,
+				2px  2px 0 #333333;
+		}
+    
+			/* Modern spacing for better readability */
+			line-height: 1.6;
+			-webkit-font-smoothing: antialiased; /* Makes text look smoother */
+
+			#nes canvas {
+				border: 4px solid #fff; /* Optional: adds a classic black border */
+			}
+	</style>
+
     <title>Super Mario Bros.</title>
     <!-- For local development: npm run build && npx serve . -->
     <!-- <script type="text/javascript" src="../dist/jsnes.min.js"></script> -->
