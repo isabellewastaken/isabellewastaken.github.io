@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IWT</title>
+    <title>IWT - Baldi Games</title>
     <style>
         :root {
             --steam-dark: #1b2838;
@@ -111,7 +111,7 @@
 <body>
 
     <div class="sidebar">
-        <div class="sidebar-header">Games</div>
+        <div class="sidebar-header">Baldi Games</div>
         <div class="game-list" id="sidebarList">
             </div>
     </div>
@@ -123,17 +123,27 @@
 
     <script>
 const gameData = {
-            'eaglerroot': { 
-                title: 'Eaglercraft', 
-                url: 'eaglercraftroot.html',
+            'index': { 
+                title: 'Back to Home', 
+                url: 'index.html',
 				banner: 'banners/placeholderbanner.jpg'
-                //banner: 'banners/eaglercraft.jpg'
+                //banner: 'banners/IWT.jpg'
             },
-            'baldiroot': { 
-                title: "Baldi's Basics", 
-                url: 'baldigames.html',
+            'baldiclassic': { 
+                title: "Baldi's Basics Classic", 
+                url: 'baldiclassic/',
                 banner: 'banners/baldiclassic.jpg'
             },
+            'baldiyuri': { 
+                title: "Baldi's Basics Classic Remastered", 
+                url: 'baldiyuri/',
+                banner: 'banners/baldiyuri.jpg'
+            },
+            'sub': { 
+                title: 'Subterbaldi', 
+                url: 'sub/',
+                banner: 'banners/subterbaldi.jpg'
+            }
         };
         const gridContainer = document.getElementById('gridContainer');
         const sidebarList = document.getElementById('sidebarList');

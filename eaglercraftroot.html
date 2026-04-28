@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IWT</title>
+    <title>IWT - Eaglercraft</title>
     <style>
         :root {
-            --steam-dark: #1b2838;
-            --steam-sidebar: #2a475e;
-            --steam-blue: #66c0f4;
-            --text-light: #c6d4df;
-            --text-muted: #8f98a0;
-            --steam-black: #171d24;
+            --steam-dark: #6b5428;
+            --steam-sidebar: #6b5428;
+            --steam-blue: #6b5428;
+            --text-light: #8f98a0;
+            --text-muted: #000000;
+            --steam-black: #85ad29;
             --steam-card-bg: #202c39;
         }
         body {
@@ -58,7 +58,7 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            background: linear-gradient(to bottom, #2a4054 0%, #1b2838 100%);
+            background: linear-gradient(to bottom, #76552b 0%, #402905 100%);
         }
         .grid-container {
             flex: 1;
@@ -111,7 +111,7 @@
 <body>
 
     <div class="sidebar">
-        <div class="sidebar-header">Games</div>
+        <div class="sidebar-header">Eaglercraft</div>
         <div class="game-list" id="sidebarList">
             </div>
     </div>
@@ -123,17 +123,30 @@
 
     <script>
 const gameData = {
-            'eaglerroot': { 
-                title: 'Eaglercraft', 
-                url: 'eaglercraftroot.html',
+            'index': { 
+                title: 'Back to Home', 
+                url: 'index.html',
 				banner: 'banners/placeholderbanner.jpg'
-                //banner: 'banners/eaglercraft.jpg'
+                //banner: 'banners/IWT.jpg'
             },
-            'baldiroot': { 
-                title: "Baldi's Basics", 
-                url: 'baldigames.html',
-                banner: 'banners/baldiclassic.jpg'
+            'eagler152': { 
+                title: '1.5.2', 
+                url: 'eaglercraft/eaglerclassic.html',
+				banner: 'banners/placeholderbanner.jpg'
+                //banner: 'banners/eagler152.jpg'
             },
+            'eagler': { 
+                title: '1.8.8', 
+                url: 'eaglercraft/eaglerx.html',
+				banner: 'banners/placeholderbanner.jpg'
+                //banner: 'banners/eagler18.jpg'
+            },
+            'eagler12': { 
+                title: '1.12.2', 
+                url: 'eaglercraft/eaglermodern.html',
+				banner: 'banners/placeholderbanner.jpg'
+                //banner: 'banners/eagler112.jpg'
+            }
         };
         const gridContainer = document.getElementById('gridContainer');
         const sidebarList = document.getElementById('sidebarList');
