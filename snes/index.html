@@ -44,7 +44,7 @@
       var count = 0;
 	function loadRomFromServer() {
         document.getElementById("openrom").style.display = 'none';
-        Module.setStatus('Downloading ROM...');
+        Module.setStatus('Enjoy the beta!');
         
         var romName = 'linktothepast.sfc';
         var romUrl = 'roms/' + romName;
@@ -70,21 +70,10 @@
         
         Module.FS_createFolder('/', 'etc', true, true);
         var config = 'input_player1_select = shift\n';
-        var latency = parseInt(document.getElementById('latency').value, 10);
-        if (isNaN(latency)) latency = 96;
-        config += 'audio_latency = ' + latency + '\n'
-        if (document.getElementById('vsync').checked)
-          config += 'video_vsync = true\n';
-        else
-          config += 'video_vsync = false\n';
           
         Module.FS_createDataFile('/etc', 'retroarch.cfg', config, true, true);
         
         document.getElementById('canvas_div').style.display = 'block';
-        document.getElementById('vsync').disabled = true;
-        document.getElementById('vsync-label').style.color = 'gray';
-        document.getElementById('latency').disabled = true;
-        document.getElementById('latency-label').style.color = 'gray';
 
         Module['arguments'] = ["-v", "/" + name];
         
@@ -137,6 +126,6 @@
           Module.setStatus(left ? 'Preparing... (' + (this.totalDependencies-left) + '/' + this.totalDependencies + ')' : 'All downloads complete.');
         }
       };
-      Module.setStatus('Downloading...');
+      Module.setStatus('Hang on...');
     </script>
 	<script type="text/javascript" src="snes9x/snes9x-next.js"></script></body></html>
