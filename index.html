@@ -109,18 +109,15 @@
     </style>
 </head>
 <body>
-
     <div class="sidebar">
         <div class="sidebar-header">Games</div>
         <div class="game-list" id="sidebarList">
             </div>
     </div>
-
     <div class="main-view">
         <div class="grid-container" id="gridContainer">
             </div>
     </div>
-
     <script>
 const gameData = {
             'eaglerroot': { 
@@ -140,10 +137,14 @@ const gameData = {
                 banner: 'banners/placeholderbanner.jpg'
 				//banner: 'banners/emulation.jpg'
             },
+            'snes9x': { 
+                title: "Snes9X", 
+                url: 'snes/index.html',
+                banner: 'banners/placeholderbanner.jpg'
+            },
         };
         const gridContainer = document.getElementById('gridContainer');
         const sidebarList = document.getElementById('sidebarList');
-
         Object.keys(gameData).forEach(key => {
             const game = gameData[key];
             const card = document.createElement('div');
