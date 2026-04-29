@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-<!-- saved from url=(0046)http://toadking.com/retroarch/snes9x-next.html -->
-<html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
-    
-    <title>RetroArch - Snes9x Next</title>
+<html lang="en-us">
+	<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Snes9x Test</title>
     <style>
       .emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
       textarea.emscripten { font-family: monospace; width: 80%; }
@@ -15,7 +14,7 @@
     </style>
   </head>
   <body>
-    <h1>Snes9x Next</h1>
+    <h1>Snes9x Test - Under Construction</h1>
     <hr>
     <div class="emscripten" id="status"></div>
     <div class="emscripten">
@@ -28,37 +27,18 @@
       <button id="fakerom" onclick="loadRomFromServer()">Play Game</button>
     </div>
     <hr>
-    <div class="emscripten">
-      
-      <input type="checkbox" id="resize"><label for="resize">Resize canvas</label>
-      <input type="checkbox" id="pointerLock" checked=""><label for="pointerLock">Lock/hide mouse pointer</label>
-      &nbsp;&nbsp;&nbsp;
-      <input type="button" value="Fullscreen" onclick="Module.requestFullScreen(document.getElementById(&#39;pointerLock&#39;).checked, 
-                                                                                document.getElementById(&#39;resize&#39;).checked)"><br>
-      <input type="checkbox" id="vsync"><label for="vsync" id="vsync-label">Enable V-sync (can only be done before loading game)</label><br>
-      <input type="textbox" id="latency" size="3" maxlength="3" value="96"> <label for="latency" id="latency-label">Audio latency (ms) (increase if you hear pops at fullspeed, can only be done before loading game)</label>
-    </div>
-    
-    <hr>
-    <textarea class="emscripten" id="output" rows="8"></textarea>
-    <hr>
     <div class="emscripten" id="controls">
       Controls:<br>
       <br>
-      A button (OK in menu): X<br>
-      B button (Back in menu): Z<br>
+      A button: X<br>
+      B button: Z<br>
       X Button: S<br>
       Y Button: A<br>
       L Button: Q<br>
       R Button: W<br>
       D-pad: Arrow Keys<br>
       Start Button: Enter<br>
-      Select Button: Shift<br>
-      Toggle Menu: F1<br>
-      Fast forward: Spacebar (toggle)<br>
-      Slow motion: E (hold)<br>
-      Save state: F2<br>
-      Load state: F4
+      Select Button: Shift
     </div>
     <script type="text/javascript">
       var count = 0;
@@ -86,7 +66,6 @@
 
       function initFromData(data, name) {
         var dataView = new Uint8Array(data);
-        // Write the ROM to Emscripten's virtual file system
         Module.FS_createDataFile('/', name, dataView, true, false);
         
         Module.FS_createFolder('/', 'etc', true, true);
@@ -107,7 +86,6 @@
         document.getElementById('latency').disabled = true;
         document.getElementById('latency-label').style.color = 'gray';
 
-        // Override the arguments so RetroArch boots the ROM instead of the main menu
         Module['arguments'] = ["-v", "/" + name];
         
         Module['callMain'](Module['arguments']);
@@ -125,20 +103,15 @@
           element.value = ''; // clear browser cache
           return function(text) {
             text = Array.prototype.slice.call(arguments).join(' ');
-            // These replacements are necessary if you render to raw HTML
-            //text = text.replace(/&/g, "&amp;");
-            //text = text.replace(/</g, "&lt;");
-            //text = text.replace(/>/g, "&gt;");
-            //text = text.replace('\n', '<br>', 'g');
             element.value += text + "\n";
-            element.scrollTop = 99999; // focus on bottom
+            element.scrollTop = 99999;
           };
         })(),
         printErr: function(text) {
           var text = Array.prototype.slice.call(arguments).join(' ');
           var element = document.getElementById('output');
           element.value += text + "\n";
-          element.scrollTop = 99999; // focus on bottom
+          element.scrollTop = 99999;
         },
         canvas: document.getElementById('canvas'),
         setStatus: function(text) {
