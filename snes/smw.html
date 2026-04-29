@@ -2,7 +2,7 @@
 <html lang="en-us"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     
     
-    <title>Snes9x Test - Under Construction</title>
+    <title>Super Mario World</title>
     <style>
       .emscripten { padding-right: 0; margin-left: auto; margin-right: auto; display: block; }
       textarea.emscripten { font-family: monospace; width: 80%; }
@@ -18,7 +18,7 @@
     </style>
   </head>
   <body>
-    <h1>Snes9x Test - Under Construction</h1>
+    <h1>Super Mario World</h1>
     <hr>
     <div class="emscripten" id="status"></div>
     <div class="emscripten">
@@ -28,7 +28,7 @@
       <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()"></canvas>
     </div>
 	<div class="emscripten emscripten_border" id="openrom">
-      <button id="fakerom" onclick="loadRomFromServer()">Play! (Temporary Button)</button>
+      <button id="fakerom" onclick="loadRomFromServer()">Start Game</button>
     </div>
     <hr>
     <div class="emscripten">
@@ -56,7 +56,7 @@
         document.getElementById("openrom").style.display = 'none';
         Module.setStatus('Downloading ROM...');
         
-        var romName = 'linktothepast.sfc';
+        var romName = 'supermarioworld.smc';
         var romUrl = 'roms/' + romName;
 
         // Fetch the ROM from your server
