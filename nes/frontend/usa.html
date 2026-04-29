@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<style>
+	body {
+		background-color: #5c94fc;
+		color: #ffffff;
+		background-image: radial-gradient(#4b7ae2 3px, transparent 1px);
+		background-size: 10px 10px;
+		font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+		text-shadow: 
+			-2px -2px 0 #333333,  
+			2px -2px 0 #333333,
+			-2px  2px 0 #333333,
+			2px  2px 0 #333333;
+	}
+		line-height: 1.6;
+		-webkit-font-smoothing: antialiased;
+
+	#nes canvas {
+		border: 4px solid #fff;
+	}
+	</style>
+
+    <title>Super Mario Bros. USA</title>
+    <script
+      type="text/javascript"
+      src="https://unpkg.com/jsnes@2/dist/jsnes.min.js"
+    ></script>
+    <script>
+      window.onload = function () {
+        var browser = new jsnes.Browser({
+          container: document.getElementById("nes"),
+          onError: function (e) {
+            console.error(e);
+          },
+        });
+        jsnes.Browser.loadROMFromURL(
+          "../roms/smbusa.nes",
+          function (err, data) {
+            if (err) {
+              console.error(err);
+              return;
+            }
+            browser.loadROM(data);
+          },
+        );
+      };
+    </script>
+  </head>
+  <body>
+    <div id="nes" style="margin: auto; width: 768px; height: 720px"></div>
+    <p>
+      DPad: Arrow keys<br />
+      Start: Enter, Select: Right Ctrl<br />
+      A: X, B: Z<br />
+    </p>
+  </body>
+</html>
