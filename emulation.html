@@ -111,7 +111,7 @@
 <body>
 
     <div class="sidebar">
-        <div class="sidebar-header">Games</div>
+        <div class="sidebar-header">Consoles</div>
         <div class="game-list" id="sidebarList">
             </div>
     </div>
@@ -128,20 +128,11 @@ const gameData = {
                 url: 'index.html',
 				banner: 'banners/placeholderbanner.jpg'
             },
-            'smb': { 
-                title: "Super Mario Bros.", 
-                url: 'nes/frontend/smb.html',
-                banner: 'banners/smb.jpg'
-            },
-            'smbusa': { 
-                title: "Super Mario Bros. USA", 
-                url: 'nes/frontend/usa.html',
-                banner: 'banners/smbus.jpg'
-            },
-            'smb3': { 
-                title: "Super Mario Bros. 3", 
-                url: 'nes/frontend/smb3.html',
-                banner: 'banners/smb3.jpg'
+            'nes': { 
+                title: "NES", 
+                url: 'nes/',
+                banner: 'banners/placeholderbanner.jpg'
+				//banner: 'banners/nes.png'
             },
             'zeldasnes': { 
                 title: "Link to the Past", 
@@ -153,16 +144,26 @@ const gameData = {
                 url: 'snes/smw.html',
                 banner: 'banners/smw.jpg'
             },
-            'n64wasm': { 
-                title: "Nintendo 64", 
-                url: 'n64/dist/index.html',
-                banner: 'banners/n64.png'
-            },
-            'gbatest': { 
-                title: "Game Boy Advance", 
-                url: 'gba/',
-                banner: 'banners/gba.png'
-            }
+			'gbtest': {
+				title: "GameBoyTest",
+				url: 'gb/tetris.html',
+				banner: 'banners/placeholderbanner.jpg'
+			},
+			'genesistest': {
+				title: "GenesisTest",
+				url: 'genesis/sonic1.html',
+				banner: 'banners/placeholderbanner.jpg'
+			},
+            //'n64wasm': { 
+            //    title: "N64Wasm", 
+            //    url: 'n64/dist/index.html',
+            //    banner: 'banners/n64.png'
+            //},
+            //'gba': { 
+            //    title: "GameBoyAdvanceTest", 
+            //    url: 'gba/',
+            //    banner: 'banners/gba.png'
+            //},
         };
         const gridContainer = document.getElementById('gridContainer');
         const sidebarList = document.getElementById('sidebarList');
