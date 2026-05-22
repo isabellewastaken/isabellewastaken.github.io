@@ -4,109 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IWT - Emulation</title>
-    <style>
-        :root {
-            --steam-dark: #1b2838;
-            --steam-sidebar: #2a475e;
-            --steam-blue: #66c0f4;
-            --text-light: #c6d4df;
-            --text-muted: #8f98a0;
-            --steam-black: #171d24;
-            --steam-card-bg: #202c39;
-        }
-        body {
-            margin: 0;
-            font-family: 'Segoe UI', Tahoma, sans-serif;
-            background-color: var(--steam-dark);
-            color: var(--text-light);
-            display: flex;
-            height: 100vh;
-            overflow: hidden;
-        }
-        .sidebar {
-            width: 260px;
-            background-color: var(--steam-black);
-            border-right: 1px solid rgba(255, 255, 255, 0.05);
-            display: flex;
-            flex-direction: column;
-        }
-        .sidebar-header {
-            padding: 20px 20px 10px 20px;
-            font-size: 0.8em;
-            font-weight: bold;
-            color: var(--steam-blue);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .game-list {
-            flex: 1;
-            overflow-y: auto;
-        }
-        .sidebar-item {
-            padding: 6px 20px;
-            display: flex;
-            align-items: center;
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.85em;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .sidebar-item:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
-        .sidebar-item.active { background: var(--steam-sidebar); color: #fff; }
-        .main-view {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: linear-gradient(to bottom, #2a4054 0%, #1b2838 100%);
-        }
-        .grid-container {
-            flex: 1;
-            padding: 25px;
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-            gap: 25px;
-            overflow-y: auto;
-        }
-        .grid-container::-webkit-scrollbar { width: 10px; }
-        .grid-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
-        .grid-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 5px; }
-        .grid-container::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-        .game-card {
-            background-color: var(--steam-card-bg);
-            border-radius: 4px;
-            overflow: hidden;
-            position: relative;
-            aspect-ratio: 2 / 3;
-            cursor: pointer;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-            display: flex;
-            flex-direction: column;
-        }
-        .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.6), 0 0 1px 1px var(--steam-blue);
-        }
-        .game-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .card-info {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 60%, transparent 100%);
-            padding: 30px 10px 10px 10px;
-            font-size: 0.85em;
-            font-weight: bold;
-            color: #fff;
-            text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-            text-align: center;
-        }
-    </style>
+	<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
@@ -119,6 +17,7 @@
     <div class="main-view">
         <div class="grid-container" id="gridContainer">
             </div>
+		<div class="version-watermark">IWT May Update 3.1</div>
     </div>
 
     <script>
@@ -128,41 +27,40 @@ const gameData = {
                 url: 'index.html',
 				banner: 'banners/placeholderbanner.jpg'
             },
-            'nes': { 
+            'nesroot': { 
                 title: "NES", 
                 url: 'nes/',
 				banner: 'banners/nes.png'
             },
-            'zeldasnes': { 
-                title: "Link to the Past", 
-                url: 'snes/zeldasnes.html',
-                banner: 'banners/lttp.jpg'
+			// Placeholder for the category system. It wont be added until May Update 4
+			// Game Boy and Game Boy Advance games will be merged into the same category.
+            //'gbroot': { 
+            //    title: "Game Boy Series", 
+            //    url: 'gb/',
+			//	banner: 'banners/placeholderbanner.jpg'
+            //},
+            'snesroot': { 
+                title: "SNES", 
+                url: 'snes/',
+				banner: 'banners/snes.png'
             },
-            'smw': { 
-                title: "Super Mario World", 
-                url: 'snes/smw.html',
-                banner: 'banners/smw.jpg'
-            },
-            'snesexperimentalbranch': { 
-                title: "Street Fighter II EmulatorJS Experimental Branch", 
-                url: 'snes/sf2.html',
-                banner: 'banners/placeholderbanner.jpg'
-            },
-			'gbtest': {
-				title: "Game Boy Test",
-				url: 'gb/tetris.html',
-				banner: 'banners/gameboy.png'
-			},
-			'genesistest': {
-				title: "Genesis Test",
-				url: 'genesis/sonic1.html',
-				banner: 'banners/genesis.png'
-			},
-            'n64wasm': { 
+            'n64': { 
                 title: "N64 WASM", 
                 url: 'n64/dist/index.html',
                 banner: 'banners/n64.png'
             },
+			// move to gbroot
+			'tetris': {
+				title: "Tetris (Game Boy)",
+				url: 'gb/tetris.html',
+				banner: 'banners/tetris.png'
+			},
+			'sonic1': {
+				title: "Sonic the Hedgehog 1",
+				url: 'genesis/sonic1.html',
+				banner: 'banners/sonic1.png'
+			},
+			// move to gbroot
             'wario4': { 
                 title: "Wario Land 4", 
                 url: 'gba/warioland4.html',

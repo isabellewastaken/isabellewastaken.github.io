@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IWT</title>
-	<link rel="stylesheet" href="style.css">
+    <title>IWT - NES Games</title>
+	<link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div class="sidebar">
-        <div class="sidebar-header">Games</div>
+        <div class="sidebar-header">SNES Games</div>
         <div class="game-list" id="sidebarList">
             </div>
     </div>
@@ -19,25 +19,25 @@
     </div>
     <script>
 const gameData = {
-            'webroot': { 
-                title: "Web Games", 
-                url: 'placeholder.html',
-				banner: 'banners/placeholderbanner.jpg'
+            'index': { 
+                title: 'Back to Home', 
+                url: '../emulation.html',
+				banner: '../banners/placeholderbanner.jpg'
             },
-            'emuroot': { 
-                title: "Emulation", 
-                url: 'emulation.html',
-				banner: 'banners/emulation.png'
+            'smw': { 
+                title: "Super Mario World", 
+                url: 'smw.html',
+                banner: '../banners/smw.jpg'
             },
-            'baldiroot': { 
-                title: "Baldi's Basics", 
-                url: 'baldigames.html',
-                banner: 'banners/baldiclassic.jpg'
+            'lttp': { 
+                title: "Link to the Past", 
+                url: 'lttp.html',
+                banner: '../banners/lttp.jpg'
             },
-            'eaglerroot': { 
-                title: 'Eaglercraft', 
-                url: 'eaglercraftroot.html',
-                banner: 'banners/eagler.jpg'
+            'streetfighter2': { 
+                title: "Street Fighter II", 
+                url: 'sf2.html',
+                banner: '../banners/sf2.png'
             },
         };
         const gridContainer = document.getElementById('gridContainer');
