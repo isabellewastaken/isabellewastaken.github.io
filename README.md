@@ -1,2 +1,5 @@
 # IWT
-Website for my computer club. I hope my friends have fun playing this... hell, I hope they care about me, too.
+A free games platform built for my school's computer club. Browse and launch a curated library of games directly from your browser — no installs, no accounts, just videogames.
+
+## Status
+Base is complete. Games will be added in periodic batches.
