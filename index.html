@@ -24,47 +24,114 @@
             </div>
 		<div class="version-watermark">IWT May Update 4</div>
     </div>
-    <script>
-const gameData = {
-            'emuroot': { 
-                title: "Emulation", 
-                url: 'emulation.html',
-				banner: 'banners/emulation.png'
-            },
-            'webroot': { 
-                title: "Web Games", 
-                url: 'web/',
-				banner: 'banners/placeholderbanner.jpg'
-            },
-            'baldiroot': { 
-                title: "Baldi's Basics", 
-                url: 'baldigames.html',
-                banner: 'banners/baldiclassic.jpg'
-            },
-            'eaglerroot': { 
-                title: 'Eaglercraft', 
-                url: 'eaglercraftroot.html',
-                banner: 'banners/eagler.jpg'
-            },
-        };
-        const gridContainer = document.getElementById('gridContainer');
-        const sidebarList = document.getElementById('sidebarList');
-        Object.keys(gameData).forEach(key => {
-            const game = gameData[key];
-            const card = document.createElement('div');
-            card.className = 'game-card';
-            card.onclick = () => window.location.href = game.url;
-			card.innerHTML = `
-                <img src="${game.banner || 'banners/placeholderbanner.png'}" alt="${game.title}">
-                <div class="card-info">${game.title}</div>
-            `;
-            gridContainer.appendChild(card);
-            const sidebarItem = document.createElement('div');
-            sidebarItem.className = 'sidebar-item';
-            sidebarItem.innerText = game.title;
-            sidebarItem.onclick = () => window.location.href = game.url;
-            sidebarList.appendChild(sidebarItem);
-        });	
-    </script>
+<!--[if IE]>
+<script>
+    var gameData = {
+        'emuroot': { 
+            title: "Emulation", 
+            url: 'emulation.html',
+            banner: 'banners/emulation.png'
+        },
+        'webroot': { 
+            title: "Web Games", 
+            url: 'web/',
+            banner: 'banners/placeholderbanner.jpg'
+        },
+        'baldiroot': { 
+            title: "Baldi's Basics", 
+            url: 'baldigames.html',
+            banner: 'banners/baldiclassic.jpg'
+        },
+        'eaglerroot': { 
+            title: 'Eaglercraft', 
+            url: 'eaglercraftroot.html',
+            banner: 'banners/eagler.jpg'
+        }
+    };
+
+    var gridContainer = document.getElementById('gridContainer');
+    var sidebarList = document.getElementById('sidebarList');
+
+    var keys = Object.keys(gameData);
+    for (var i = 0; i < keys.length; i++) {
+        var key = keys[i];
+        var game = gameData[key];
+
+        var card = document.createElement('div');
+        card.className = 'game-card';
+        (function(url) {
+            card.onclick = function() { window.location.href = url; };
+        })(game.url);
+
+        var img = document.createElement('img');
+        img.src = game.banner || 'banners/placeholderbanner.png';
+        img.alt = game.title;
+
+        var info = document.createElement('div');
+        info.className = 'card-info';
+        info.innerText = game.title;
+
+        card.appendChild(img);
+        card.appendChild(info);
+        gridContainer.appendChild(card);
+
+        var sidebarItem = document.createElement('div');
+        sidebarItem.className = 'sidebar-item';
+        sidebarItem.innerText = game.title;
+        (function(url) {
+            sidebarItem.onclick = function() { window.location.href = url; };
+        })(game.url);
+        sidebarList.appendChild(sidebarItem);
+    }
+</script>
+<![endif]-->
+
+<!--[if !IE]><!-->
+<script>
+    const gameData = {
+        'emuroot': { 
+            title: "Emulation", 
+            url: 'emulation.html',
+            banner: 'banners/emulation.png'
+        },
+        'webroot': { 
+            title: "Web Games", 
+            url: 'web/',
+            banner: 'banners/placeholderbanner.jpg'
+        },
+        'baldiroot': { 
+            title: "Baldi's Basics", 
+            url: 'baldigames.html',
+            banner: 'banners/baldiclassic.jpg'
+        },
+        'eaglerroot': { 
+            title: 'Eaglercraft', 
+            url: 'eaglercraftroot.html',
+            banner: 'banners/eagler.jpg'
+        }
+    };
+
+    const gridContainer = document.getElementById('gridContainer');
+    const sidebarList = document.getElementById('sidebarList');
+
+    Object.keys(gameData).forEach(key => {
+        const game = gameData[key];
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.onclick = () => window.location.href = game.url;
+        card.innerHTML = `
+            <img src="${game.banner || 'banners/placeholderbanner.png'}" alt="${game.title}">
+            <div class="card-info">${game.title}</div>
+        `;
+        gridContainer.appendChild(card);
+
+        const sidebarItem = document.createElement('div');
+        sidebarItem.className = 'sidebar-item';
+        sidebarItem.innerText = game.title;
+        sidebarItem.onclick = () => window.location.href = game.url;
+        sidebarList.appendChild(sidebarItem);
+    });
+</script>
+<!--<![endif]-->
 </body>
 </html>
