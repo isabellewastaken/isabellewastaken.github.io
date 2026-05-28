@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IWT - DS Games</title>
+	<link rel="stylesheet" href="../style.css">
+</head>
+<body>
+
+    <div class="sidebar">
+        <div class="sidebar-header">Games</div>
+        <div class="game-list" id="sidebarList">
+            </div>
+    </div>
+
+    <div class="main-view">
+        <div class="grid-container" id="gridContainer">
+            </div>
+		<div class="version-watermark">IWT May Update 4</div>
+    </div>
+
+    <script>
+const gameData = {
+            'index': { 
+                title: 'Back to Home', 
+                url: '../emulation.html',
+				banner: '../banners/placeholderbanner.jpg'
+            },
+            'nsmb': { 
+                title: "New Super Mario Bros.", 
+                url: 'nsmb.html',
+                banner: '../banners/nsmb.png'
+            },
+            'newer': { 
+                title: "Newer Super Mario Bros. DS", 
+                url: 'newer.html',
+                banner: '../banners/newer.png'
+            },
+        };
+        const gridContainer = document.getElementById('gridContainer');
+        const sidebarList = document.getElementById('sidebarList');
+
+        Object.keys(gameData).forEach(key => {
+            const game = gameData[key];
+            const card = document.createElement('div');
+            card.className = 'game-card';
+            card.onclick = () => window.location.href = game.url;
+			card.innerHTML = `
+                <img src="${game.banner || 'banners/placeholderbanner.png'}" alt="${game.title}">
+                <div class="card-info">${game.title}</div>
+            `;
+            gridContainer.appendChild(card);
+            const sidebarItem = document.createElement('div');
+            sidebarItem.className = 'sidebar-item';
+            sidebarItem.innerText = game.title;
+            sidebarItem.onclick = () => window.location.href = game.url;
+            sidebarList.appendChild(sidebarItem);
+        });	
+    </script>
+</body>
+</html>

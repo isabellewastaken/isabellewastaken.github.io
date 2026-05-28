@@ -17,7 +17,7 @@
     <div class="main-view">
         <div class="grid-container" id="gridContainer">
             </div>
-		<div class="version-watermark">IWT May Update 3.2</div>
+		<div class="version-watermark">IWT May Update 4</div>
     </div>
 
     <script>
@@ -32,39 +32,30 @@ const gameData = {
                 url: 'nes/',
 				banner: 'banners/nes.png'
             },
-			// Placeholder for the category system. It wont be added until May Update 4
-			// Game Boy and Game Boy Advance games will be merged into the same category.
-            'gbroot': { 
-                title: "Game Boy", 
-                url: 'placeholder.html',
-				banner: 'banners/placeholderbanner.jpg'
-            },
             'snesroot': { 
                 title: "SNES", 
                 url: 'snes/',
 				banner: 'banners/snes.png'
             },
+            'gbroot': { 
+                title: "Game Boy", 
+                url: 'gb/',
+				banner: 'banners/gba.png'
+            },
             'n64': { 
-                title: "N64 WASM", 
+                title: "N64", 
                 url: 'n64/dist/index.html',
                 banner: 'banners/n64.png'
             },
-			// move to gbroot
-			'tetris': {
-				title: "Tetris (Game Boy)",
-				url: 'gb/tetris.html',
-				banner: 'banners/tetris.png'
-			},
-			'sonic1': {
-				title: "Sonic the Hedgehog 1",
-				url: 'genesis/sonic1.html',
-				banner: 'banners/sonic1.png'
-			},
-			// move to gbroot
-            'wario4': { 
-                title: "Wario Land 4", 
-                url: 'gba/warioland4.html',
-                banner: 'banners/warioland4.png'
+            'dsroot': { 
+                title: "DS", 
+                url: 'ds/',
+				banner: 'banners/ds.png'
+            },
+            'genesisroot': { 
+                title: "Genesis", 
+                url: 'genesis/',
+				banner: 'banners/genesis.png'
             },
         };
         const gridContainer = document.getElementById('gridContainer');
