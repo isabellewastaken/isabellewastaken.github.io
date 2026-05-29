@@ -4,14 +4,14 @@ A new description is in the works! Check back soon!
 ## Todo List
 
 ### High Priority (Due by June 1)
-- [ ] NES Emulator Update
 - [ ] FNAF 1 Web
 - [ ] May Update 4.1
+- [ ] Theme Setup
 
 ### Medium Priority (Due by June 8)
 - [ ] June Update 1
 - [ ] Emulation Roundup 2 - The Classics
-- [ ] Theme Setup
+- [ ] NES Emulator Update
 
 ### Low Priority (Due by June 15)
 - [ ] Friday Night Funkin' Web
