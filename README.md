@@ -1,22 +1,20 @@
 # IWT
-A free games platform built for my school's computer club. Browse and launch a curated library of games directly from your browser — no installs, no accounts, just videogames.
-
-## Status
-Base is complete. Games will be added in periodic batches.
+A new description is in the works! Check back soon!
 
 ## Todo List
 
-### High Priority
+### High Priority (Due by June 1)
 - [ ] NES Emulator Update
 - [ ] FNAF 1 Web
+- [ ] May Update 4.1
 
-### Medium Priority
+### Medium Priority (Due by June 8)
 - [ ] June Update 1
 - [ ] Emulation Roundup 2 - The Classics
 - [ ] Theme Setup
 
-### Low Priority
+### Low Priority (Due by June 15)
 - [ ] Friday Night Funkin' Web
 - [ ] Emulation Roundup 3 - Older than Old
 - [ ] Emulation Roundup 4 - The Oddballs
-- [ ] Internet Explorer 9 Compatability *(Indefinite Hold)*
+- [ ] FNAF 2, 3, 4 Web
