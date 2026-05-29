@@ -5,18 +5,64 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IWT - Main Page</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        .theme-switcher-container {
+            margin-top: auto;
+            padding: 15px 20px 20px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .theme-switcher-label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .theme-select {
+            width: 100%;
+            padding: 8px;
+            background-color: var(--steam-card-bg);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.85em;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.15s;
+        }
+
+        .theme-select:focus, .theme-select:hover {
+            border-color: var(--steam-blue);
+        }
+    </style>
 </head>
 <body>
     <div class="sidebar">
         <div class="sidebar-header">Categories</div>
-        <div class="game-list" id="sidebarList">
-            </div>
+        <div class="game-list" id="sidebarList"></div>
+        
+        <div class="theme-switcher-container">
+            <div class="theme-switcher-label">Interface Theme</div>
+            <select id="themeSelect" class="theme-select">
+                <option value="asahina">IWT Asahina</option>
+<!--                <option value="x10-white">x10 White</option> -->
+                <option value="legacy">IWT Legacy</option>
+<!--                <option value="akiyama">IWT Akiyama</option>
+                <option value="shinonome">IWT Shinonome</option>
+                <option value="yoisaki">IWT Yoisaki</option> -->
+            </select>
+        </div>
     </div>
+    
     <div class="main-view">
-        <div class="grid-container" id="gridContainer">
-            </div>
-		<div class="version-watermark">IWT May Update 4</div>
+        <div class="grid-container" id="gridContainer"></div>
+        <div class="version-watermark">IWT May Update 4</div>
     </div>
+
 <script>
     const gameData = {
         'emuroot': { 
@@ -38,12 +84,7 @@
             title: 'Eaglercraft', 
             url: 'eaglercraftroot.html',
             banner: 'banners/eagler.jpg'
-        },
-//		'roadmap': { 
-//            title: "roadmap", 
-//            url: 'placeholder.html',
-//            banner: 'banners/nobanner'
-//        },
+        }
     };
 
     const gridContainer = document.getElementById('gridContainer');
@@ -67,5 +108,7 @@
         sidebarList.appendChild(sidebarItem);
     });
 </script>
+
+<script src="theme.js"></script>
 </body>
 </html>
