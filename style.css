@@ -1,11 +1,11 @@
 :root {
-            --steam-dark: #1b2838;
-            --steam-sidebar: #2a475e;
-            --steam-blue: #66c0f4;
-            --text-light: #c6d4df;
-            --text-muted: #8f98a0;
-            --steam-black: #171d24;
-            --steam-card-bg: #202c39;
+	--steam-dark: #202838;       /* Original: #1b2838 - Faintly warmer dark */
+    --steam-sidebar: #2f475e;    /* Original: #2a475e - Barely shifted toward indigo */
+    --steam-blue: #72c0f4;       /* Original: #66c0f4 - A tiny splash of violet in the light blue */
+    --text-light: #cbd4df;       /* Original: #c6d4df - Just a hint of lavender in the white */
+    --text-muted: #9398a0;       /* Original: #8f98a0 - A slightly warmer muted gray */
+    --steam-black: #1a1d24;      /* Original: #171d24 - Almost identical, microscopic purple depth */
+    --steam-card-bg: #242c39;    /* Original: #202c39 - Subtle shift in the container background */
         }
         body {
             margin: 0;
