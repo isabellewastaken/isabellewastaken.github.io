@@ -19,5 +19,4 @@ Base is complete. Games will be added in periodic batches.
 - [ ] Friday Night Funkin' Web
 - [ ] Emulation Roundup 3 - Older than Old
 - [ ] Emulation Roundup 4 - The Oddballs
-- [ ] IE9 CSS Fixes *(Indefinite Hold)*
 - [ ] Internet Explorer 9 Compatability *(Indefinite Hold)*
