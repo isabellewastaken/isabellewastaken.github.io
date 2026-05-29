@@ -7,17 +7,17 @@ Base is complete. Games will be added in periodic batches.
 ## Todo List
 
 ### High Priority
-- [ ] IE9 CSS Fixes *(Being Worked On)*
-- [ ] Internet Explorer 9 Compatability *(Being Worked On)*
 - [ ] NES Emulator Update
+- [ ] FNAF 1 Web
 
 ### Medium Priority
 - [ ] June Update 1
-- [ ] FNAF Webgames
 - [ ] Emulation Roundup 2 - The Classics
+- [ ] Theme Setup
 
 ### Low Priority
-- [ ] Theme Setup
-- [ ] Friday Night Funkin' Game Addition
+- [ ] Friday Night Funkin' Web
 - [ ] Emulation Roundup 3 - Older than Old
 - [ ] Emulation Roundup 4 - The Oddballs
+- [ ] IE9 CSS Fixes *(Indefinite Hold)*
+- [ ] Internet Explorer 9 Compatability *(Indefinite Hold)*
