@@ -7,8 +7,8 @@ Base is complete. Games will be added in periodic batches.
 ## Todo List
 
 ### High Priority
-- [ ] IE9 CSS Fixes
-- [/] Internet Explorer 9 Compatability *(In progress)*
+- [ ] IE9 CSS Fixes *(Being Worked On)*
+- [ ] Internet Explorer 9 Compatability *(Being Worked On)*
 - [ ] NES Emulator Update
 
 ### Medium Priority
