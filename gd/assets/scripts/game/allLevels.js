@@ -52,13 +52,13 @@ window.allLevels = [
 	    "Cycles",
 	    "level_9",
 	    ["RobTop", "DJVI"]
-    ], /*
+    ],
     [
         "xstep",
 	    "xStep",
 	    "level_10",
 	    ["RobTop", "DJVI"] 
-    ],
+    ], /*
     [
         "clutterfunk",
 	    "Clutterfunk",
