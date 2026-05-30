@@ -13,6 +13,7 @@ A new description is in the works! Check back soon!
 - [ ] June Update 1
 - [ ] Emulation Roundup 2 - The Classics
 - [ ] NES Emulator Update
+- [ ] Full Site-wide Theme Support
 
 ### Low Priority (Due by June 15)
 - [ ] Friday Night Funkin' Web
