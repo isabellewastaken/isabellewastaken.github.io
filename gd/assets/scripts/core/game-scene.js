@@ -401,11 +401,6 @@ class GameScene extends Phaser.Scene {
       window.open("https://geometrydash.com", "_blank");
     }, () => this._menuActive);
     const _socialIconDefs = [
-      { frame: "gj_fbIcon_001.png",      url: "https://www.facebook.com/RobTopGames",  angle: 0,   row: 0, col: 0 },
-      { frame: "gj_twIcon_001.png",      url: "https://x.com/rohanis0000gd",       angle: -90, flipX: true, row: 0, col: 1 },
-      { frame: "gj_ytIcon_001.png",      url: "https://www.youtube.com/@rohanis0000gd",  angle: 0,   row: 0, col: 2 },
-      { frame: "gj_twitchIcon_001.png",  url: "https://www.twitch.tv/robtopgames",     angle: -90, flipX: true, row: 0, col: 3 },
-      { frame: "gj_discordIcon_001.png", url: "https://discord.gg/TfEzAVWPSJ",        angle: 90,  row: 1, col: 3 },
     ];
     const _socialScale = 0.75;
     this._socialIcons = _socialIconDefs.map(def => {
@@ -416,7 +411,7 @@ class GameScene extends Phaser.Scene {
       }, () => this._menuActive);
       return icon;
     });
-    this._copyrightText = this.add.text(0, 625, "© 2026 RobTop Games · geometrydash.com", {
+    this._copyrightText = this.add.text(0, 625, "© 2026 IWT Team · isabellewastaken.github.io", {
       fontSize: "14px",
       color: "#ffffff",
       fontFamily: "Arial"
@@ -426,10 +421,6 @@ class GameScene extends Phaser.Scene {
     const _0x4fc67f = [{
       key: "downloadSteam_001",
       url: "https://github.com/web-dashers/web-dashers.github.io"
-    },
-    {
-      key: "downloadApple_001",
-      url: "https://discord.gg/TfEzAVWPSJ"
     }];
     for (let _0xfeaf5c = 0; _0xfeaf5c < _0x4fc67f.length; _0xfeaf5c++) {
       const _0x1ce2a6 = _0x4fc67f[_0xfeaf5c];
@@ -591,19 +582,12 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
         const btn = this.add.image(bx, by, "GJ_GameSheet04", frame)
           .setScrollFactor(0).setDepth(104).setScale(btnScale);
         const isSearchButton  = frame === "GJ_searchBtn_001.png";
-        const isFeaturedButton = frame === "GJ_featuredBtn_001.png";
         const isEditorButton = frame === "GJ_createBtn_001.png"; 
         if (isSearchButton) {
           btn.setInteractive();
           this._makeBouncyButton(btn, btnScale, () => {
             this._closeCreatorMenu(true);
             this._openSearchMenu();
-          }, () => true);
-        } else if (isFeaturedButton) {
-          btn.setInteractive();
-          this._makeBouncyButton(btn, btnScale, () => {
-            this._closeCreatorMenu(true);
-            this._openOnlineLevelsScene({ type: 6 });
           }, () => true);
         } else if (isEditorButton) {
           btn.setInteractive();
@@ -919,7 +903,7 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
     };
     this._exportGMD = (level) => {
         const encodedDesc = btoa(level.description || "");
-        const authorName = "Web Dashers";
+        const authorName = "IWT";
         
         const officialSong = level.songId < 0 ? Math.abs(level.songId) : 0;
         const customSong = level.songId > 0 ? level.songId : 0;

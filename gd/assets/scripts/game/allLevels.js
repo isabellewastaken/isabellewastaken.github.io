@@ -28,7 +28,7 @@ window.allLevels = [
 	    "Base After Base",
 	    "level_5",
 	    ["RobTop", "DJVI"]
-    ], /*
+    ],
     [
         "cant_let_go",
 	    "Cant Let Go",
@@ -40,7 +40,7 @@ window.allLevels = [
 	    "Jumper",
 	    "level_7",
 	    ["RobTop", "Waterflame"]
-    ],
+    ], /*
     [
         "time_machine",
 	    "Time Machine",
