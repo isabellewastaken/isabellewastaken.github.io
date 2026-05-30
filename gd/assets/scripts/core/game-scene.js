@@ -4152,8 +4152,7 @@ _buildSettingsPopup() {
     */
     const updateEntries = [
       { text: "Update Log", scale: 0.85, font: "goldFont" },
-      { text: "Added Can't Let Go and Jumper!", scale: 0.65 },
-      { text: "Menu simplification", scale: 0.65 },
+      { text: "Added Time Machine and Cycles!", scale: 0.65 },
       { text: "i had to protect 67 estrogen", scale: 0.6, color: 0xaaddff },
       { text: "- VerdizBlud", scale: 0.6, color: 0xaaddff },
     ]; 

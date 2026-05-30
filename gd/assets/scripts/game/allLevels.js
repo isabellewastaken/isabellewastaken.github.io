@@ -40,7 +40,7 @@ window.allLevels = [
 	    "Jumper",
 	    "level_7",
 	    ["RobTop", "Waterflame"]
-    ], /*
+    ],
     [
         "time_machine",
 	    "Time Machine",
@@ -52,7 +52,7 @@ window.allLevels = [
 	    "Cycles",
 	    "level_9",
 	    ["RobTop", "DJVI"]
-    ],
+    ], /*
     [
         "xstep",
 	    "xStep",
