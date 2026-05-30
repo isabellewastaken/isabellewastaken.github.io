@@ -400,17 +400,6 @@ class GameScene extends Phaser.Scene {
     this._makeBouncyButton(this._robLogo, 0.525, () => {
       window.open("https://geometrydash.com", "_blank");
     }, () => this._menuActive);
-    const _socialIconDefs = [
-    ];
-    const _socialScale = 0.75;
-    this._socialIcons = _socialIconDefs.map(def => {
-      const icon = this.add.image(0, 0, "GJ_GameSheet03", def.frame)
-        .setScrollFactor(0).setDepth(30).setScale(_socialScale).setAngle(def.angle).setFlipX(!!def.flipX).setInteractive();
-      this._makeBouncyButton(icon, _socialScale, () => {
-        window.open(def.url, "_blank");
-      }, () => this._menuActive);
-      return icon;
-    });
     this._copyrightText = this.add.text(0, 625, "© 2026 IWT Team · isabellewastaken.github.io", {
       fontSize: "14px",
       color: "#ffffff",
@@ -420,7 +409,7 @@ class GameScene extends Phaser.Scene {
     this._downloadBtns = [];
     const _0x4fc67f = [{
       key: "downloadSteam_001",
-      url: "https://github.com/web-dashers/web-dashers.github.io"
+      url: "https://github.com/isabellewastaken/isabellewastaken.github.io"
     }];
     for (let _0xfeaf5c = 0; _0xfeaf5c < _0x4fc67f.length; _0xfeaf5c++) {
       const _0x1ce2a6 = _0x4fc67f[_0xfeaf5c];
@@ -438,11 +427,6 @@ this._menuFsBtn = this.add.image(33, 33, "GJ_WebSheet", _0x28fa5b ? "toggleFulls
       this._expandHitArea(this._menuFsBtn, 1.5);
       this._toggleFullscreen();
     }, () => this._menuActive);
-    this._menuInfoBtn = this.add.image(screenWidth + 20, 33, "GJ_GameSheet03", "communityCreditsBtn_001.png").setScrollFactor(0).setDepth(30).setScale(0.64).setTint(Phaser.Display.Color.GetColor(255, 255, 255)).setInteractive();
-    this._expandHitArea(this._menuInfoBtn, 1.5);
-    this._makeBouncyButton(this._menuInfoBtn, 0.64, () => {
-      this._buildInfoPopup();
-    }, () => this._menuActive && !this._infoPopup);
 this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet", "GJ_infoIcon_001.png").setScrollFactor(0).setDepth(30).setScale(0.64).setTint(Phaser.Display.Color.GetColor(255, 255, 255)).setInteractive();
     this._expandHitArea(this._menuUpdateLogBtn, 1.5);
     this._makeBouncyButton(this._menuUpdateLogBtn, 0.64, () => {
@@ -458,15 +442,6 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
     this._makeBouncyButton(this._menuStatsBtn, 1, () => {
       this._showStatsScreen();
     }, () => this._menuActive);
-    this._menuAchievementsBtn = this.add.image(centerX - 12, screenHeight - 90, "GJ_GameSheet03", "GJ_achBtn_001.png").setScrollFactor(0).setDepth(30).setInteractive().setTint(0x666666);
-    this._expandHitArea(this._menuAchievementsBtn, 1);
-    this._makeBouncyButton(this._menuAchievementsBtn, 1, () => {
-    }, () => this._menuActive);
-    this._menuNewgroundsBtn = this.add.image(centerX + 312, screenHeight - 90, "GJ_GameSheet03", "GJ_ngBtn_001.png").setScrollFactor(0).setDepth(30).setInteractive().setRotation(-Math.PI / 2).setFlipX(true);
-    this._expandHitArea(this._menuNewgroundsBtn, 1);
-    this._makeBouncyButton(this._menuNewgroundsBtn, 1, () => {
-      this._buildNewgroundsPopup();
-    }, () => this._menuActive && !this._newgroundsPopup);
     this._menuGlitter = this.add.particles(0, 0, "GJ_WebSheet", {
       frame: "square.png",
       speed: 0,
@@ -7480,18 +7455,15 @@ _applyMirrorEffect() {
     _0x2be782 = _0x30687e > 0 ? String(_0x30687e).padStart(2, "0") + ":" + String(_0x52f8ee).padStart(2, "0") + ":" + String(_0x2591d0).padStart(2, "0") : String(_0x52f8ee).padStart(2, "0") + ":" + String(_0x2591d0).padStart(2, "0");
     const _0x241209 = _0xe44f6d;
     this._endLayerInternal.add(this.add.bitmapText(containerX, _0xe44f6d, "goldFont", "Time: " + _0x2be782, 40).setOrigin(0.5, 0.5).setScale(_0x45b6e4));
-    const _0x452429 = ["Awesome!", "Good\nJob!", "Well\nDone!", "Impressive!", "Amazing!", "Incredible!", "Skillful!", "Brilliant!", "Not\nbad!", "Warp\nSpeed!", "Challenge\nBreaker!", "Reflex\nMaster!", "I am\nspeechless...", "You are...\nThe One!", "How is this\npossible!?", "You beat\nme..."];
+    const _0x452429 = ["Awesome!", "Good\nJob!", "Well\nDone!", "Impressive!", "Amazing!", "Incredible!", "Skillful!", "Brilliant!", "Not\nbad!", "Warp\nSpeed!", "Challenge\nBreaker!", "Reflex\nMaster!", "I am\nspeechless...", "You are...\nThe One!", "How is this\npossible!?", "You beat\nme...", "Meow\n:3"];
     const _0x165c06 = _0x452429[Math.floor(Math.random() * _0x452429.length)];
     const _0x45540f = 225;
     const _0x8e2b = ["\x5f\x6d\x61\x63\x72\x6f\x42\x6f\x74", "\x70\x6c\x61\x79\x69\x6e\x67"];let _0x3bc14 = 0xffffff; try {if (this[_0x8e2b[0]] && this[_0x8e2b[0]][_0x8e2b[1]]) {_0x3bc14 = (_0x3bc14 & 0xffff00) | 0xfa;}} catch (_0xe31) {}const _0x17fa2b = this.add.bitmapText(containerX + _0x45540f, _0x241209, "bigFont", _0x165c06, 40).setOrigin(0.5, 0.5).setScale(0.8).setCenterAlign();if (_0x3bc14 !== 0xffffff) _0x17fa2b.setTint(_0x3bc14);
     this._endLayerInternal.add(_0x17fa2b);
     this._endLayerInternal.add(this.add.image(containerX - _0x45540f, 352.5, "GJ_WebSheet", "getIt_001.png").setScale(1 / 1.5));
     const _0x34b1bd = [{
-      key: "downloadApple_001",
-      url: "https://discord.gg/TfEzAVWPSJ"
-    }, {
       key: "downloadSteam_001",
-      url: "https://store.steampowered.com/app/322170/Geometry_Dash"
+      url: "https://isabellewastaken.github.io"
     }];
     for (let _0x10f8cc = 0; _0x10f8cc < _0x34b1bd.length; _0x10f8cc++) {
       const _0xd7310b = _0x34b1bd[_0x10f8cc];
