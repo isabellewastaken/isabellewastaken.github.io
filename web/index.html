@@ -4,41 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IWT - Web Games</title>
-    <link rel="stylesheet" href="style.css">
-    <style>
-        .theme-switcher-container {
-            margin-top: auto;
-            padding: 15px 20px 20px 20px;
-            border-top: 1px solid rgba(255, 255, 255, 0.03);
-        }
-
-        .theme-switcher-label {
-            font-size: 0.75em;
-            font-weight: bold;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 8px;
-        }
-
-        .theme-select {
-            width: 100%;
-            padding: 8px;
-            background-color: var(--steam-card-bg);
-            color: var(--text-light);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 4px;
-            font-family: inherit;
-            font-size: 0.85em;
-            cursor: pointer;
-            outline: none;
-            transition: border-color 0.15s;
-        }
-
-        .theme-select:focus, .theme-select:hover {
-            border-color: var(--steam-blue);
-        }
-    </style>
+	<script>
+        (function() {
+            const savedTheme = localStorage.getItem("selected-theme") || "asahina";
+            document.documentElement.setAttribute("data-theme", savedTheme);
+        })();
+    </script>
+    <link rel="stylesheet" href="../style.css">
 </head>
 <body>
     <div class="sidebar">
@@ -48,26 +20,81 @@
     
     <div class="main-view">
         <div class="grid-container" id="gridContainer"></div>
-        <div class="version-watermark">IWT May Update 4</div>
+        <div class="version-watermark">IWT May Update 5</div>
     </div>
 
 <script>
     const gameData = {
         'index': { 
-            title: "this is a placeholder", 
+            title: "Back to Home", 
             url: '../index.html',
             banner: '../banners/placeholderbanner.jpg'
         },
         'fnaf1': { 
-            title: "this is a placeholder", 
-            url: '../placeholder.html',
-            banner: '../banners/placeholderbanner.jpg'
+            title: "FNAF 1", 
+            url: 'https://irv77.github.io/hd_fnaf/1/',
+            banner: '../banners/fnaf1.png'
         },
         'fnaf2': { 
-            title: "this is a placeholder", 
-            url: '../placeholder.html',
-            banner: '../banners/placeholderbanner.jpg'
+            title: "FNAF 2", 
+            url: 'https://irv77.github.io/hd_fnaf/2/',
+            banner: '../banners/fnaf2.jpg'
         },
+        'fnaf3': { 
+            title: "FNAF 3", 
+            url: 'https://irv77.github.io/hd_fnaf/3/',
+            banner: '../banners/fnaf3.png'
+        },
+        'fnaf4': { 
+            title: "FNAF 4", 
+            url: 'https://irv77.github.io/hd_fnaf/4/',
+            banner: '../banners/fnaf4.png'
+        },
+        'fnafworld': { 
+            title: "FNAF World", 
+            url: 'https://irv77.github.io/hd_fnaf/w/',
+            banner: '../banners/fnafworld.png'
+        },
+        'fnafsister': { 
+            title: "FNAF Sister Location", 
+            url: 'https://irv77.github.io/hd_fnaf/sl/',
+            banner: '../banners/sister.png'
+        },
+       'fnafpizzasim': { 
+            title: "FNAF Pizzeria Simulator", 
+            url: 'https://irv77.github.io/hd_fnaf/ps/',
+            banner: '../banners/pizzeria.png'
+        },
+        'ucn': { 
+            title: "Ultimate Custom Night", 
+            url: 'https://irv77.github.io/hd_fnaf/ucn/',
+            banner: '../banners/ucn.png'
+        },
+//        'sus': { 
+//            title: "Among Us", 
+//            url: 'https://irv77.github.io/hd_fnaf/4/',
+//            banner: '../banners/placeholderbanner.jpg'
+//        },
+//       'fnf': { 
+//            title: "Friday Night Funkin'", 
+//            url: 'https://irv77.github.io/hd_fnaf/4/',
+//            banner: '../banners/placeholderbanner.jpg'
+//        },
+//        'pizzatower': { 
+//            title: "Pizza Tower", 
+//            url: 'https://irv77.github.io/hd_fnaf/4/',
+//            banner: '../banners/placeholderbanner.jpg'
+//        },
+        'gd': { 
+            title: "Geometry Dash", 
+            url: '../gd/',
+            banner: '../banners/gd.png'
+        },
+//        'ut': { 
+//            title: "Undertale", 
+//            url: 'Add one here',
+//            banner: '../banners/placeholderbanner.jpg'
+//        },
     };
 
     const gridContainer = document.getElementById('gridContainer');
@@ -92,6 +119,6 @@
     });
 </script>
 
-<script src="theme.js"></script>
+<script src="../theme.js"></script>
 </body>
 </html>

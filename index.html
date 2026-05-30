@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IWT - Main Page</title>
+	<script>
+        (function() {
+            const savedTheme = localStorage.getItem("selected-theme") || "asahina";
+            document.documentElement.setAttribute("data-theme", savedTheme);
+        })();
+    </script>
     <link rel="stylesheet" href="style.css">
     <style>
         .theme-switcher-container {
@@ -53,14 +59,14 @@
                 <option value="legacy">IWT Legacy</option>
                 <option value="akiyama">IWT Akiyama</option>
                 <option value="shinonome">IWT Shinonome</option>
-                <option value="yoisaki">IWT Yoisaki</option> <!-- Yoisaki needs more adjustments. -->
+                <option value="yoisaki">IWT Yoisaki</option>
             </select>
         </div>
     </div>
     
     <div class="main-view">
         <div class="grid-container" id="gridContainer"></div>
-        <div class="version-watermark">IWT May Update 4</div>
+        <div class="version-watermark">IWT May Update 5</div>
     </div>
 
 <script>

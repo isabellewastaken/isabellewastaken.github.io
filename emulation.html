@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>IWT - Emulation</title>
+	<script>
+        (function() {
+            const savedTheme = localStorage.getItem("selected-theme") || "asahina";
+            document.documentElement.setAttribute("data-theme", savedTheme);
+        })();
+    </script>
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -17,7 +23,7 @@
     <div class="main-view">
         <div class="grid-container" id="gridContainer">
             </div>
-		<div class="version-watermark">IWT May Update 4</div>
+		<div class="version-watermark">IWT May Update 5</div>
     </div>
 
     <script>
@@ -42,11 +48,11 @@ const gameData = {
                 url: 'gb/',
 				banner: 'banners/gba.png'
             },
-            'n64': { 
-                title: "N64", 
-                url: 'n64/dist/index.html',
-                banner: 'banners/n64.png'
-            },
+//            'n64root': { 
+//                title: "N64", 
+//                url: 'placeholder.html',
+//                banner: 'banners/n64.png'
+//            },
             'dsroot': { 
                 title: "DS", 
                 url: 'ds/',
