@@ -16,7 +16,7 @@
     --grad-top: #3b2e50;         /* Top gradient color for main canvas background */
 }
 
-/* x10 White Theme (Legacy hosting homage) */
+/* x10 White Theme (x10Hosting was the original IWT which was where you could play Educraft, a now lost media game.) */
 html[data-theme="x10-white"] {
     --steam-dark: #f4f5f7;       
     --steam-sidebar: #e4e6eb;    
@@ -28,7 +28,7 @@ html[data-theme="x10-white"] {
     --grad-top: #ebedf0;
 }
 
-/* IWT Legacy (Original Steam Blue/Teal) */
+/* IWT Legacy (old site theme) */
 html[data-theme="legacy"] {
     --steam-dark: #1b2838;       
     --steam-sidebar: #2a475e;    
@@ -40,7 +40,7 @@ html[data-theme="legacy"] {
     --grad-top: #2a4054;
 }
 
-/* IWT Akiyama (Mizuki Hair) she is my transition goal i wanna be like her. or mafuyu */
+/* IWT Akiyama (Mizuki) I'm buying a cosplay of her in october */
 html[data-theme="akiyama"] {
     --steam-dark: #fcaec1;       /* The rich, bright pastel pink base from her hair mid-tones */
     --steam-sidebar: #ffcbd7;    /* A slightly lighter, softer strawberry milk pink for the sidebar background */
@@ -64,7 +64,7 @@ html[data-theme="shinonome"] {
     --grad-top: #473931;
 }
 
-/* IWT Yoisaki (Kanade - Ash Silver Blue Accent) */
+/* IWT Yoisaki (Kanade - Ash Silver Blue Accent) mafuyu's wife */
 html[data-theme="yoisaki"] {
     --steam-dark: #22262e;       
     --steam-sidebar: #434b59;    
