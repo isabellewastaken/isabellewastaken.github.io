@@ -8,6 +8,7 @@ A new description is in the works! Check back soon!
 - [x] May Update 5
 - [x] Theme Setup
 - [x] Yoisaki, Akiyama themes
+- [ ] Emulation Roundup 1 - The Basics
 - [ ] Lesbian and Transgender Themes
 
 ### Medium Priority (Due by June 8)
