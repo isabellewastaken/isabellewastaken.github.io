@@ -40,16 +40,16 @@ html[data-theme="legacy"] {
     --grad-top: #2a4054;
 }
 
-/* IWT Akiyama (Mizuki - Pink Accent) */
+/* IWT Akiyama (Mizuki - Light Mode.) */
 html[data-theme="akiyama"] {
-    --steam-dark: #331d27;       
-    --steam-sidebar: #633b4d;    
-    --steam-blue: #ba7694;       
-    --text-light: #ebe0e4;       
-    --text-muted: #a38b95;       
-    --steam-black: #211219;      
-    --steam-card-bg: #3d242f;    
-    --grad-top: #502e3e;
+    --steam-dark: #202124;       /* Deep charcoal from her dress shadows */
+    --steam-sidebar: #2b2c30;    /* Muted graphite gray from her sleeves and bodice */
+    --steam-blue: #ffb5c5;       /* Exact bright pastel pink from her iconic twin tails */
+    --text-light: #fff0f3;       /* Ultra-clean white with the slightest warm pink undertone */
+    --text-muted: #9fa2a6;       /* The medium ash gray from her tights/stockings */
+    --steam-black: #161719;      /* Near-black from the deepest folds of her boots and ribbons */
+    --steam-card-bg: #26272b;    /* Clean gray card background so the vibrant pink accent pops */
+    --grad-top: #382c32;         /* A very subtle pinkish-gray gradient blend for the top header canvas */
 }
 
 /* IWT Shinonome (Ena - Hazel/Warm Brown Accent) */
