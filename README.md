@@ -7,7 +7,8 @@ A new description is in the works! Check back soon!
 - [ ] FNAF 1 Web
 - [ ] May Update 4.1
 - [x] Theme Setup
-- [ ] Yoisaki, Akiyama, Lesbian and Transgender Themes
+- [x] Yoisaki, Akiyama themes
+- [ ] Lesbian and Transgender Themes
 
 ### Medium Priority (Due by June 8)
 - [ ] June Update 1
