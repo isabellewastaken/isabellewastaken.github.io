@@ -1,111 +1,97 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon</title>
-  <link rel="stylesheet" href="../style.css">
-  <style>
-    .coming-soon-wrapper {
-      flex: 1;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: linear-gradient(to bottom, #3b2e50 0%, var(--steam-dark) 100%);
-      height: 100vh;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IWT - Web Games</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .theme-switcher-container {
+            margin-top: auto;
+            padding: 15px 20px 20px 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
 
-    .coming-soon-card {
-      background-color: var(--steam-card-bg);
-      border-radius: 4px;
-      padding: 3rem 3.5rem;
-      text-align: center;
-      max-width: 460px;
-      width: 100%;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-      animation: fadeUp 0.4s ease both;
-    }
+        .theme-switcher-label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
 
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(14px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
+        .theme-select {
+            width: 100%;
+            padding: 8px;
+            background-color: var(--steam-card-bg);
+            color: var(--text-light);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            font-family: inherit;
+            font-size: 0.85em;
+            cursor: pointer;
+            outline: none;
+            transition: border-color 0.15s;
+        }
 
-    .coming-soon-icon {
-      width: 56px;
-      height: 56px;
-      margin: 0 auto 1.4rem;
-      opacity: 0.6;
-    }
-
-    .coming-soon-icon svg { width: 100%; height: 100%; }
-
-    .coming-soon-card h1 {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text-light);
-      margin-bottom: 0.6rem;
-      letter-spacing: 0.02em;
-    }
-
-    .coming-soon-card p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      margin-bottom: 2rem;
-    }
-
-    .btn-home {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.45rem;
-      padding: 0.55rem 1.3rem;
-      background: var(--steam-sidebar);
-      color: #fff;
-      text-decoration: none;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.04em;
-      border-radius: 3px;
-      transition: background 0.15s, box-shadow 0.15s;
-    }
-
-    .btn-home:hover {
-      background: #5d497a; 
-      box-shadow: 0 0 0 1px var(--steam-blue);
-      color: #fff;
-    }
-
-    .btn-home:hover svg path,
-    .btn-home:hover svg line {
-      stroke: #fff;
-    }
-  </style>
+        .theme-select:focus, .theme-select:hover {
+            border-color: var(--steam-blue);
+        }
+    </style>
 </head>
 <body>
-
-  <div class="coming-soon-wrapper">
-    <div class="coming-soon-card">
-      <div class="coming-soon-icon">
-        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <circle cx="12" cy="12" r="10" stroke="var(--steam-blue)" stroke-width="1.5"/>
-          <path d="M12 7v5l3 3" stroke="var(--steam-blue)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
-      <h1>Coming Soon</h1>
-      <p>Web games are still under development!<br>A lot of games may be from other website due to constraints.</p>
-      <a href="../index.html" class="btn-home">
-        <svg width="13" height="13" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <path d="M7 2L2.5 6.5L7 11" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <line x1="2.5" y1="6.5" x2="11" y2="6.5" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
-        </svg>
-        Back to Home
-      </a>
+    <div class="sidebar">
+        <div class="sidebar-header">Categories</div>
+        <div class="game-list" id="sidebarList"></div>
     </div>
-  </div>
+    
+    <div class="main-view">
+        <div class="grid-container" id="gridContainer"></div>
+        <div class="version-watermark">IWT May Update 4</div>
+    </div>
 
-  <div class="version-watermark">IWT May Update 4</div>
+<script>
+    const gameData = {
+        'index': { 
+            title: "this is a placeholder", 
+            url: '../index.html',
+            banner: '../banners/placeholderbanner.jpg'
+        },
+        'fnaf1': { 
+            title: "this is a placeholder", 
+            url: '../placeholder.html',
+            banner: '../banners/placeholderbanner.jpg'
+        },
+        'fnaf2': { 
+            title: "this is a placeholder", 
+            url: '../placeholder.html',
+            banner: '../banners/placeholderbanner.jpg'
+        },
+    };
 
+    const gridContainer = document.getElementById('gridContainer');
+    const sidebarList = document.getElementById('sidebarList');
+
+    Object.keys(gameData).forEach(key => {
+        const game = gameData[key];
+        const card = document.createElement('div');
+        card.className = 'game-card';
+        card.onclick = () => window.location.href = game.url;
+        card.innerHTML = `
+            <img src="${game.banner || 'banners/placeholderbanner.png'}" alt="${game.title}">
+            <div class="card-info">${game.title}</div>
+        `;
+        gridContainer.appendChild(card);
+
+        const sidebarItem = document.createElement('div');
+        sidebarItem.className = 'sidebar-item';
+        sidebarItem.innerText = game.title;
+        sidebarItem.onclick = () => window.location.href = game.url;
+        sidebarList.appendChild(sidebarItem);
+    });
+</script>
+
+<script src="theme.js"></script>
 </body>
 </html>
-<!-- https://github.com/irv77/hd_fnaf -->
