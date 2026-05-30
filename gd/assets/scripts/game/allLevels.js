@@ -58,7 +58,7 @@ window.allLevels = [
 	    "xStep",
 	    "level_10",
 	    ["RobTop", "DJVI"] 
-    ], /*
+    ],
     [
         "clutterfunk",
 	    "Clutterfunk",
@@ -76,7 +76,7 @@ window.allLevels = [
 	    "Electroman Adventures",
 	    "level_13",
 	    ["RobTop", "Waterflame"]
-    ],
+    ], /*
     [
         "clubstep",
 	    "Clubstep",
