@@ -6,7 +6,8 @@ A new description is in the works! Check back soon!
 ### High Priority (Due by June 1)
 - [ ] FNAF 1 Web
 - [ ] May Update 4.1
-- [ ] Theme Setup
+- [x] Theme Setup
+- [ ] Yoisaki, Akiyama, Lesbian and Transgender Themes
 
 ### Medium Priority (Due by June 8)
 - [ ] June Update 1
