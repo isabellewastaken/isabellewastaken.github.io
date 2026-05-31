@@ -525,21 +525,15 @@ this._menuUpdateLogBtn = this.add.image(screenWidth - 30 - 50, 33, "GJ_WebSheet"
         "GJ_createBtn_001.png",
         "GJ_savedBtn_001.png",
         "GJ_highscoreBtn_001.png",
-        "GJ_challengeBtn_001.png",
-        "GJ_versusBtn_001.png",
-        "GJ_mapBtn_001.png",
         "GJ_dailyBtn_001.png",
         "GJ_weeklyBtn_001.png",
         "GJ_eventBtn_001.png",
-        "GJ_gauntletsBtn_001.png",
         "GJ_featuredBtn_001.png",
-        "GJ_listsBtn_001.png",
-        "GJ_pathsBtn_001.png",
         "GJ_mapPacksBtn_001.png",
         "GJ_searchBtn_001.png",
       ];
 
-      const cols = 5;
+      const cols = 3;
       const btnScale = 0.77;
       const btnSize = 209 * btnScale;
       const gapX = 18;
@@ -4152,7 +4146,9 @@ _buildSettingsPopup() {
     */
     const updateEntries = [
       { text: "Update Log", scale: 0.85, font: "goldFont" },
-      { text: "Added xStep!", scale: 0.65 },
+      { text: "Added Clutterfunk, TOE", scale: 0.65 },
+      { text: "and Electroman Adventures", scale: 0.65 },
+      { text: "New DEMON level: Clubstep!", scale: 0.65 },
       { text: "i had to protect 67 estrogen", scale: 0.6, color: 0xaaddff },
       { text: "- VerdizBlud", scale: 0.6, color: 0xaaddff },
     ]; 

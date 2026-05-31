@@ -3,6 +3,117 @@
 /* ==========================================================================
    THEME PALETTES
    ========================================================================== */
+/* HAPPY PRIDE MONTH BITCHES. I'M ADDING ALL THESE THEMES FOR JUNE ONLY! USE EM WHILE THEY'RE STILL HOT! */
+
+/* Traditional Rainbow Pride Theme */
+html[data-theme="gay-rainbow"] {
+    --steam-dark: #1a1520;       /* Dark charcoal base to anchor the bright colors */
+    --steam-sidebar: #ff8c00;    /* Vibrant Pride Orange for the active state */
+    --steam-blue: #004cff;       /* Classic Pride Blue highlight */
+    --text-light: #ffffff;
+    --text-muted: #ffd700;       /* Pride Yellow accent for unselected items */
+    --steam-black: #110e15;
+    --steam-card-bg: #25202c;
+    --grad-top: #732982;         /* Deep Pride Purple top canvas gradient */
+}
+
+/* Vincian / MLM (The Green One) Pride Theme */
+html[data-theme="gay-green"] {
+    --steam-dark: #0f1c1b;       /* Ultra-dark forest green/teal shadow base */
+    --steam-sidebar: #077363;    /* Rich emerald green from the flag */
+    --steam-blue: #55caad;       /* Bright mint highlight token */
+    --text-light: #f0fdfa;       /* Fresh mint-tinted crisp white */
+    --text-muted: #a7f3d0;       /* Soft pastel green for unselected text */
+    --steam-black: #0a1211;
+    --steam-card-bg: #152926;    /* Dark teal card containers */
+    --grad-top: #234e46;         /* Deep sea-green top canvas gradient */
+}
+
+/* Lesbian Pride Theme */
+html[data-theme="lesbian"] {
+    --steam-dark: #2d161a;       /* Dark berry/dark red base */
+    --steam-sidebar: #d62800;    /* Dark orange flag stripe */
+    --steam-blue: #d462a6;       /* Vibrant magenta highlight */
+    --text-light: #fff0f2;
+    --text-muted: #e0a3ad;
+    --steam-black: #1f0e11;
+    --steam-card-bg: #3b1e22;
+    --grad-top: #b55400;         /* Mid-orange gradient */
+}
+
+/* Bisexual Pride Theme */
+html[data-theme="bisexual"] {
+    --steam-dark: #1c0a21;       /* Deep plum base */
+    --steam-sidebar: #d60270;    /* Bold pink flag stripe */
+    --steam-blue: #0038a8;       /* Deep royal blue highlight */
+    --text-light: #fef0ff;
+    --text-muted: #9b4f96;       /* Purple flag mid-stripe for muted text */
+    --steam-black: #110514;
+    --steam-card-bg: #291230;
+    --grad-top: #9b4f96;
+}
+
+/* Transgender Pride Theme (Light-leaning Pastel Dark) */
+html[data-theme="transgender"] {
+    --steam-dark: #212a3a;       /* Dark slate-blue base to make pastels pop */
+    --steam-sidebar: #5bcefa;    /* Bright trans sky blue */
+    --steam-blue: #f5a9b8;       /* Soft trans pink highlight */
+    --text-light: #ffffff;
+    --text-muted: #a2b5cd;
+    --steam-black: #141b26;
+    --steam-card-bg: #2d394d;
+    --grad-top: #3a4b66;
+}
+
+/* Non-Binary Pride Theme */
+html[data-theme="nonbinary"] {
+    --steam-dark: #1f1a24;       /* Deep dark purple/black base */
+    --steam-sidebar: #fff430;    /* Vibrant NB yellow sidebar */
+    --steam-blue: #9c59d1;       /* Purple highlight token */
+    --text-light: #ffffff;
+    --text-muted: #9e9e9e;       /* Slate grey from the flag */
+    --steam-black: #141117;
+    --steam-card-bg: #2c2533;
+    --grad-top: #2c2533;
+}
+
+/* Pansexual Pride Theme */
+html[data-theme="pansexual"] {
+    --steam-dark: #1b222c;       /* Clean deep dark background */
+    --steam-sidebar: #ff007f;    /* Bright pan pink sidebar */
+    --steam-blue: #21b1ff;       /* Bright pan blue highlight */
+    --text-light: #ffffff;
+    --text-muted: #ffd800;       /* Pan yellow for muted accents */
+    --steam-black: #10151c;
+    --steam-card-bg: #242e3c;
+    --grad-top: #ff007f;
+}
+
+/* Genderfluid Pride Theme */
+html[data-theme="genderfluid"] {
+    --steam-dark: #1a1520;       /* Deep charcoal/black stripe base */
+    --steam-sidebar: #ff75a2;    /* Pink stripe sidebar */
+    --steam-blue: #3f3fbf;       /* Deep blue highlight token */
+    --text-light: #ffffff;
+    --text-muted: #be185d;       /* Rich purple-pink text accent */
+    --steam-black: #110e15;
+    --steam-card-bg: #262030;
+    --grad-top: #8f00ff;         /* Purple flag stripe gradient */
+}
+
+/* Aroace Pride Theme */
+html[data-theme="aroace"] {
+    --steam-dark: #15222e;       /* Deep navy base */
+    --steam-sidebar: #e28c00;    /* Bright orange flag stripe */
+    --steam-blue: #639bff;       /* Soft blue flag stripe highlight */
+    --text-light: #ffffff;
+    --text-muted: #ecc680;       /* Light yellow/white flag blend */
+    --steam-black: #0d161e;
+    --steam-card-bg: #203243;
+    --grad-top: #29a3b6;         /* Teal flag stripe gradient */
+}
+
+/* AIGHT THE PRIDE MONTH THEMES END HERE. ENJOY. -IWT */
 
 /* Default Theme: IWT Asahina (Mafuyu) - MAFUYU BEST GIRL MAFUYU BEST GIRL MAFUYU BEST GIRL I DONT CARE WHAT YOU THINK SHE'S THE GOAT */
 :root, html[data-theme="asahina"] {

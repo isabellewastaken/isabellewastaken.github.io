@@ -76,13 +76,13 @@ window.allLevels = [
 	    "Electroman Adventures",
 	    "level_13",
 	    ["RobTop", "Waterflame"]
-    ], /*
+    ],
     [
         "clubstep",
 	    "Clubstep",
 	    "level_14",
 	    ["RobTop", "DJ-Nate"] 
-    ],
+    ], /*
     [
         "electrodynamix",
 	    "Electrodynamix",
