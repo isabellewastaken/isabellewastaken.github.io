@@ -1,0 +1,28 @@
+[Frisk enters the room]
+...Huh? Is that you, Isabelle?
+...
+Hello?! Isabelle? Stop messing with me! I remember what happened last time.
+...By the way, your chapstick tasted like strawberry shortcake.
+N-Not that its relevant! I just felt like I should say I noticed...
+[She turns around.]
+...W-What?!
+Who the hell are you and how'd you get in here?!
+The organisation is always so locked down!
+
+(Pacifist)
+I'm surprised such a twerp like you got past the guards!
+Well, whatever. We can't just stand here.
+I got skills to practice and nothing to do!
+Let's fight it out, eh?
+[FIGHT START]
+
+(Genocide)
+...Uh.
+...What's with the look on your face?
+[Frisk takes a step forward.]
+H-Hey, get back, whatever you are!
+[Frisk takes another step forward.]
+I said get back! I wont hesitate to kill you, you monster!
+[Frisk takes one more step forward.]
+...Well then. I am left with no choice.
+[FIGHT START]
