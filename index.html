@@ -45,6 +45,26 @@
             border-color: var(--steam-blue);
         }
     </style>
+	<script>
+    (function() {
+        // Function to look up a cookie by its name
+        function getCookie(name) {
+            let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? match[2] : null;
+        }
+
+        // Check our custom SEKAI portal tracking variable
+        let applicationState = getCookie("sekai_complete");
+
+        // IF the cookie is explicitly "0", or it doesn't exist at all (first-time visitor):
+        if (applicationState === "0" || applicationState === null) {
+            // Forcefully route them to your questionnaire page
+            // (Adjust "application_form.html" to whatever your form filename is)
+            window.location.href = "firstrun.html"; 
+        }
+        // If it is "1", the script naturally stops executing and does absolutely nothing.
+    })();
+</script>
 </head>
 <body>
     <div class="sidebar">
@@ -55,7 +75,7 @@
 		<div class="theme-switcher-label">Theme</div>
 		<select id="themeSelect" class="theme-select">
         
-			<!-- <optgroup label="Niigo Theme Pack">
+			<optgroup label="Niigo Theme Pack">
 				<option value="asahina">IWT Asahina</option>
 				<option value="akiyama">IWT Akiyama</option>
 				<option value="shinonome">IWT Shinonome</option>
@@ -65,7 +85,7 @@
 			<optgroup label="Legacy Themes">
 				<option value="x10-white">x10 White</option>
 				<option value="legacy">IWT Legacy</option>
-			</optgroup> -->
+			</optgroup>
         
 			<optgroup label="Pride Themes">
 				<option value="gay-green">Gay Pride (Vincian Green)</option>
@@ -94,21 +114,31 @@
             url: 'emulation.html',
             banner: 'banners/emulation.png'
         },
-        'webroot': { 
-            title: "Web Games", 
-            url: 'web/',
-            banner: 'banners/placeholderbanner.jpg'
+        'fnafroot': { 
+            title: "FNAF Games", 
+            url: 'fnaf/',
+            banner: 'banners/fnaf1.png'
+        },
+        'gdtempplace': { 
+            title: 'Geometry Dash', 
+            url: 'gd/',
+            banner: 'banners/gd.png'
+        },
+        'eaglerroot': { 
+            title: 'Eaglercraft', 
+            url: 'eaglercraftroot.html',
+            banner: 'banners/eagler.jpg'
         },
         'baldiroot': { 
             title: "Baldi's Basics", 
             url: 'baldigames.html',
             banner: 'banners/baldiclassic.jpg'
         },
-        'eaglerroot': { 
-            title: 'Eaglercraft', 
-            url: 'eaglercraftroot.html',
-            banner: 'banners/eagler.jpg'
-        }
+        'sus': { 
+            title: "01001000 01000101 01001100 01010000 00100000 01001101 01000101 00100000 01010000 01001100 01000101 01000001 01010011 01000101", 
+            url: 'coretrzp/placeholder.html',
+            banner: 'coretrzp/herbanner.jpg'
+        },
     };
 
     const gridContainer = document.getElementById('gridContainer');
