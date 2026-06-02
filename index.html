@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IWT - Main Page</title>
+    <title>IWT - Home</title>
 	<script>
         (function() {
             const savedTheme = localStorage.getItem("selected-theme") || "asahina";
@@ -68,7 +68,7 @@
 			</optgroup>
 
 			<optgroup label="Pride Themes">
-				<option value="gay-green">Gay Pride (Vincian Green)</option>
+				<option value="gay-green">Gay Pride</option>
 				<option value="lesbian">Lesbian Pride</option>
 				<option value="bisexual">Bisexual Pride</option>
 				<option value="transgender">Transgender Pride</option>
@@ -84,7 +84,7 @@
     
     <div class="main-view">
         <div class="grid-container" id="gridContainer"></div>
-        <div class="version-watermark">Happy Pride Month!</div>
+        <div class="version-watermark">Have you ever felt trapped before?</div>
     </div>
 
 <script>
@@ -94,7 +94,7 @@
             url: 'emulation.html',
             banner: 'banners/emulation.png'
         },
-        'webroot': { 
+        'fnafroot': { 
             title: "FNAF", 
             url: 'fnaf/',
             banner: 'banners/fnaf1.png'
@@ -113,7 +113,17 @@
             title: 'Eaglercraft', 
             url: 'eaglercraftroot.html',
             banner: 'banners/eagler.jpg'
-        }
+        },
+//        'sol': { 
+//            title: "Solitaire", 
+//            url: "sol/",
+//            banner: 'banners/sol.png'
+//        },
+        'chess': { 
+            title: "chess.com", 
+            url: "https://pleasedontblockchess.com",
+            banner: 'banners/chess.png'
+        },
     };
 
     const gridContainer = document.getElementById('gridContainer');
