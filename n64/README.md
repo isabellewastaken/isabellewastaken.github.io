@@ -1,1 +1,1 @@
-Sorry for the inconvience, but N64 is temporarily unavailable.
+Sorry for the inconvience, but not all N64 games are currently available.
