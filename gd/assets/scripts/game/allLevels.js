@@ -82,13 +82,13 @@ window.allLevels = [
 	    "Clubstep",
 	    "level_14",
 	    ["RobTop", "DJ-Nate"] 
-    ], /*
+    ],
     [
         "electrodynamix",
 	    "Electrodynamix",
 	    "level_15",
 	    ["RobTop", "DJ-Nate"] 
-    ],
+    ], /*
     [
         "hexagon_force",
 	    "Hexagon Force",
