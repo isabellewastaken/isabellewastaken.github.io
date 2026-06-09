@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>IWT Memes</title>
+</head>
+<body>
+  <h1>IWT Meme Collection</h1>
+  <p><em>Note: This is in progress.</em></p>
+  <ul id="file-list">
+    <li>Loading...</li>
+  </ul>
+
+  <script>
+    async function listFiles() {
+      const list = document.getElementById('file-list');
+      list.innerHTML = '';
+
+      try {
+        const response = await fetch('./');
+        const text = await response.text();
+
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+
+        // Pull all links from the directory listing
+        const links = Array.from(doc.querySelectorAll('a[href]'));
+
+        const files = links
+          .map(a => a.getAttribute('href'))
+          .filter(href =>
+            href &&
+            !href.startsWith('?') &&
+            !href.startsWith('/') &&
+            href !== '../' &&
+            href !== './'
+          );
+
+        if (files.length === 0) {
+          list.innerHTML = '<li>No files found.</li>';
+          return;
+        }
+
+        files.forEach(file => {
+          const li = document.createElement('li');
+          const a = document.createElement('a');
+          a.href = file;
+          a.textContent = decodeURIComponent(file);
+          li.appendChild(a);
+          list.appendChild(li);
+        });
+
+      } catch (err) {
+        list.innerHTML = `<li>Could not read folder: ${err.message}. Make sure you're running a local server.</li>`;
+      }
+    }
+
+    listFiles();
+  </script>
+</body>
+</html>
