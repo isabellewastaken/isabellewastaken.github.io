@@ -171,21 +171,23 @@ class BootScene extends Phaser.Scene {
       "Hop the big guy doesn't wakt up...",
       "Shhhh! You're gonna wake the big one!",
       "I have been expecting you.",
-      "A wild Isabelle appeared!",
+      "A wild WebDasher appeared!",
       "So many secrets...",
       "Hiding rocket launcher",
       "It's Over 9000!",
       "Programming amazing AI",
       "Hiding secret vault",
       "Spooky doesn't get out much",
+      "Rohan was here",
       "Warp Speed",
       "So, what's up?",
       "Hold on, reading the manual",
       "I don't know how this works...",
       "Why u have to be mad?",
-      "This is a really rare message from Natalie. I recommend you save her.",
       "It is only game...",
-      "Unlock new icons and colors by completing achievements"
+      "Unlock new icons and colors by completing achievements",
+      "y=mx+b",
+      "Nicest game ever!"
     ];
     const sliderOriginX = cx - 105;
     const sliderOriginY = cy + 110;
@@ -242,9 +244,14 @@ class BootScene extends Phaser.Scene {
       this.load.atlas("GJ_GameSheetEditor", "assets/sheets/GJ_GameSheetEditor.png", "assets/sheets/GJ_GameSheetEditor.json");
       this.load.atlas("GJ_GameSheetGlow", "assets/sheets/GJ_GameSheetGlow.png", "assets/sheets/GJ_GameSheetGlow.json");
       this.load.atlas("GJ_GameSheetIcons", "assets/sheets/GJ_GameSheetIcons.png", "assets/sheets/GJ_GameSheetIcons.json");
+      this.load.json("Spider_AnimDesc", "assets/sheets/Spider_AnimDesc.json");
+      this.load.json("Robot_AnimDesc", "assets/sheets/Robot_AnimDesc.json");
       this.load.atlas("GJ_LaunchSheet", "assets/sheets/GJ_LaunchSheet.png", "assets/sheets/GJ_LaunchSheet.json");
       this.load.atlas("player_ball_00", "assets/sheets/player_ball_00.png", "assets/sheets/player_ball_00.json");
       this.load.atlas("player_dart_00", "assets/sheets/player_dart_00.png", "assets/sheets/player_dart_00.json");
+      this.load.atlas("CCControlColourPickerSpriteSheet-uhd", "assets/sheets/CCControlColourPickerSpriteSheet-uhd.png", "assets/sheets/CCControlColourPickerSpriteSheet-uhd.json");
+      this.load.atlas("PixelSheet_01-hd", "assets/sheets/PixelSheet_01.png", "assets/sheets/PixelSheet_01.json");
+      this.load.atlas("FireSheet_01-hd", "assets/sheets/FireSheet_01-hd.png", "assets/sheets/FireSheet_01-hd.json");
       this.load.image("bigFont", "assets/fonts/bigFont.png");
       this.load.text("bigFontFnt", "assets/fonts/bigFont.fnt");
       this.load.image("square04_001", "assets/sprites/square04_001.png");
@@ -287,6 +294,7 @@ class BootScene extends Phaser.Scene {
         let paddedIndex = String(index);
         if (paddedIndex.length < 2) paddedIndex = "0" + paddedIndex;
         this.load.image("groundSquare_" + paddedIndex + "_001.png", "assets/game-ground/groundSquare_" + i + "_001.png");
+        this.load.image("groundSquare_" + paddedIndex + "_2_001.png", "assets/game-ground/groundSquare_" + i + "_2_001.png");
       }
 
       for (let i = 1; i < 60; i++) {
@@ -299,10 +307,10 @@ class BootScene extends Phaser.Scene {
       this.load.audio("menu_music", "assets/music/menuLoop.mp3");
       this.load.audio("StayInsideMe", "assets/music/StayInsideMe.mp3");
 
-      for (const lvlarray of window.allLevels) {
+      /*for (const lvlarray of window.allLevels) {
         this.load.text(lvlarray[2], "assets/levels/" + lvlarray[2].split("_")[1] + ".txt");
         this.load.audio(lvlarray[0], "assets/music/" + (lvlarray[4] ? lvlarray[4] : lvlarray[1].replaceAll(" ", "")) + ".mp3");
-      }
+      }*/
 
       this.load.audio("explode_11", "assets/sfx/explode_11.ogg");
       this.load.audio("endStart_02", "assets/sfx/endStart_02.ogg");

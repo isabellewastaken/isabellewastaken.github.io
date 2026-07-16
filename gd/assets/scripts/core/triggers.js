@@ -114,6 +114,21 @@ class ColorManager {
         r: 0,
         g: 68,
         b: 170
+      },
+      1002: {
+        r: 255,
+        g: 255,
+        b: 255
+      },
+      1003: {
+        r: 255,
+        g: 255,
+        b: 255
+      },
+      1004: {
+        r: 255,
+        g: 255,
+        b: 255
       }
     };
     for (let chId in this._initialColors) {
@@ -153,7 +168,7 @@ class ColorManager {
   }
   getHex(index) {
     let color = this.getColor(index);
-    return color.r << 16 | color.g << 8 | color.b;
+   return 0xFF000000 | (color.r << 16) | (color.g << 8) | color.b;
   }
 }
 

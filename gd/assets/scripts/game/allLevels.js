@@ -82,13 +82,13 @@ window.allLevels = [
 	    "Clubstep",
 	    "level_14",
 	    ["RobTop", "DJ-Nate"] 
-    ], /*
+    ],
     [
         "electrodynamix",
 	    "Electrodynamix",
 	    "level_15",
 	    ["RobTop", "DJ-Nate"] 
-    ],
+    ],/*
     [
         "hexagon_force",
 	    "Hexagon Force",
@@ -118,13 +118,13 @@ window.allLevels = [
 	    "Deadlocked",
 	    "level_20",
 	    ["RobTop", "F-777"] 
-    ],
+    ],*/
     [
         "fingerdash",
 	    "Fingerdash",
 	    "level_21",
 	    ["RobTop", "MDK"]
-    ],
+    ], /*
     [
         "dash",
 	    "Dash",
@@ -136,5 +136,30 @@ window.allLevels = [
 	    "Every End",
 	    "level_99",
 	    ["MindCap", "Dimrain47"]
-    ] */
+    ],
+    [
+        "bloodbath",
+	    "Bloodbath",
+	    "level_100",
+	    ["Riot", "Dimrain47"]
+    ],
+    [
+        "the_nightmare",
+	    "The Nightmare",
+	    "level_5703070",
+	    ["Jax", "Step"]
+    ],
+    [
+        "nine_circles",
+	    "Nine Circles",
+	    "level_4284013",
+	    ["Zobros", "Rukkus"]
+    ],
+    [
+        "sunshine",
+	    "Sunshine",
+	    "level_56199846",
+	    ["Unzor", "DjHoneyb"]
+    ],
+	*/
 ]
