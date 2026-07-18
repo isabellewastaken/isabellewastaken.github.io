@@ -1,2 +1,2 @@
 # IWT
-Game website. Currently, no updates are planned.
+Game website. Currently, major web game updates are in the works.
