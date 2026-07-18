@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const themeSelect = document.getElementById("themeSelect");
     // Heya, IWT here. Did you know I have an amazing wife called Ashley?
     // 1. Check if the user previously picked a theme; default to 'asahina' (Mafuyu)
-    const savedTheme = localStorage.getItem("selected-theme") || "gay-green";
+    const savedTheme = localStorage.getItem("selected-theme") || "asahina";
 
     // 2. Apply the theme immediately to the <html> tag so style.css can swap the colors
     document.documentElement.setAttribute("data-theme", savedTheme);
