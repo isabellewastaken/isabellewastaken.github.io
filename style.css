@@ -141,11 +141,12 @@ body {
 }
 
 .grid-container {
-    flex: 1;
-    padding: 25px;
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    /* Use a gap to ensure cards don't touch */
     gap: 25px;
+    /* Use auto-fill with a flexible max to fill the screen nicely */
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    padding: 25px; /* Adds space around the entire edge of the grid */
     overflow-y: auto;
 }
 
@@ -155,16 +156,20 @@ body {
 .grid-container::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
 
 .game-card {
+    /* REMOVE overflow: hidden; */
+    /* If you need it for the image, use border-radius on the image instead */
     background-color: var(--steam-card-bg);
     border-radius: 4px;
-    overflow: hidden;
     position: relative;
     aspect-ratio: 2 / 3;
     cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    
+    /* Standard box shadow */
     box-shadow: 0 4px 10px rgba(0,0,0,0.5);
-    display: flex;
-    flex-direction: column;
+    
+    /* ADD MARGIN: This creates the "clearance" for the shadow */
+    margin: 5px; 
 }
 
 .game-card:hover {
