@@ -14,12 +14,6 @@
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="sidebar-header">Eaglercraft</div>
-        <div class="game-list" id="sidebarList">
-            </div>
-    </div>
-
     <div class="main-view">
         <div class="grid-container" id="gridContainer">
             </div>
@@ -61,11 +55,6 @@ const gameData = {
                 <div class="card-info">${game.title}</div>
             `;
             gridContainer.appendChild(card);
-            const sidebarItem = document.createElement('div');
-            sidebarItem.className = 'sidebar-item';
-            sidebarItem.innerText = game.title;
-            sidebarItem.onclick = () => window.location.href = game.url;
-            sidebarList.appendChild(sidebarItem);
         });	
     </script>
 <script src="theme.js"></script>

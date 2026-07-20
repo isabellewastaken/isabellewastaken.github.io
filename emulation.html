@@ -14,12 +14,6 @@
 </head>
 <body>
 
-    <div class="sidebar">
-        <div class="sidebar-header">Consoles</div>
-        <div class="game-list" id="sidebarList">
-            </div>
-    </div>
-
     <div class="main-view">
         <div class="grid-container" id="gridContainer">
             </div>
@@ -33,32 +27,32 @@ const gameData = {
 				banner: 'banners/placeholderbanner.jpg'
             },
             'nesroot': { 
-                title: "NES", 
+                title: "", 
                 url: 'nes/',
 				banner: 'banners/nes.png'
             },
             'snesroot': { 
-                title: "SNES", 
+                title: "", 
                 url: 'snes/',
 				banner: 'banners/snes.png'
             },
             'gbroot': { 
-                title: "Game Boy", 
+                title: "", 
                 url: 'gb/',
 				banner: 'banners/gba.png'
             },
             'n64root': { 
-                title: "N64", 
+                title: "", 
                 url: 'n64/',
                 banner: 'banners/n64.png'
             },
             'dsroot': { 
-                title: "DS", 
+                title: "", 
                 url: 'ds/',
 				banner: 'banners/ds.png'
             },
             'genesisroot': { 
-                title: "Genesis", 
+                title: "", 
                 url: 'genesis/',
 				banner: 'banners/genesis.png'
             },
@@ -76,13 +70,8 @@ const gameData = {
                 <div class="card-info">${game.title}</div>
             `;
             gridContainer.appendChild(card);
-            const sidebarItem = document.createElement('div');
-            sidebarItem.className = 'sidebar-item';
-            sidebarItem.innerText = game.title;
-            sidebarItem.onclick = () => window.location.href = game.url;
-            sidebarList.appendChild(sidebarItem);
         });	
     </script>
-<script src="theme.js"></script> <!-- TODO: Add these to every other page -->
+<script src="theme.js"></script>
 </body>
 </html>

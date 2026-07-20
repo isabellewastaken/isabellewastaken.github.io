@@ -48,8 +48,7 @@
 </head>
 <body>
     <div class="sidebar">
-        <div class="sidebar-header">Categories</div>
-        <div class="game-list" id="sidebarList"></div>
+        <div class="sidebar-header">TRZP Game Portal</div>
         
 	<div class="theme-switcher-container">
 		<div class="theme-switcher-label">Theme</div>
@@ -58,8 +57,8 @@
 				<option value="akiyama">TRZP Akiyama</option>
 				<option value="shinonome">TRZP Shinonome</option>
 				<option value="yoisaki">TRZP Yoisaki</option>
-				<option value="x10-white">x10 Theme</option>
 				<option value="legacy">TRZP Steam</option>
+				<option value="x10-white">x10 Theme</option>
 		</select>
 		</div>
     </div>
@@ -71,7 +70,7 @@
 <script>
     const gameData = {
         'emuroot': { 
-            title: "Emulation", 
+            title: "", 
             url: 'emulation.html',
             banner: 'banners/emulation.png'
         },
@@ -81,17 +80,17 @@
             banner: 'banners/placeholderbanner.jpg'
         },
         'eaglerroot': { 
-            title: 'Eaglercraft', 
+            title: '', 
             url: 'eaglercraftroot.html',
             banner: 'banners/eagler.jpg'
         },
         'fnafroot': { 
-            title: "FNAF", 
+            title: "", 
             url: 'fnaf/',
             banner: 'banners/fnaf1.png'
         },
         'chess': { 
-            title: "chess.com", 
+            title: "", 
             url: "https://pleasedontblockchess.com",
             banner: 'banners/chess.png'
         },
@@ -110,12 +109,6 @@
             <div class="card-info">${game.title}</div>
         `;
         gridContainer.appendChild(card);
-
-        const sidebarItem = document.createElement('div');
-        sidebarItem.className = 'sidebar-item';
-        sidebarItem.innerText = game.title;
-        sidebarItem.onclick = () => window.location.href = game.url;
-        sidebarList.appendChild(sidebarItem);
     });
 </script>
 
