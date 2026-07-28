@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TRZP - Home</title>
+    <title>TRZP Games</title>
 	<script>
         (function() {
-            const savedTheme = localStorage.getItem("selected-theme") || "asahina";
+            const savedTheme = localStorage.getItem("selected-theme") || "purple";
             document.documentElement.setAttribute("data-theme", savedTheme);
         })();
     </script>
@@ -22,7 +22,6 @@
             font-size: 0.75em;
             font-weight: bold;
             color: var(--text-muted);
-            text-transform: uppercase;
             letter-spacing: 1px;
             margin-bottom: 8px;
         }
@@ -47,52 +46,177 @@
     </style>
 </head>
 <body>
-    <div class="sidebar">
-        <div class="sidebar-header">TRZP Game Portal</div>
-        
+	<div class="sidebar">
+        <div class="sidebar-header">TRZP Games</div>
+      
 	<div class="theme-switcher-container">
 		<div class="theme-switcher-label">Theme</div>
 		<select id="themeSelect" class="theme-select">
-				<option value="asahina">TRZP Asahina</option>
-				<option value="akiyama">TRZP Akiyama</option>
-				<option value="shinonome">TRZP Shinonome</option>
-				<option value="yoisaki">TRZP Yoisaki</option>
-				<option value="legacy">TRZP Steam</option>
-				<option value="x10-white">x10 Theme</option>
+				<option value="purple">Purple</option>
+				<option value="bpink">Bright Pink</option>
+				<option value="steam">Legacy</option>
 		</select>
 		</div>
     </div>
     
     <div class="main-view">
         <div class="grid-container" id="gridContainer"></div>
+		<script src="https://keepandroidopen.org/banner.js?size=minimal&animation=off"></script>
     </div>
 
 <script>
     const gameData = {
-        'emuroot': { 
-            title: "", 
-            url: 'emulation.html',
-            banner: 'banners/emulation.png'
+        'hk': { 
+            url: "hk/",
+            banner: 'banners/hk.png'
         },
-        'webroot': { 
-            title: "Web Games", 
-            url: "web/",
-            banner: 'banners/placeholderbanner.jpg'
+        'SRB2': { 
+            url: "https://chromaticpipe.github.io/SRB2-WASM/",
+            banner: 'banners/sbr2.jpg'
         },
-        'eaglerroot': { 
-            title: '', 
-            url: 'eaglercraftroot.html',
-            banner: 'banners/eagler.jpg'
+        'exe': { 
+            url: "exe/",
+            banner: 'banners/exe.png'
         },
-        'fnafroot': { 
-            title: "", 
-            url: 'fnaf/',
-            banner: 'banners/fnaf1.png'
+        'delta': { 
+            url: "deltarune/",
+            banner: 'banners/deltarune.png'
+        },
+        'class09': { 
+            url: "c09/",
+            banner: 'banners/c09.jpg'
+        },
+        'doki': { 
+            url: "ddlc/",
+            banner: 'banners/ddlc.png'
+        },
+        'sol': { 
+            url: "sol/",
+            banner: 'banners/sol.png'
         },
         'chess': { 
-            title: "", 
             url: "https://pleasedontblockchess.com",
             banner: 'banners/chess.png'
+        },
+        'jsab': { 
+            url: "jsab/",
+            banner: 'banners/jsab.png'
+        },
+        'pizza': { 
+            url: "pizza/",
+            banner: 'banners/pizzatower.png'
+        },
+        'pvz': { 
+            url: "pvz/",
+            banner: 'banners/pvz.png'
+        },
+        'bbplus': { 
+            url: "bbplus/",
+            banner: 'banners/bbplus.jpg'
+        },
+        'gd': { 
+            url: "gd/",
+            banner: 'banners/gd.png'
+        },
+        'cookie': { 
+            url: "cookie/",
+            banner: 'banners/cookie.jpg'
+        },
+        'celeste': { 
+            url: "celeste/",
+            banner: 'banners/celeste.png'
+        },
+        'ultrakill': { 
+            url: "ultrakill/",
+            banner: 'banners/ultrakill.png'
+        },
+		'portal1': { 
+            url: "https://yikes.pw/portal/",
+            banner: 'banners/portal1.png'
+        },
+        'angrybirds2': { 
+            url: "ab2/",
+            banner: 'banners/ab2.png'
+        },
+        'fnf': { 
+            url: "https://funkin.neruvy.xyz/",
+            banner: 'banners/fnf.png'
+        },
+        'minecraft': { 
+            url: 'eaglercraft/eaglermodern.html',
+            banner: 'banners/mc.png'
+        },
+        'fnaf1': { 
+            url: 'https://irv77.github.io/hd_fnaf/1/',
+            banner: 'banners/fnaf1.png'
+        },
+        'fnaf2': { 
+            url: 'https://irv77.github.io/hd_fnaf/2/',
+            banner: 'banners/fnaf2.jpg'
+        },
+        'fnaf3': { 
+            url: 'https://irv77.github.io/hd_fnaf/3/',
+            banner: 'banners/fnaf3.png'
+        },
+        'fnaf4': { 
+            url: 'https://irv77.github.io/hd_fnaf/4/',
+            banner: 'banners/fnaf4.png'
+        },
+        'fnafworld': { 
+            url: 'https://irv77.github.io/hd_fnaf/w/',
+            banner: 'banners/fnafworld.png'
+        },
+        'fnafsister': { 
+            url: 'https://irv77.github.io/hd_fnaf/sl/',
+            banner: 'banners/sister.png'
+        },
+       'fnafpizzasim': { 
+            url: 'https://irv77.github.io/hd_fnaf/ps/',
+            banner: 'banners/pizzeria.png'
+        },
+        'ucn': { 
+            url: 'https://irv77.github.io/hd_fnaf/ucn/',
+            banner: 'banners/ucn.png'
+        },
+        'smb': { 
+            url: 'smb.html',
+            banner: 'banners/smb.jpg'
+        },
+        'smb3': { 
+            url: 'smb3.html',
+            banner: 'banners/smb3.jpg'
+        },
+        'smw': { 
+            url: 'smw.html',
+            banner: 'banners/smw.jpg'
+        },
+        'lttp': { 
+            url: 'lttp.html',
+            banner: 'banners/lttp.jpg'
+        },
+        'streetfighter2': { 
+            url: 'sf2.html',
+            banner: 'banners/sf2.png'
+        },
+		'tetris': {
+			url: 'tetris.html',
+			banner: 'banners/tetris.png'
+		},
+        'wario4': { 
+           url: 'warioland4.html',
+           banner: 'banners/warioland4.png'
+        },
+        'mk64': { 
+            url: 'mk64.html',
+            banner: 'banners/mk64.png'
+        },
+        'nsmb': { 
+            url: 'nsmb.html',
+			banner: 'banners/nsmb.png'
+        },
+        'sonic1': { 
+            url: 'sonic1.html',
+			banner: 'banners/sonic1.png'
         },
     };
 
@@ -105,13 +229,11 @@
         card.className = 'game-card';
         card.onclick = () => window.location.href = game.url;
         card.innerHTML = `
-            <img src="${game.banner || 'banners/placeholderbanner.png'}" alt="${game.title}">
-            <div class="card-info">${game.title}</div>
+            <img src="${game.banner || 'banners/placeholderbanner.jpg'}">
         `;
         gridContainer.appendChild(card);
     });
 </script>
-
 <script src="theme.js"></script>
 </body>
 </html>

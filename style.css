@@ -1,11 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
 /* ==========================================================================
-   THEME PALETTES
+   THEME COLOURS
    ========================================================================== */
 
-/* IWT Asahina */
-:root, html[data-theme="asahina"] {
+:root, html[data-theme="purple"] {
     --steam-dark: #251d33;
     --steam-sidebar: #4c3b63;
     --steam-blue: #8467a9;
@@ -16,8 +15,7 @@
     --grad-top: #3b2e50;
 }
 
-/* IWT Steam */
-html[data-theme="legacy"] {
+html[data-theme="steam"] {
     --steam-dark: #1b2838;       
     --steam-sidebar: #2a475e;    
     --steam-blue: #66c0f4;       
@@ -28,43 +26,19 @@ html[data-theme="legacy"] {
     --grad-top: #2a4054;
 }
 
-/* IWT Akiyama */
-html[data-theme="akiyama"] {
+html[data-theme="bpink"] {
     --steam-dark: #fcaec1;
     --steam-sidebar: #ffcbd7;
     --text-light: #2b161c;
+	--steam-blue: #70404c;
     --text-muted: #70404c;
     --steam-black: #f59eb3;
     --steam-card-bg: #ffe0e7;
     --grad-top: #ffdce4;
 }
 
-/* IWT Shinonome */
-html[data-theme="shinonome"] {
-    --steam-dark: #2b221d;       
-    --steam-sidebar: #54433a;    
-    --steam-blue: #9c7f70;       
-    --text-light: #ebe4e0;       
-    --text-muted: #a3938b;       
-    --steam-black: #1f1815;      
-    --steam-card-bg: #382c26;    
-    --grad-top: #473931;
-}
-
-/* IWT Yoisaki */
-html[data-theme="yoisaki"] {
-    --steam-dark: #22262e;       
-    --steam-sidebar: #434b59;    
-    --steam-blue: #7a879e;       
-    --text-light: #e0e4eb;       
-    --text-muted: #8b93a3;       
-    --steam-black: #181b21;      
-    --steam-card-bg: #2c313a;    
-    --grad-top: #39404d;
-}
-
 /* ==========================================================================
-   GLOBAL LAYOUT & CORE ELEMENTS
+   EVERYTHING ELSE
    ========================================================================== */
 
 body {
@@ -74,16 +48,11 @@ body {
     color: var(--text-light);
     display: flex;
     height: 100vh;
-    overflow: hidden;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* ==========================================================================
-   SIDEBAR COMPONENT
-   ========================================================================== */
-
 .sidebar {
-    width: 260px;
+    width: 200px;
     background-color: var(--steam-black);
     border-right: 1px solid rgba(255, 255, 255, 0.05);
     display: flex;
@@ -96,96 +65,36 @@ body {
     font-size: 0.8em;
     font-weight: bold;
     color: var(--steam-blue);
-    text-transform: uppercase;
     letter-spacing: 1px;
     transition: color 0.2s ease;
 }
-
-.game-list {
-    flex: 1;
-    overflow-y: auto;
-}
-
-.sidebar-item {
-    padding: 6px 20px;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    color: var(--text-muted);
-    font-size: 0.85em;
-    cursor: pointer;
-    transition: background-color 0.2s, color 0.2s;
-}
-
-.sidebar-item:hover { 
-    background: rgba(255, 255, 255, 0.05); 
-    color: #fff; 
-}
-
-.sidebar-item.active { 
-    background: var(--steam-sidebar); 
-    color: #fff; 
-}
-
-/* ==========================================================================
-   MAIN VIEWS & GRID CARDS
-   ========================================================================== */
 
 .main-view {
     flex: 1;
     display: flex;
     position: relative;
     flex-direction: column;
-    /* Uses dynamic theme variable gradient, dropping the hardcoded teal shades */
     background: linear-gradient(to bottom, var(--grad-top) 0%, var(--steam-dark) 100%);
 }
 
 .grid-container {
     display: grid;
-    /* Use a gap to ensure cards don't touch */
-    gap: 25px;
-    /* Use auto-fill with a flexible max to fill the screen nicely */
+    gap: 15px;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    padding: 25px; /* Adds space around the entire edge of the grid */
+    padding: 15px;
     overflow-y: auto;
 }
 
-.grid-container::-webkit-scrollbar { width: 10px; }
-.grid-container::-webkit-scrollbar-track { background: rgba(0,0,0,0.1); }
-.grid-container::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.1); border-radius: 5px; }
-.grid-container::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.2); }
-
 .game-card {
-    /* REMOVE overflow: hidden; */
-    /* If you need it for the image, use border-radius on the image instead */
     background-color: var(--steam-card-bg);
     border-radius: 4px;
     position: relative;
-    aspect-ratio: 2 / 3;
-    cursor: pointer;
+	cursor: pointer;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.game-card:hover {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.5), 0 0 1px 1px var(--steam-blue);
 }
 
 .game-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
-}
-
-.card-info {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 35px 10px 12px 10px;
-    font-size: 0.8em;
-    font-weight: 600;
-    color: #fff;
-    text-shadow: 0 1px 3px rgba(0,0,0,0.8);
-    text-align: center;
-    letter-spacing: -0.1px;
 }
