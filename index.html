@@ -61,7 +61,6 @@
     
     <div class="main-view">
         <div class="grid-container" id="gridContainer"></div>
-		<script src="https://keepandroidopen.org/banner.js?size=minimal&animation=off"></script>
     </div>
 
 <script>
@@ -220,6 +219,20 @@
         },
     };
 
+	const userAgent = navigator.userAgent;
+
+	if (userAgent.includes("Windows NT 6.4") && userAgent.includes("Firefox/420")) {
+		for (const gameId in gameData) {
+			const url = gameData[gameId].url;
+    
+    	// Hides any link starting with http/https unless it belongs to your GitHub domain
+    	if (url.startsWith("http") && !url.includes("isabellewastaken.github.io")) {
+			delete gameData[gameId];
+    	}
+  		}
+	}
+
+	
     const gridContainer = document.getElementById('gridContainer');
     const sidebarList = document.getElementById('sidebarList');
 
