@@ -66,9 +66,13 @@
 <script>
     const gameData = {
         'hk': { 
-            url: "web/hk/",
+            url: "https://glitches-hk-port.vercel.app",
             banner: 'banners/hk.png'
         },
+//		'silksong': {
+//			url: "https://www.example.com",
+//			banner: "https://cdn2.steamgriddb.com/grid/352b19056ce934568b956d68cbcde3b5.png",
+//		},
         'SRB2': { 
             url: "https://chromaticpipe.github.io/SRB2-WASM/",
             banner: 'banners/sbr2.jpg'
@@ -99,16 +103,16 @@
         },
         'pizza': { 
             url: "web/pizza/",
-            banner: 'banners/pizzatower.png'
+            banner: 'https://cdn2.steamgriddb.com/grid/f7c526b76e47ea870ba4481e44ea8039.png'
         },
         'pvz': { 
             url: "web/pvz/",
             banner: 'banners/pvz.png'
         },
-		'gose': {
-			url: "web/goose/",
-			banner: "banners/gose.png"
-		},
+//		'gose': {
+//			url: "web/goose/",
+//			banner: "banners/gose.png"
+//		},
         'bbplus': { 
             url: "web/bbplus/",
             banner: 'banners/bbplus.jpg'
@@ -129,9 +133,17 @@
             url: "web/ultrakill/",
             banner: 'banners/ultrakill.png'
         },
+		'halflife': { 
+            url: "https://x8bitrain.github.io/webXash/",
+            banner: 'banners/pinball.png'
+        },
 		'portal1': { 
             url: "https://yikes.pw/portal/",
             banner: 'banners/portal1.png'
+        },
+        '3dpinball': { 
+            url: "https://pinball.alula.me",
+            banner: 'banners/pinball.png'
         },
         'angrybirds2': { 
             url: "web/ab2/",
@@ -177,6 +189,42 @@
             url: 'https://irv77.github.io/hd_fnaf/ucn/',
             banner: 'banners/ucn.png'
         },
+		'smwar': { 
+            url: "https://mmatyas.github.io/smw-js/",
+            banner: 'https://cdn2.steamgriddb.com/grid/a1ff47732dc3ca9e14de9b4bfda603f7.png'
+        },
+//		'terraria': { 
+//            url: "https://www.example.com",
+//            banner: 'https://cdn2.steamgriddb.com/grid/9bc661e8362657d8cbbe4bb41d17c7f3.png'
+//        },
+//		'simpsonshar': { 
+//            url: "https://www.example.com",
+//            banner: 'https://cdn2.steamgriddb.com/grid/3ab7434b949fbf9a19c3fcc830c1bdf1.png'
+//        },
+//		'worldbox': { 
+//            url: "https://www.example.com",
+//            banner: 'banners/pinball.png'
+//        },
+//		'gubby': { 
+//            url: "https://www.example.com",
+//            banner: 'banners/pinball.png'
+//        },
+//		'halfamoundsbar': { 
+//            url: "https://www.example.com",
+//            banner: 'banners/pinball.png'
+//        },
+//		'minusthree': { 
+//            url: "https://www.example.com",
+//            banner: 'banners/pinball.png'
+//        },
+//		'cuphead': { 
+//            url: "https://www.example.com",
+//            banner: 'https://cdn2.steamgriddb.com/grid/25dcf1554f13c36b512dfe907acc77d3.png'
+//        },
+//		'gtag': { 
+//            url: "https://www.example.com",
+//            banner: 'https://cdn2.steamgriddb.com/grid/b279efaa958b0ad1b1c43b43d1efaba5.png'
+//        },
         'smb': { 
             url: 'smb.html',
             banner: 'banners/smb.jpg'
@@ -217,24 +265,15 @@
             url: 'sonic1.html',
 			banner: 'banners/sonic1.png'
         },
+//		'mania': { 
+//            url: 'https://www.example.com',
+//			banner: 'https://cdn2.steamgriddb.com/grid/4bebc22c0573635129e2323839cc33c3.png'
+//        },
 		'video': { 
             url: 'videoplayertest.html',
 			banner: 'banners/a7a77e1fd7e7091ad1915bef626817f0.png'
         },
     };
-
-	const userAgent = navigator.userAgent;
-
-	if (userAgent.includes("Windows NT 6.4") && userAgent.includes("Firefox/420")) {
-		for (const gameId in gameData) {
-			const url = gameData[gameId].url;
-    
-    	// Hides any link starting with http/https unless it belongs to your GitHub domain
-    	if (url.startsWith("http") && !url.includes("isabellewastaken.github.io")) {
-			delete gameData[gameId];
-    	}
-  		}
-	}
 
 	
     const gridContainer = document.getElementById('gridContainer');
