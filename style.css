@@ -15,17 +15,6 @@
     --grad-top: #3b2e50;
 }
 
-html[data-theme="steam"] {
-    --steam-dark: #1b2838;       
-    --steam-sidebar: #2a475e;    
-    --steam-blue: #66c0f4;       
-    --text-light: #c6d4df;       
-    --text-muted: #8f98a0;       
-    --steam-black: #171d24;      
-    --steam-card-bg: #202c39;    
-    --grad-top: #2a4054;
-}
-
 html[data-theme="bpink"] {
     --steam-dark: #fcaec1;
     --steam-sidebar: #ffcbd7;
