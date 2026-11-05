@@ -4,22 +4,69 @@
     <meta charset="utf-8">
     <title>IWT</title>
     <style>
-      #yuri {
+        body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: url("background.png") center / cover no-repeat;
+        opacity: 0.4;
+        z-index: -1;
+      }
+      #side-images {
         float: right;
-        top: 0;
-        right: 0;
         width: 250px;
+        max-width: 40%;
+        margin: 0 0 10px 15px;
+      }
+
+      #yuri {
+        cursor: pointer;
+      }
+      #side-images img {
+        display: block;
+        width: 100%;
         height: auto;
+        margin-bottom: 10px;
       }
       body {
-        background-color: #ffc0cb;
+        background-color: #4b4473;
       }
     </style>
   </head>
   <body>
-    <img id="yuri" src="yuri.png" alt="yuri">
-    <h1>IsabelleWasTaken's Website!</h1>
-    <p>Hello!! This is my website, if you couldn't tell. Its still a work in progress, but that's okay! Anyways, I do some code stuff, I have 7 iPhones and 7 computers! :3</p>
+    <div id="side-images">
+      <img id="yuri" src="yuri.png" alt="yuri">
+      <img src="mizuki.jpg" alt="mizuki">
+    </div>
+    <h1>TheRealZhen200's Website!</h1>
+    <p>Hello!! This is my website, if you couldn't tell. Its still a work in progress, but that's okay!<br></br>Anyways, I do some code stuff, I have 7 iPhones and 7 computers! :D</p>
     <a href="https://isabellewastaken.github.io/trzpgames">Click here to go to the game website.</a>
+    <br></br>
+    <!-- <a href="https://example.com">Click here for my GitHub profile!</a>
+    <br></br> -->
+    <a href="https://www.youtube.com/@therealzhenplaz2000">Click here to see my YouTube channel!.</a>
+    <p>Song: <b>Self Esteem Fund - Portal OST</b> (If you cannot hear it, click anywhere for it to play.)</p>
+    <audio id="bgm" src="music.mp3" loop></audio>
+
+    <script>
+      const bgm = document.getElementById('bgm');
+      bgm.volume = 0.5; // 0 to 1
+
+      document.addEventListener('pointerdown', () => bgm.play(), { once: true });
+    </script>
+    <audio id="secret" src="secret.wav"></audio>
+
+    <script>
+      const secret = document.getElementById('secret');
+      const yuri = document.getElementById('yuri');
+
+      yuri.addEventListener('click', () => {
+        secret.currentTime = 0;
+        secret.play();
+        secret.addEventListener('ended', () => {
+          window.location.href = 'rubydung.html';
+        }, { once: true });
+      });
+    </script>
   </body>
 </html>

@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Isabella's World'</title>
+<style>
+:root{--bg:#000;--fg:#fff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--fg);font:14px/1.5 system-ui,sans-serif;overflow:hidden}
+canvas{display:block;width:100%;height:100%}
+#msg{position:fixed;left:12px;bottom:12px;opacity:0;transition:opacity .4s}
+</style></head><body>
+<canvas id="c"></canvas>
+<div id="msg"></div>
+<script>
+"use strict";
+const KEY="rubydung-level", CS=16;
+const FOG=[14/255,11/255,10/255];
+
+// ---- Face data: [u,v,x,y,z] corner selectors (0/1) in tile order: -y,+y,-z,+z,-x,+x ----
+const FACES=[
+ [[0,1,0,0,1],[0,0,0,0,0],[1,0,1,0,0],[1,1,1,0,1]],
+ [[1,1,1,1,1],[1,0,1,1,0],[0,0,0,1,0],[0,1,0,1,1]],
+ [[1,0,0,1,0],[0,0,1,1,0],[0,1,1,0,0],[1,1,0,0,0]],
+ [[0,0,0,1,1],[0,1,0,0,1],[1,1,1,0,1],[1,0,1,1,1]],
+ [[1,0,0,1,1],[0,0,0,1,0],[0,1,0,0,0],[1,1,0,0,1]],
+ [[0,1,1,0,1],[1,1,1,0,0],[1,0,1,1,0],[0,0,1,1,1]]];
+const NB=[[0,-1,0],[0,0,0],[0,0,-1],[0,0,1],[-1,0,0],[1,0,0]]; // brightness sample offsets
+const DIRS=[[0,-1,0],[0,1,0],[0,0,-1],[0,0,1],[-1,0,0],[1,0,0]]; // neighbour cell that hides each face
+const SHADE=[1,1,.8,.8,.6,.6];
+
+class AABB{
+ constructor(x0,y0,z0,x1,y1,z1){this.x0=x0;this.y0=y0;this.z0=z0;this.x1=x1;this.y1=y1;this.z1=z1}
+ expand(x,y,z){return new AABB(this.x0+(x<0?x:0),this.y0+(y<0?y:0),this.z0+(z<0?z:0),this.x1+(x>0?x:0),this.y1+(y>0?y:0),this.z1+(z>0?z:0))}
+ grow(x,y,z){return new AABB(this.x0-x,this.y0-y,this.z0-z,this.x1+x,this.y1+y,this.z1+z)}
+ clipX(c,xa){
+  if(c.y1<=this.y0||c.y0>=this.y1||c.z1<=this.z0||c.z0>=this.z1)return xa;
+  if(xa>0&&c.x1<=this.x0)xa=Math.min(xa,this.x0-c.x1);
+  if(xa<0&&c.x0>=this.x1)xa=Math.max(xa,this.x1-c.x0);
+  return xa}
+ clipY(c,ya){
+  if(c.x1<=this.x0||c.x0>=this.x1||c.z1<=this.z0||c.z0>=this.z1)return ya;
+  if(ya>0&&c.y1<=this.y0)ya=Math.min(ya,this.y0-c.y1);
+  if(ya<0&&c.y0>=this.y1)ya=Math.max(ya,this.y1-c.y0);
+  return ya}
+ clipZ(c,za){
+  if(c.x1<=this.x0||c.x0>=this.x1||c.y1<=this.y0||c.y0>=this.y1)return za;
+  if(za>0&&c.z1<=this.z0)za=Math.min(za,this.z0-c.z1);
+  if(za<0&&c.z0>=this.z1)za=Math.max(za,this.z1-c.z0);
+  return za}
+ move(x,y,z){this.x0+=x;this.y0+=y;this.z0+=z;this.x1+=x;this.y1+=y;this.z1+=z}
+}
+
+class Level{
+ constructor(w,h,d){
+  this.width=w;this.height=h;this.depth=d;this.listener=null;
+  this.blocks=new Uint8Array(w*h*d);this.lightDepths=new Int32Array(w*h);
+  const top=(d*2/3)|0;
+  for(let x=0;x<w;x++)for(let y=0;y<d;y++)for(let z=0;z<h;z++)this.blocks[(y*h+z)*w+x]=y<=top?1:0;
+  this.calcLightDepths(0,0,w,h);this.load();
+ }
+ load(){
+  try{
+   const s=localStorage.getItem(KEY);if(!s)return;
+   const runs=JSON.parse(s);
+   if(runs.reduce((a,b)=>a+b,0)!==this.blocks.length)return;
+   let i=0,v=0;for(const n of runs){if(v)this.blocks.fill(1,i,i+n);else this.blocks.fill(0,i,i+n);i+=n;v^=1}
+   this.calcLightDepths(0,0,this.width,this.height);
+   if(this.listener)this.listener.allChanged();
+  }catch(e){}
+ }
+ save(){
+  try{
+   const b=this.blocks,runs=[];let v=0,n=0;
+   for(let i=0;i<b.length;i++){if(b[i]===v)n++;else{runs.push(n);v=b[i];n=1}}
+   runs.push(n);localStorage.setItem(KEY,JSON.stringify(runs));return true;
+  }catch(e){return false}
+ }
+ calcLightDepths(x0,y0,x1,y1){
+  for(let x=x0;x<x0+x1;x++)for(let z=y0;z<y0+y1;z++){
+   const old=this.lightDepths[x+z*this.width];let y=this.depth-1;
+   while(y>0&&!this.isSolidTile(x,y,z))y--;
+   this.lightDepths[x+z*this.width]=y;
+   if(old!==y&&this.listener)this.listener.lightColumnChanged(x,z,Math.min(old,y),Math.max(old,y));
+  }
+ }
+ inside(x,y,z){return x>=0&&y>=0&&z>=0&&x<this.width&&y<this.depth&&z<this.height}
+ isTile(x,y,z){return this.inside(x,y,z)&&this.blocks[(y*this.height+z)*this.width+x]===1}
+ isSolidTile(x,y,z){return this.isTile(x,y,z)}
+ getCubes(a){
+  const out=[];
+  const x0=Math.max(Math.trunc(a.x0),0),x1=Math.min(Math.trunc(a.x1+1),this.width);
+  const y0=Math.max(Math.trunc(a.y0),0),y1=Math.min(Math.trunc(a.y1+1),this.depth);
+  const z0=Math.max(Math.trunc(a.z0),0),z1=Math.min(Math.trunc(a.z1+1),this.height);
+  for(let x=x0;x<x1;x++)for(let y=y0;y<y1;y++)for(let z=z0;z<z1;z++)
+   if(this.isSolidTile(x,y,z))out.push(new AABB(x,y,z,x+1,y+1,z+1));
+  return out;
+ }
+ getBrightness(x,y,z){
+  if(!this.inside(x,y,z))return 1;
+  return y<this.lightDepths[x+z*this.width]?.8:1;
+ }
+ setTile(x,y,z,type){
+  if(!this.inside(x,y,z))return;
+  this.blocks[(y*this.height+z)*this.width+x]=type;
+  this.calcLightDepths(x,z,1,1);
+  if(this.listener)this.listener.tileChanged(x,y,z);
+ }
+}
+
+class Player{
+ constructor(level){this.level=level;this.xd=this.yd=this.zd=0;this.yRot=this.xRot=0;this.onGround=false;this.resetPos()}
+ resetPos(){this.setPos(Math.random()*this.level.width,this.level.depth+10,Math.random()*this.level.height)}
+ setPos(x,y,z){
+  this.x=x;this.y=y;this.z=z;
+  if(this.xo===undefined){this.xo=x;this.yo=y;this.zo=z}
+  this.bb=new AABB(x-.3,y-.9,z-.3,x+.3,y+.9,z+.3);
+ }
+ turn(xo,yo){this.yRot+=xo*.15;this.xRot=Math.max(-90,Math.min(90,this.xRot-yo*.15))}
+ tick(k){
+  this.xo=this.x;this.yo=this.y;this.zo=this.z;
+  let xa=0,ya=0;
+  if(k.has("KeyR"))this.resetPos();
+  if(k.has("ArrowUp")||k.has("KeyW"))ya--;
+  if(k.has("ArrowDown")||k.has("KeyS"))ya++;
+  if(k.has("ArrowLeft")||k.has("KeyA"))xa--;
+  if(k.has("ArrowRight")||k.has("KeyD"))xa++;
+  if((k.has("Space")||k.has("MetaLeft"))&&this.onGround)this.yd=.12;
+  this.moveRelative(xa,ya,this.onGround?.02:.005);
+  this.yd-=.005;
+  this.move(this.xd,this.yd,this.zd);
+  this.xd*=.91;this.yd*=.98;this.zd*=.91;
+  if(this.onGround){this.xd*=.8;this.zd*=.8}
+ }
+ move(xa,ya,za){
+  const xo=xa,yo=ya,zo=za,c=this.level.getCubes(this.bb.expand(xa,ya,za));
+  for(const b of c)ya=b.clipY(this.bb,ya);this.bb.move(0,ya,0);
+  for(const b of c)xa=b.clipX(this.bb,xa);this.bb.move(xa,0,0);
+  for(const b of c)za=b.clipZ(this.bb,za);this.bb.move(0,0,za);
+  this.onGround=yo!==ya&&yo<0;
+  if(xo!==xa)this.xd=0;if(yo!==ya)this.yd=0;if(zo!==za)this.zd=0;
+  this.x=(this.bb.x0+this.bb.x1)/2;this.y=this.bb.y0+1.62;this.z=(this.bb.z0+this.bb.z1)/2;
+ }
+ moveRelative(xa,za,speed){
+  let d=xa*xa+za*za;if(d<.01)return;
+  d=speed/Math.sqrt(d);xa*=d;za*=d;
+  const s=Math.sin(this.yRot*Math.PI/180),c=Math.cos(this.yRot*Math.PI/180);
+  this.xd+=xa*c-za*s;this.zd+=za*c+xa*s;
+ }
+}
+
+class Timer{
+ constructor(tps){this.tps=tps;this.last=performance.now();this.passed=0;this.ticks=0;this.a=0}
+ advance(){
+  const now=performance.now();let ms=now-this.last;this.last=now;
+  ms=Math.min(Math.max(ms,0),1000);
+  this.passed+=ms*this.tps/1000;
+  this.ticks=Math.min(Math.trunc(this.passed),100);
+  this.passed-=this.ticks;this.a=this.passed;
+ }
+}
+
+// ---- WebGL ----
+const canvas=document.getElementById("c");
+const gl=canvas.getContext("webgl2",{antialias:false});
+const prog=(()=>{
+ const mk=(t,s)=>{const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);return o};
+ const p=gl.createProgram();
+ gl.attachShader(p,mk(gl.VERTEX_SHADER,`#version 300 es
+in vec3 aPos;in vec2 aUV;in float aBr;
+uniform mat4 uProj,uView;out vec2 vUV;out float vBr;out float vZ;
+void main(){vec4 e=uView*vec4(aPos,1.);vZ=abs(e.z);vUV=aUV;vBr=aBr;gl_Position=uProj*e;}`));
+ gl.attachShader(p,mk(gl.FRAGMENT_SHADER,`#version 300 es
+precision highp float;in vec2 vUV;in float vBr;in float vZ;
+uniform sampler2D uTex;uniform bool uFlat,uFog;uniform vec4 uColor,uFogColor;out vec4 o;
+void main(){
+ if(uFlat){o=uColor;return;}
+ vec4 c=texture(uTex,vUV);c.rgb*=vBr;
+ if(uFog)c.rgb=mix(uFogColor.rgb,c.rgb,clamp(exp(-.2*vZ),0.,1.));
+ o=c;}`));
+ gl.linkProgram(p);return p;
+})();
+gl.useProgram(prog);
+const U=n=>gl.getUniformLocation(prog,n);
+const uProj=U("uProj"),uView=U("uView"),uFlat=U("uFlat"),uFog=U("uFog"),uColor=U("uColor");
+gl.uniform4f(U("uFogColor"),FOG[0],FOG[1],FOG[2],1);
+const loc=n=>gl.getAttribLocation(prog,n);
+const aPos=loc("aPos"),aUV=loc("aUV"),aBr=loc("aBr");
+
+// ---- Matrices (column-major) ----
+const mul=(a,b)=>{const r=new Float32Array(16);for(let i=0;i<4;i++)for(let j=0;j<4;j++){let s=0;for(let k=0;k<4;k++)s+=a[k*4+j]*b[i*4+k];r[i*4+j]=s}return r};
+const trans=(x,y,z)=>new Float32Array([1,0,0,0,0,1,0,0,0,0,1,0,x,y,z,1]);
+const rotX=d=>{const c=Math.cos(d*Math.PI/180),s=Math.sin(d*Math.PI/180);return new Float32Array([1,0,0,0,0,c,s,0,0,-s,c,0,0,0,0,1])};
+const rotY=d=>{const c=Math.cos(d*Math.PI/180),s=Math.sin(d*Math.PI/180);return new Float32Array([c,0,-s,0,0,1,0,0,s,0,c,0,0,0,0,1])};
+const persp=(fov,asp,n,f)=>{const t=1/Math.tan(fov*Math.PI/360);return new Float32Array([t/asp,0,0,0,0,t,0,0,0,0,(f+n)/(n-f),-1,0,0,2*f*n/(n-f),0])};
+
+// ---- Chunks / renderer ----
+class Chunk{
+ constructor(level,x0,y0,z0,x1,y1,z1){
+  Object.assign(this,{level,x0,y0,z0,x1,y1,z1});
+  this.aabb=new AABB(x0,y0,z0,x1,y1,z1);this.dirty=true;
+  this.layers=[this.mk(),this.mk()];
+ }
+ mk(){return{vao:gl.createVertexArray(),vb:gl.createBuffer(),ib:gl.createBuffer(),n:0}}
+ build(layer){
+  const L=this.level,v=[],top=(L.depth*2/3)|0;
+  for(let x=this.x0;x<this.x1;x++)for(let y=this.y0;y<this.y1;y++)for(let z=this.z0;z<this.z1;z++){
+   if(!L.isTile(x,y,z))continue;
+   const tex=y===top?0:1,u0=tex/2,u1=u0+.4995,v0=0,v1=.999;
+   for(let f=0;f<6;f++){
+    const o=NB[f];
+    const d=DIRS[f];
+    if(L.isSolidTile(x+d[0],y+d[1],z+d[2]))continue;
+    const br=L.getBrightness(x+o[0],y+o[1],z+o[2])*SHADE[f];
+    if((br===SHADE[f])===(layer===1))continue;
+    for(const q of FACES[f])v.push(x+q[2],y+q[3],z+q[4],q[0]?u1:u0,q[1]?v1:v0,br);
+   }
+  }
+  const B=this.layers[layer],nv=v.length/6,idx=new Uint32Array(nv/4*6);
+  for(let i=0,j=0;i<nv;i+=4){idx[j++]=i;idx[j++]=i+1;idx[j++]=i+2;idx[j++]=i;idx[j++]=i+2;idx[j++]=i+3}
+  gl.bindVertexArray(B.vao);
+  gl.bindBuffer(gl.ARRAY_BUFFER,B.vb);gl.bufferData(gl.ARRAY_BUFFER,new Float32Array(v),gl.STATIC_DRAW);
+  gl.bindBuffer(gl.ELEMENT_ARRAY_BUFFER,B.ib);gl.bufferData(gl.ELEMENT_ARRAY_BUFFER,idx,gl.STATIC_DRAW);
+  gl.enableVertexAttribArray(aPos);gl.vertexAttribPointer(aPos,3,gl.FLOAT,false,24,0);
+  gl.enableVertexAttribArray(aUV);gl.vertexAttribPointer(aUV,2,gl.FLOAT,false,24,12);
+  gl.enableVertexAttribArray(aBr);gl.vertexAttribPointer(aBr,1,gl.FLOAT,false,24,20);
+  B.n=idx.length;
+ }
+ draw(layer){const B=this.layers[layer];if(B.n){gl.bindVertexArray(B.vao);gl.drawElements(gl.TRIANGLES,B.n,gl.UNSIGNED_INT,0)}}
+}
+
+class LevelRenderer{
+ constructor(level){
+  this.level=level;level.listener=this;
+  this.xc=level.width/CS;this.yc=level.depth/CS;this.zc=level.height/CS;
+  this.chunks=[];
+  for(let x=0;x<this.xc;x++)for(let y=0;y<this.yc;y++)for(let z=0;z<this.zc;z++)
+   this.chunks[(x+y*this.xc)*this.zc+z]=new Chunk(level,x*CS,y*CS,z*CS,(x+1)*CS,(y+1)*CS,(z+1)*CS);
+  // highlight quad
+  this.hv=gl.createVertexArray();this.hb=gl.createBuffer();
+ }
+ render(vp,layer,budget){
+  const pl=planes(vp);
+  for(const c of this.chunks){
+   if(!inFrustum(pl,c.aabb))continue;
+   if(c.dirty&&budget.n>0){budget.n--;c.dirty=false;c.build(0);c.build(1)}
+   c.draw(layer);
+  }
+ }
+ renderHit(h){
+  const q=FACES[h.f],d=new Float32Array(24);
+  q.forEach((p,i)=>{d.set([h.x+p[2],h.y+p[3],h.z+p[4],0,0,0],i*6)});
+  gl.bindVertexArray(this.hv);gl.bindBuffer(gl.ARRAY_BUFFER,this.hb);gl.bufferData(gl.ARRAY_BUFFER,d,gl.DYNAMIC_DRAW);
+  gl.enableVertexAttribArray(aPos);gl.vertexAttribPointer(aPos,3,gl.FLOAT,false,24,0);
+  gl.disableVertexAttribArray(aUV);gl.disableVertexAttribArray(aBr);
+  gl.enable(gl.BLEND);gl.blendFunc(gl.SRC_ALPHA,gl.ONE);
+  gl.uniform1i(uFlat,1);gl.uniform4f(uColor,1,1,1,Math.sin(Date.now()/100)*.2+.4);
+  gl.drawArrays(gl.TRIANGLE_FAN,0,4);
+  gl.uniform1i(uFlat,0);gl.disable(gl.BLEND);
+ }
+ setDirty(x0,y0,z0,x1,y1,z1){
+  x0=Math.max(Math.trunc(x0/CS),0);y0=Math.max(Math.trunc(y0/CS),0);z0=Math.max(Math.trunc(z0/CS),0);
+  x1=Math.min(Math.trunc(x1/CS),this.xc-1);y1=Math.min(Math.trunc(y1/CS),this.yc-1);z1=Math.min(Math.trunc(z1/CS),this.zc-1);
+  for(let x=x0;x<=x1;x++)for(let y=y0;y<=y1;y++)for(let z=z0;z<=z1;z++)this.chunks[(x+y*this.xc)*this.zc+z].dirty=true;
+ }
+ tileChanged(x,y,z){this.setDirty(x-1,y-1,z-1,x+1,y+1,z+1)}
+ lightColumnChanged(x,z,y0,y1){this.setDirty(x-1,y0-1,z-1,x+1,y1+1,z+1)}
+ allChanged(){this.setDirty(0,0,0,this.level.width,this.level.depth,this.level.height)}
+}
+
+function planes(m){
+ const r=(i)=>[m[i],m[4+i],m[8+i],m[12+i]],p=[];
+ const r3=r(3);
+ for(let i=0;i<3;i++){const a=r(i);p.push(r3.map((v,k)=>v+a[k]),r3.map((v,k)=>v-a[k]))}
+ return p;
+}
+function inFrustum(pl,b){
+ for(const p of pl){
+  const x=p[0]>0?b.x1:b.x0,y=p[1]>0?b.y1:b.y0,z=p[2]>0?b.z1:b.z0;
+  if(p[0]*x+p[1]*y+p[2]*z+p[3]<0)return false;
+ }
+ return true;
+}
+
+// ---- Game ----
+const level=new Level(256,256,64),renderer=new LevelRenderer(level),player=new Player(level),timer=new Timer(60);
+const keys=new Set();let dx=0,dy=0,hit=null,clicks=[];
+const msg=document.getElementById("msg");
+function flash(t){msg.textContent=t;msg.style.opacity=1;clearTimeout(flash.t);flash.t=setTimeout(()=>msg.style.opacity=0,1500)}
+
+function pick(eye,dir){
+ const r=3,b=player.bb.grow(r,r,r);
+ const lo=[Math.trunc(b.x0),Math.trunc(b.y0),Math.trunc(b.z0)],hi=[Math.trunc(b.x1+1),Math.trunc(b.y1+1),Math.trunc(b.z1+1)];
+ const c=eye.map(Math.floor),st=dir.map(d=>d>0?1:-1);
+ const tM=eye.map((e,i)=>dir[i]===0?Infinity:((dir[i]>0?c[i]+1:c[i])-e)/dir[i]);
+ const tD=dir.map(d=>d===0?Infinity:Math.abs(1/d));
+ for(let n=0;n<40;n++){
+  let a=0;if(tM[1]<tM[a])a=1;if(tM[2]<tM[a])a=2;
+  c[a]+=st[a];tM[a]+=tD[a];
+  if(c[0]<lo[0]||c[1]<lo[1]||c[2]<lo[2]||c[0]>=hi[0]||c[1]>=hi[1]||c[2]>=hi[2])continue;
+  if(level.isSolidTile(c[0],c[1],c[2])){
+   const f=a===0?(st[0]>0?4:5):a===1?(st[1]>0?0:1):(st[2]>0?2:3);
+   return{x:c[0],y:c[1],z:c[2],f};
+  }
+ }
+ return null;
+}
+
+function frame(){
+ requestAnimationFrame(frame);
+ timer.advance();
+ for(let i=0;i<timer.ticks;i++)player.tick(keys);
+ const a=timer.a;
+ player.turn(dx,-dy);dx=dy=0;
+
+ const w=Math.max(1,canvas.clientWidth*(devicePixelRatio||1)|0),h=Math.max(1,canvas.clientHeight*(devicePixelRatio||1)|0);
+ if(canvas.width!==w||canvas.height!==h){canvas.width=w;canvas.height=h}
+ gl.viewport(0,0,w,h);
+
+ const px=player.xo+(player.x-player.xo)*a,py=player.yo+(player.y-player.yo)*a,pz=player.zo+(player.z-player.zo)*a;
+ const view=mul(mul(mul(trans(0,0,-.3),rotX(player.xRot)),rotY(player.yRot)),trans(-px,-py,-pz));
+ const proj=persp(70,w/h,.05,1000);
+
+ const xr=player.xRot*Math.PI/180,yr=player.yRot*Math.PI/180;
+ const dir=[Math.cos(xr)*Math.sin(yr),-Math.sin(xr),-Math.cos(xr)*Math.cos(yr)];
+ hit=pick([px-.3*dir[0],py-.3*dir[1],pz-.3*dir[2]],dir);
+
+ for(const b of clicks){
+  if(!hit)break;
+  if(b===2)level.setTile(hit.x,hit.y,hit.z,0);
+  else if(b===0){
+   let{x,y,z}=hit;
+   if(hit.f===0)y--;if(hit.f===1)y++;if(hit.f===2)z--;if(hit.f===3)z++;if(hit.f===4)x--;if(hit.f===5)x++;
+   level.setTile(x,y,z,1);
+  }
+ }
+ clicks=[];
+
+ gl.clearColor(0x93/255,0xb8/255,0xd1/255,0);gl.clearDepth(1);gl.clear(gl.COLOR_BUFFER_BIT|gl.DEPTH_BUFFER_BIT);
+ gl.enable(gl.DEPTH_TEST);gl.depthFunc(gl.LEQUAL);gl.enable(gl.CULL_FACE);
+ gl.uniformMatrix4fv(uProj,false,proj);gl.uniformMatrix4fv(uView,false,view);
+ gl.activeTexture(gl.TEXTURE0);gl.bindTexture(gl.TEXTURE_2D,tex);
+ const vp=mul(proj,view),budget={n:4};
+ gl.uniform1i(uFog,0);renderer.render(vp,0,budget);
+ gl.uniform1i(uFog,1);renderer.render(vp,1,{n:0});
+ gl.uniform1i(uFog,0);
+ if(hit)renderer.renderHit(hit);
+}
+
+// ---- Input ----
+addEventListener("keydown",e=>{
+ if(e.code==="Enter"&&!e.repeat)flash(level.save()?"Level saved":"Couldn’t save level");
+ keys.add(e.code);
+ if(e.code==="Space"||e.code.startsWith("Arrow"))e.preventDefault();
+});
+addEventListener("keyup",e=>keys.delete(e.code));
+addEventListener("blur",()=>keys.clear());
+document.addEventListener("mousemove",e=>{if(document.pointerLockElement===canvas){dx+=e.movementX;dy+=e.movementY}});
+const bgm=new Audio("ruby_bgm.mp3");bgm.loop=true;
+canvas.addEventListener("mousedown",e=>{if(document.pointerLockElement===canvas)clicks.push(e.button);else{canvas.requestPointerLock();if(bgm.paused)bgm.play().catch(()=>{})}});
+canvas.addEventListener("contextmenu",e=>e.preventDefault());
+document.addEventListener("pointerlockerror",()=>flash("Mouse capture was blocked by the browser"));
+
+// ---- Texture, then start ----
+let tex=gl.createTexture();
+const img=new Image();
+img.onload=()=>{
+ gl.bindTexture(gl.TEXTURE_2D,tex);
+ gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA,gl.RGBA,gl.UNSIGNED_BYTE,img);
+ gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MIN_FILTER,gl.NEAREST);
+ gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_MAG_FILTER,gl.NEAREST);
+ gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_S,gl.CLAMP_TO_EDGE);
+ gl.texParameteri(gl.TEXTURE_2D,gl.TEXTURE_WRAP_T,gl.CLAMP_TO_EDGE);
+ timer.last=performance.now();frame();
+};
+img.src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAQCAYAAAB3AH1ZAAAACXBIWXMAAA7EAAAOxAGVKw4bAAAESklEQVRIiXWVS2wbVRSGv3l4PPb4lcR286pTBZeWlkBVKgVFlbqAwhoJJDYsWLBgSbqGDRK7ds+KBatukNgXCVChVKIqhYiWKg1xGjeOUzfjx3g8D4/RTHUt2w1nMzP3XN3/nv/85x/pi+/eq8iSQn/gYdkmYeiaQdOySCU0csk5HL+L5TQI+gGyLNPzAhptKOV1Pih/xWjcvn07et68eXO4duXKlbF8mAvXwndVQsJ2m8zrS6Q1A0lWqHR2SGjQdVw6doWV4uv0Y7PU3MeYHZNkXENTXIKB/wLw9evXWVhYGIJevXp1mBNRrVaHa3I+VuRscZV0cppqr0rd3UWPQTyWJpNIM5OZxgyayLLE8WQZTYGDpovjw5nC6hjAJHi4HoKF6yLEHsGQ9PHXlypZA2KqTErP4/kO8ViSamOPAIjJoCiQ1HQS8QyOZ+H3HRRZ47DTpXVjIQIJQ4CPViwAJ/cIdtQzx8s8bmxyMneejYPfOVt4A1mScdQGx4srJHWDG//8TBD0KKVeRtEV/ti7ixH3yRk6n4wcNhmTjBzVEunL7z+sDBhQqdc4P7fCg2d/MZMuMBgEZEjzxN4mlZjB6jVw+2D1YCpiLElM1ZmtXR4eFtJ68eLFsQtcu3ZtTCNin2BE+vSbS5Vydjmifa9XiUTY6prEYzLdXoCqgCrDq7NruJ7D484m84klDrwactdlxnx37GAhMkF3GKOXmtwrT6UMnthbuL6N17cZBH0cD47lXorAp9NFTs1cYKP2Kxv1O5HyPd+mbtYp5JbGqg0jpDusWoALsEkhir1q27Y4kTrBdGaWpJtGkhRa9h0yZCkZy0ylirheL6I/a+To2CZW0CQYwL39e6xw+kj1CwDxPXkJkVPzmSLbrW3yuUW2Ww8YEFBKLkaV/tveithJxLMReD69SL/vMju9TEe2CC8/qewQTPQ+fF9dXR22QdA+OimyosRYzpTZbj1kMVmOzKcwtUSl/ZB5vciF0tvsmU2mU3Ns7W8gSRJ/13+j51oYcX3M1SYNZ1J8QhujEyMfmFUMPUfTqjOgT8jI3Se/oCgah8FTHjb+ZG4qx775iJ5HZNG2G7ok9AfuCwceBSz6PsqUaIn07Y+fV7bMBzxt1dE1mUziGI7XpdNr0nGgZsK5pSyO36bdDTg9U0aVde7ub5DW4aNXno/Z+vr6GGAIFtIu+j45jqIdahAEFLVZtu06LTug3d2L1C9JcPn0O9QaFeYLyzw9rNIwGjhywG5zgwvzr6Eq8eGhRxnO/4lTaCLMK2+9f/YzP/Dx5UP8YMBq6U3yyQKe5FK3dtk5rGJ5h3T8Ni1rn/lECV1KsdvdJCEl2LsfGjbs7OywtrY29P9SqYRpPv+73rp1CyX084mWRAw8at4nZzx3vo4Nz/wGXacdJU/mVvD9O5zKn+OnzR/QVLjfuEdKTxMEPl3ZJTtSUVi1ENrodIgxHBWi8In/APNaaLAbCDFGAAAAAElFTkSuQmCC";
+</script></body></html>
