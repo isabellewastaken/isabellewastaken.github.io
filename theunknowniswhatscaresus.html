@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hallways</title>
+<style>
+html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:ui-monospace,Menlo,Consolas,monospace;color:#fff}
+canvas{display:block;width:100%;height:100%}
+#start{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#000;cursor:pointer;text-align:center;letter-spacing:.15em;z-index:5}
+#start small{opacity:.5;margin-top:14px;letter-spacing:.08em;line-height:1.7}
+#chat{position:fixed;left:14px;bottom:calc(14px + env(safe-area-inset-bottom,0px));width:min(420px,80vw);min-height:90px;border:1px solid rgba(255,255,255,.55);background:rgba(0,0,0,.65);padding:8px 10px;font-size:13px;pointer-events:none;user-select:none;z-index:3;box-sizing:border-box}
+#chat .h{opacity:.45;font-size:11px;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:4px;margin-bottom:6px}
+#chat div.m{margin:3px 0;word-break:break-word}
+#fade{position:fixed;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .25s;z-index:9}
+</style></head><body>
+<div id="chat"><div class="h">chat</div><div id="log"></div></div>
+<div id="fade"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+// ====== CONFIG: fill in your messages here ======
+const MESSAGES = [
+  "New PM from isa_kohary7: message1",
+  "New PM from isa_kohary7: message2",
+  "isa_kohary7: message3"
+];
+const DELAYS = [5, 7];             // seconds after msg1 -> msg2, msg2 -> msg3
+const WALK_SECONDS = 300;          // 5 minutes (add ?fast to the URL to test with 10s)
+const REDIRECT_URL = "whatliesbeyond.html";
+const TURN_TRIGGER = 0.9;          // radians turned (~50 deg) before the interruption fires
+const REDIRECT_DELAY_MS = 700;     // how long the noise plays before the redirect
+// ================================================
+if (location.search.includes("fast")) window.WALK = 10;
+const WALK = window.WALK || WALK_SECONDS;
+
+const N = 61, S = 3, H = 3;
+// ---- maze ----
+const g = Array.from({length:N},()=>new Uint8Array(N).fill(1)); // 1 = wall
+(function(){
+  const st=[[1,1]]; g[1][1]=0;
+  while(st.length){
+    const [x,z]=st[st.length-1];
+    const d=[[2,0],[-2,0],[0,2],[0,-2]].sort(()=>Math.random()-.5)
+      .filter(([a,b])=>x+a>0&&z+b>0&&x+a<N-1&&z+b<N-1&&g[x+a][z+b]);
+    if(!d.length){st.pop();continue}
+    const [a,b]=d[0]; g[x+a/2][z+b/2]=0; g[x+a][z+b]=0; st.push([x+a,z+b]);
+  }
+  for(let i=1;i<N-1;i++)for(let j=1;j<N-1;j++)
+    if(g[i][j]&&((i%2)!==(j%2))&&Math.random()<.12) g[i][j]=0; // loops
+})();
+const wall=(i,j)=>i<0||j<0||i>=N||j>=N||g[i][j]===1;
+
+// ---- geometry ----
+const tri=[], ln=[];
+function quad(x1,z1,x2,z2){
+  tri.push(x1,0,z1, x2,0,z2, x2,H,z2,  x1,0,z1, x2,H,z2, x1,H,z1);
+  ln.push(x1,0,z1,x2,0,z2, x1,H,z1,x2,H,z2);
+}
+for(let i=0;i<N;i++)for(let j=0;j<N;j++){
+  if(wall(i,j))continue;
+  const x=i*S,z=j*S;
+  if(wall(i-1,j))quad(x,z,x,z+S);
+  if(wall(i+1,j))quad(x+S,z,x+S,z+S);
+  if(wall(i,j-1))quad(x,z,x+S,z);
+  if(wall(i,j+1))quad(x,z+S,x+S,z+S);
+}
+for(let i=0;i<=N;i++)for(let j=0;j<=N;j++){
+  const a=wall(i-1,j-1),b=wall(i,j-1),c=wall(i-1,j),d=wall(i,j);
+  const n=a+b+c+d;
+  if(n===0||n===4)continue;
+  if(n===2&&!((a&&d)||(b&&c)))continue; // straight wall
+  ln.push(i*S,0,j*S,i*S,H,j*S);
+}
+const scene=new THREE.Scene();
+scene.background=new THREE.Color(0x000000);
+scene.fog=new THREE.Fog(0x000000,3,26);
+const mk=(arr)=>{const q=new THREE.BufferGeometry();q.setAttribute('position',new THREE.Float32BufferAttribute(arr,3));return q};
+scene.add(new THREE.Mesh(mk(tri),new THREE.MeshBasicMaterial({color:0x000000,side:THREE.DoubleSide,polygonOffset:true,polygonOffsetFactor:1,polygonOffsetUnits:1})));
+scene.add(new THREE.LineSegments(mk(ln),new THREE.LineBasicMaterial({color:0xffffff})));
+
+const renderer=new THREE.WebGLRenderer({antialias:true});
+renderer.setPixelRatio(Math.min(devicePixelRatio,2));
+document.body.prepend(renderer.domElement);
+const cam=new THREE.PerspectiveCamera(75,1,.05,60);
+cam.rotation.order="YXZ"; cam.position.set(1.5*S,1.6,1.5*S);
+function resize(){renderer.setSize(innerWidth,innerHeight);cam.aspect=innerWidth/innerHeight;cam.updateProjectionMatrix()}
+addEventListener("resize",resize);resize();
+
+// ---- controls ----
+let yaw=0,pitch=0,started=true,drag=false;
+const keys={};
+addEventListener("keydown",e=>keys[e.code]=true);
+addEventListener("keyup",e=>keys[e.code]=false);
+// ambient audio (browsers block autoplay, so it also starts on the first click/keypress)
+const amb=new Audio("ambient.mp3");amb.loop=true;amb.volume=.6;
+const playAmb=()=>{amb.play().catch(()=>{})};
+playAmb();
+addEventListener("pointerdown",()=>{if(amb.paused)playAmb()});
+addEventListener("keydown",()=>{if(amb.paused)playAmb()});
+addEventListener("mousedown",()=>{drag=true;if(!document.pointerLockElement){try{renderer.domElement.requestPointerLock()}catch(e){}}});
+addEventListener("mouseup",()=>drag=false);
+addEventListener("mousemove",e=>{
+  if(!started||locked)return;
+  if(document.pointerLockElement||drag){yaw-=e.movementX*.0022;pitch=Math.max(-1.4,Math.min(1.4,pitch-e.movementY*.0022))}
+});
+let locked=false;
+document.addEventListener("pointerlockchange",()=>{locked=false});
+addEventListener("mousemove",e=>{});
+// pointer-lock movement is handled by the same listener above (movementX works while locked)
+
+const R=.35;
+const solid=(x,z)=>wall(Math.floor(x/S),Math.floor(z/S));
+const free=(x,z)=>!(solid(x-R,z-R)||solid(x+R,z-R)||solid(x-R,z+R)||solid(x+R,z+R));
+
+// ---- chat / story ----
+const log=document.getElementById("log");
+function say(t){const d=document.createElement("div");d.className="m";d.textContent=t;log.appendChild(d)}
+let t=0,phase=0,tNext=WALK,yaw0=0,done=false;
+const bad=new Audio("bad%20noise.mp3");bad.preload="auto";bad.volume=1;
+function goBeyond(){
+  if(done)return;done=true;
+  amb.pause();
+  bad.play().catch(()=>{});
+  document.getElementById("fade").style.opacity=1;
+  setTimeout(()=>{location.href=REDIRECT_URL},REDIRECT_DELAY_MS);
+}
+const wrap=a=>Math.atan2(Math.sin(a),Math.cos(a));
+
+let last=performance.now();
+function loop(now){
+  requestAnimationFrame(loop);
+  const dt=Math.min(.05,(now-last)/1000);last=now;
+  if(started&&!done){
+    t+=dt;
+    if(keys.ArrowLeft)yaw+=1.8*dt; if(keys.ArrowRight)yaw-=1.8*dt;
+    const f=(keys.KeyW||keys.ArrowUp?1:0)-(keys.KeyS||keys.ArrowDown?1:0);
+    const s=(keys.KeyD?1:0)-(keys.KeyA?1:0);
+    if(f||s){
+      const sp=3.2*dt, sin=Math.sin(yaw), cos=Math.cos(yaw);
+      const dx=(-sin*f+cos*s)*sp, dz=(-cos*f-sin*s)*sp;
+      const p=cam.position;
+      if(free(p.x+dx,p.z))p.x+=dx;
+      if(free(p.x,p.z+dz))p.z+=dz;
+    }
+    // story beats
+    if(phase<3&&t>=tNext){
+      say(MESSAGES[phase]);
+      if(phase===2)yaw0=yaw;
+      if(phase<2)tNext=t+DELAYS[phase];
+      phase++;
+    }
+    if(phase===3&&Math.abs(wrap(yaw-yaw0))>TURN_TRIGGER)goBeyond();
+  }
+  cam.rotation.set(pitch,yaw,0);
+  renderer.render(scene,cam);
+}
+requestAnimationFrame(loop);
+</script></body></html>
