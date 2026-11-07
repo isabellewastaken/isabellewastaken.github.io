@@ -1,22 +1,88 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>509</title>
-<style>
-:root{--bg:#fff;--fg:#202124;--mute:#5f6368;--btn:#1a73e8;--btnfg:#fff}
-@media (prefers-color-scheme:dark){:root{--bg:#202124;--fg:#e8eaed;--mute:#9aa0a6;--btn:#8ab4f8;--btnfg:#202124}}
-html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
-main{max-width:600px;margin:0 auto;padding:12vh 24px 24px}
-h1{font-size:1.5rem;font-weight:500;margin:0 0 12px}
-p{color:var(--mute);margin:0 0 8px;line-height:1.5}
-.code{font-size:.8rem;margin-top:24px;letter-spacing:.03em}
-button{margin-top:28px;background:var(--btn);color:var(--btnfg);border:0;border-radius:4px;padding:10px 20px;font:inherit;font-size:.9rem;cursor:pointer}
-button:hover{opacity:.9}
-</style></head><body>
-<main>
-  <h1>509</h1>
-  <p>The page you were trying to reach is unavailable.</p>
-  <p class="code">Error code: USER_NOT_APPLICABLE_AT_TIME</p>
-  <button onclick="location.href='index.html'">Go back</button>
-</main>
-</body></html>
+<html lang="en">
+  <head><meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Error 509</title>
+  <style>
+  :root{
+    --bg:#fff;
+    --fg:#202124;
+    --mute:#5f6368;
+    --btn:#1a73e8;
+    --btnfg:#fff
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: url("background.jpg") center / cover no-repeat;
+    opacity: 0.4;
+    z-index: -1;
+  }
+@media (prefers-color-scheme:dark){
+  :root{
+      --bg:#202124;
+      --fg:#e8eaed;
+      --mute:#9aa0a6;
+      --btn:#8ab4f8;
+      --btnfg:#202124}
+    }
+
+    html,body{
+      margin:0;
+      height:100%;
+      background:var(--bg);
+      color:var(--fg);
+      font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif
+    }
+
+    main{
+      max-width:600px;
+      margin:0 auto;
+      padding:12vh 24px 24px
+    }
+
+    h1{
+      font-size:1.5rem;
+      font-weight:500;
+      margin:0 0 12px
+    }
+
+    p{
+      color:var(--mute);
+      margin:0 0 8px;
+      line-height:1.5
+     }
+
+    .code{
+      font-size:.8rem;
+      margin-top:24px;
+      letter-spacing:.03em
+    }
+
+    button{
+      margin-top:28px;
+      background:var(--btn);
+      color:var(--btnfg);
+      border:0;
+      border-radius:4px;
+      padding:10px 20px;
+      font:inherit;
+      font-size:.9rem;
+      cursor:pointer
+    }
+
+    button:hover{
+      opacity:.9
+    }
+</style>
+  </head>
+  <body>
+    <main>
+      <h1>Error 509</h1>
+      <p>The page you were trying to reach is unavailable. Wait a bit, then try again.</p>
+      <p class="code">Error code: USER_NOT_APPLICABLE_AT_TIME</p>
+      <button onclick="location.href='index.html'">Go back</button>
+    </main>
+  </body>
+</html>
