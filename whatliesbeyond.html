@@ -1,39 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head><meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Error 423</title>
-  <style>
-  :root{
-    --bg:#fff;
-    --fg:#202124;
-    --mute:#5f6368;
-    --btn:#1a73e8;
-    --btnfg:#fff
-  }
-  body::before {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background: url("background.jpg") center / cover no-repeat;
-    opacity: 0.4;
-    z-index: -1;
-  }
-@media (prefers-color-scheme:dark){
-  :root{
-      --bg:#202124;
-      --fg:#e8eaed;
-      --mute:#9aa0a6;
-      --btn:#8ab4f8;
-      --btnfg:#202124}
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Error 423</title>
+    <style>
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("background.jpg") center / cover no-repeat;
+      opacity: 0.4;
+      z-index: -1;
     }
-
     html,body{
       margin:0;
       height:100%;
       font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif
     }
-
+  
     main{
       max-width:600px;
       margin:0 auto;
@@ -49,20 +34,18 @@
     p{
       margin:0 0 8px;
       line-height:1.5
-     }
+    }
 
     .code{
       font-size:.8rem;
-      margin-top:24px;
+      margin-top:18px;
       letter-spacing:.03em
     }
 
     button{
       margin-top:28px;
-      background:var(--btn);
-      color:var(--btnfg);
-      border:0;
-      border-radius:4px;
+      background:#000;
+      color:#fff;
       padding:10px 20px;
       font:inherit;
       font-size:.9rem;
@@ -70,7 +53,7 @@
     }
 
     button:hover{
-      opacity:.9
+      opacity:.5
     }
 </style>
   </head>
