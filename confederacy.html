@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IWT</title>
+    <style>
+        body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: url("background.png") center / cover no-repeat;
+        opacity: 0.4;
+        z-index: -1;
+      }
+      body {
+        background-color: #4b4473;
+      }
+      progress {
+        width: 100%;
+        max-width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Discord Account vs. The Confederacy</h1>
+    <p>The Confederacy lasted 1,552 days (Feb 8, 1861 to May 10, 1865). My main Discord account was made on <b id="created"></b>. This is how long until it has existed for longer! :D</p>
+
+    <h2 id="clock">Loading...</h2>
+    <progress id="bar" max="100" value="0"></progress>
+    <p id="pct"></p>
+    <p>It will <span id="outlive" style="cursor: pointer;">outlive</span> the Confederacy on <b id="target"></b>.</p>
+
+    <a href="index.html">Click here to go back to the main website.</a>
+
+    <audio id="bgm" src="music.mp3" loop></audio>
+
+    <script>
+      const bgm = document.getElementById('bgm');
+      bgm.volume = 0.5; // 0 to 1
+
+      document.addEventListener('pointerdown', () => bgm.play(), { once: true });
+    </script>
+
+    <audio id="secret" src="snd_placeholder_toberemoved.mp3"></audio>
+
+    <script>
+      const secret = document.getElementById('secret');
+      const outlive = document.getElementById('outlive');
+
+      outlive.addEventListener('click', () => {
+        secret.currentTime = 0;
+        secret.play();
+        secret.addEventListener('ended', () => {
+          window.location.href = 'theunknowniswhatscaresus.html';
+        }, { once: true });
+      });
+    </script>
+
+    <script>
+      const CREATED = new Date('2023-02-26T14:18:40.199Z').getTime();
+      const DAY = 86400000;
+      const TARGET = CREATED + 1552 * DAY;
+      const opt = { dateStyle: 'medium', timeStyle: 'long' };
+
+      document.getElementById('created').textContent = new Date(CREATED).toLocaleString(undefined, opt);
+      document.getElementById('target').textContent = new Date(TARGET).toLocaleString(undefined, opt);
+
+      function tick() {
+        const now = Date.now();
+        const left = TARGET - now;
+        const pct = Math.min(100, (now - CREATED) / (TARGET - CREATED) * 100);
+        document.getElementById('bar').value = pct;
+        document.getElementById('pct').textContent = pct.toFixed(4) + '% of the Confederacy\'s lifespan';
+
+        if (left <= 0) {
+          const s = Math.floor(-left / 1000);
+          document.getElementById('clock').textContent = 'Done! My account has outlived the Confederacy by ' + Math.floor(s / 86400) + ' days.';
+          return;
+        }
+        const s = Math.floor(left / 1000);
+        document.getElementById('clock').textContent =
+          Math.floor(s / 86400) + ' days, ' +
+          Math.floor(s % 86400 / 3600) + ' hours, ' +
+          Math.floor(s % 3600 / 60) + ' minutes, ' +
+          (s % 60) + ' seconds';
+      }
+      tick();
+      setInterval(tick, 1000);
+    </script>
+  </body>
+</html>
