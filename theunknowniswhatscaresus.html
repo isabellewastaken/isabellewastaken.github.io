@@ -114,7 +114,7 @@ const free=(x,z)=>!(solid(x-R,z-R)||solid(x+R,z-R)||solid(x-R,z+R)||solid(x+R,z+
 const log=document.getElementById("log");
 function say(t){const d=document.createElement("div");d.className="m";d.textContent=t;log.appendChild(d)}
 let t=0,phase=0,tNext=WALK,yaw0=0,done=false;
-const bad=new Audio("bad%20noise.mp3");bad.preload="auto";bad.volume=1;
+const bad=new Audio("bad%20sound.mp3");bad.preload="auto";bad.volume=1;
 function goBeyond(){
   if(done)return;done=true;
   amb.pause();
