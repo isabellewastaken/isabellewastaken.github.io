@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Hallways</title>
+<title>...</title>
 <style>
 html,body{margin:0;height:100%;background:#000;overflow:hidden;font-family:ui-monospace,Menlo,Consolas,monospace;color:#fff}
 canvas{display:block;width:100%;height:100%}
@@ -18,9 +18,9 @@ canvas{display:block;width:100%;height:100%}
 <script>
 // ====== CONFIG: fill in your messages here ======
 const MESSAGES = [
-  "New PM from isa_kohary7: message1",
-  "New PM from isa_kohary7: message2",
-  "isa_kohary7: message3"
+  "isa_kohary7: Do you not realise this is futile?",
+  "isa_kohary7: Don't you want to leave?",
+  "isa_kohary7: Turn around and greet an old friend, wont you?"
 ];
 const DELAYS = [5, 7];             // seconds after msg1 -> msg2, msg2 -> msg3
 const WALK_SECONDS = 300;          // 5 minutes (add ?fast to the URL to test with 10s)
@@ -90,7 +90,7 @@ const keys={};
 addEventListener("keydown",e=>keys[e.code]=true);
 addEventListener("keyup",e=>keys[e.code]=false);
 // ambient audio (browsers block autoplay, so it also starts on the first click/keypress)
-const amb=new Audio("ambient.mp3");amb.loop=true;amb.volume=.6;
+const amb=new Audio("ambient.wav");amb.loop=true;amb.volume=.6;
 const playAmb=()=>{amb.play().catch(()=>{})};
 playAmb();
 addEventListener("pointerdown",()=>{if(amb.paused)playAmb()});
