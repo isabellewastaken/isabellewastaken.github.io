@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TRZ200</title>
+    <style>
+        body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background: url("background.jpg") center / cover no-repeat;
+        opacity: 0.4;
+        z-index: -1;
+      }
+      #side-images {
+        float: right;
+        width: 250px;
+        max-width: 40%;
+        margin: 0 0 10px 15px;
+      }
+
+      #yuri {
+        cursor: pointer;
+      }
+      #side-images img {
+        display: block;
+        width: 100%;
+        height: auto;
+        margin-bottom: 10px;
+      }
+      body {
+        background-color: #4b4473;
+      }
+      #lang-picker {
+        position: fixed;
+        left: 10px;
+        bottom: 10px;
+        z-index: 10;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="side-images">
+      <img id="yuri" src="yuri.png" alt="yuri">
+      <img src="mizuki.jpg" alt="mizuki">
+    </div>
+
+    <div id="lang-picker">
+      <label for="lang-select" data-i18n="lang_label"></label>
+      <select id="lang-select">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="fr">French</option>
+        <option value="de">German</option>
+        <option value="pl">Polish</option>
+        <option value="ja">Japanese</option>
+        <option value="ru">Russian</option>
+        <option value="base">Base</option>
+      </select>
+    </div>
+
+    <h1 data-i18n="heading"></h1>
+    <p>
+      <span data-i18n="intro_1"></span><br><br><span data-i18n="intro_2"></span>
+    </p>
+    <a href="https://isabellewastaken.github.io/trzpgames" data-i18n="link_games"></a>
+    <br><br>
+    <a href="confederacy.html" data-i18n="link_confederacy"></a>
+    <br><br>
+    <a href="https://www.youtube.com/@therealzhenplaz2000" data-i18n="link_youtube"></a>
+    <p><span data-i18n="song_label"></span> <b>SoundHolicK - Death Moon</b> <span data-i18n="song_hint"></span></p>
+    <audio id="bgm" src="685746_Death-Moon.mp3" loop></audio>
+
+    <script>
+      const bgm = document.getElementById('bgm');
+      bgm.volume = 0.5;
+
+      document.addEventListener('pointerdown', () => bgm.play(), { once: true });
+    </script>
+    <audio id="secret" src="secret.wav"></audio>
+
+    <script>
+      const secret = document.getElementById('secret');
+      const yuri = document.getElementById('yuri');
+
+      yuri.addEventListener('click', () => {
+        secret.currentTime = 0;
+        secret.play();
+        secret.addEventListener('ended', () => {
+          window.location.href = 'rubydung.html';
+        }, { once: true });
+      });
+    </script>
+
+    <script>
+      // THE TRANSLATIONS
+      // if you wanna know what base is its just the strings before editing lmao
+      // anyways i plan to add Chinese, Hindi and other European languages later i wanna get these done first
+      const MISSING_TEXT = "STRING MISSING! PLEASE CONTACT TheRealZhen200";
+
+      const translations = {
+        en: {
+          lang_label: "Language:",
+          heading: "TheRealZhen200's Website!",
+          intro_1: "Hello!! This is my website, if you couldn't tell. Its still a work in progress, but that's okay!",
+          intro_2: "Anyways, I do some code stuff, and I have 7 iPhones and 7 computers! :D",
+          link_games: "Click here to go to the game website.",
+          link_confederacy: "Click to see how long is left until my Discord account outlives the confederacy!",
+          link_youtube: "Click here to see my YouTube channel!",
+          song_label: "Song:",
+          song_hint: "(If you cannot hear it, click anywhere for it to play.)"
+        },
+        es: {
+          lang_label: "Idioma:",
+          heading: "¡El sitio web de TheRealZhen200!",
+          intro_1: "¡Hola! Este es mi sitio web, por si no resultaba evidente. Todavía está en proceso de elaboración, ¡pero no pasa nada!",
+          intro_2: "En fin, trabajo en programación, ¡y tengo 7 iPhones y 7 computadoras! :D",
+          link_games: "Haz clic aquí para ir al sitio web de juegos.",
+          link_confederacy: "¡Haz clic para ver cuánto falta para que mi cuenta de Discord haya durado más tiempo que la Confederación!",
+          link_youtube: "¡Haz clic aquí para echar un vistazo a mi canal de YouTube!",
+          song_label: "Canción:",
+          song_hint: "(Si no puedes oírlo, haz clic en cualquier parte para reproducirlo.)"
+        },
+        ja: {
+          lang_label: "言語:",
+          heading: "TheRealZhen200のウェブサイト!",
+          intro_1: "こんにちは！！ご覧の通り、これが私のウェブサイトです。まだ制作の途中なのですが……まあ、それも悪くないですよね？",
+          intro_2: "普段はプログラミング関連の作業をしていて、iPhoneを7台、コンピュータを7台所有しています！ :D",
+          link_games: "ゲームサイトはここをクリック。",
+          link_confederacy: "私のDiscordアカウントが、アメリカ連合国の存続期間を上回るまでには、あとどれくらいの期間、アクティブな状態を維持する必要があるだろうか？!",
+          link_youtube: "YouTubeチャンネルはここをクリック!",
+          song_label: "曲:",
+          song_hint: "(聞こえない場合は、どこかをクリックすると再生されます。)"
+        },
+        // No language data yet for these: every string shows MISSING_TEXT until filled in.
+        fr: {
+          link_confederacy: "Cliquez pour voir combien de temps il reste avant que mon compte Discord n’ait duré plus longtemps que les États confédérés!"
+        },
+        de: {},
+        pl: {},
+        ru: {}
+      };
+
+      function applyLanguage(lang) {
+        document.documentElement.lang = lang === 'base' ? 'en' : lang;
+        document.querySelectorAll('[data-i18n]').forEach(el => {
+          const key = el.dataset.i18n;
+          if (lang === 'base') {
+            el.textContent = key;
+          } else {
+            const table = translations[lang] || {};
+            el.textContent = Object.prototype.hasOwnProperty.call(table, key)
+              ? table[key]
+              : MISSING_TEXT;
+          }
+        });
+      }
+
+      const langSelect = document.getElementById('lang-select');
+
+      let saved = null;
+      try { saved = localStorage.getItem('trz-lang'); } catch (e) {}
+      if (saved && [...langSelect.options].some(o => o.value === saved)) {
+        langSelect.value = saved;
+      }
+      applyLanguage(langSelect.value);
+
+      langSelect.addEventListener('change', () => {
+        applyLanguage(langSelect.value);
+        try { localStorage.setItem('trz-lang', langSelect.value); } catch (e) {}
+      });
+    </script>
+  </body>
+</html>
